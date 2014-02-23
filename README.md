@@ -1,6 +1,6 @@
 # atyourcommand
 
-Firefox add-on for opening web content into the command line (including WebAppFind).
+Firefox add-on for opening web content into the command line (including [WebAppFind](https://github.com/brettz9/webappfind)).
 
 **This project is not yet functional.**
 
