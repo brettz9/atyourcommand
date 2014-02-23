@@ -48,7 +48,7 @@ via its command line interface (or possibly opened or executed on the desktop). 
 1. Send messages in other direction from waf, exec. builder (to open web file from browser into a desktop app's command line; or to open a web file in a web app!)
 1. Ensure web->desktop also handling file:// URLs and c:\ paths to: folder, execute on desktop, execute with web app
 1. listener for specific sites to automatically open their contents with a webapp viewer or desktop file with optional command line args
-1. Utilize (JavaScript-based) Blockly for pipelining of any kind of command (though avoid baking in UI as UI should be flexible, e.g., to allow use in menu, toolbar, add-on bar, etc.)
+1. Utilize (JavaScript-based) Blockly for pipelining of any kind of command (though avoid baking in UI as UI should be flexible, e.g., to allow use in menu, toolbar, add-on bar, etc.); also macro-like development
 
 0. allow context menu add-on to also have the ability to send content to web apps (readonly) or, in conjunction with filebrowser-enhanced, right-click a file path (in the FF file browser or as an add-on icon when browsing files) directly to web apps
 
