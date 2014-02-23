@@ -18,6 +18,11 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 1. As per AppLauncher feature request, inform users of substitutions for URL, text, etc.
 1. As per AppLauncher feature request, default to a specific, configurable executable path
 1. As per AppLauncher feature request, allow shortcuts on the toolbar
+1. Add demo of data page being opened into WebAppFind and sent to web app
+which feeds data to a plug-in and receives data back for a PUT save back to
+the remote file (important for showing capability of native apps integrated
+with browser gaining same workflow access to the opening and, optionally,
+editing, of a document, including online editing).
 
 # Inspiration
 
