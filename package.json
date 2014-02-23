@@ -1,0 +1,9 @@
+{
+  "name": "atyourcommand",
+  "title": "atyourcommand",
+  "id": "jid1-Q5dsJJMAvBaWVw",
+  "description": "Open web content into the command line",
+  "author": "Brett Zamir",
+  "license": "MIT",
+  "version": "0.1.0"
+}
