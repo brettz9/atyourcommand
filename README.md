@@ -15,6 +15,9 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 1. i18n-ize
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
+1. As per AppLauncher feature request, inform users of substitutions for URL, text, etc.
+1. As per AppLauncher feature request, default to a specific, configurable executable path
+1. As per AppLauncher feature request, allow shortcuts on the toolbar
 
 # Inspiration
 
