@@ -5,10 +5,9 @@ function $ (sel) {
 }
 
 self.port.emit('loaded', 'sth');
-console.log(jml);
 
 var id = 1;
-$('body').appendChild(jml(
+$('#executableTable').appendChild(jml(
 	'tr', [
 			['td', [
 				['label', {'for': 'arg' + id}, ['Arg ' + id]]
