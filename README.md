@@ -10,7 +10,9 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 1. One-off command line dialog: add the option to
 	"save and execute", "save and close", "execute", or "cancel"
 1. Prefs: name list: add, edit, delete, move up/down (adapt for AYW also?)
-1. Context menu to support page, text selection, URL, image, and custom context(s) (for opening images, etc.).
+1. Context menu to support page, text selection, URL, image, and custom
+context(s) (for opening HTML or text of selection, images as binary or data URL,
+etc.).
 1. Include pre-sets for opening into WebAppFind (and Firefox)
 1. i18n-ize
 1. Create icons, etc.
