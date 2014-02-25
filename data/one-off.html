@@ -3,21 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <title>One-off command</title>
-	<style>.focus {text-align:center;}</style>
+	<style>
+	.focus {text-align:center;}
+	#processExecuted {color: red;}
+	</style>
 </head>
 <body>
-
+<div id="processExecuted" style="display:none;">
+Process executed!
+</div>
 <table id="executableTable">
-<tr><td><label>Name:</td><td><input id="name" /></label></td></tr>
-<tr><td><label>Path of executable:</td><td><input id="path" /></label></td></tr>
+<!--<tr><td><label>Name:</td><td><input id="name" /></label></td></tr>-->
+<tr><td><label>Path of executable:</td><td><input id="executablePath" value="" /></label></td></tr>
 </table>
 <br />
 <div class="focus">
-	<button>Save and execute</button>
-	<button>Save and close</button>
-	<br /><br />
-	<button>Execute</button>
-	<button>Cancel</button>
+	<!--<button id="saveAndExecute">Save and execute</button>
+	<button id="saveAndClose">Save and close</button>
+	<br /><br />-->
+	<button id="execute">Execute</button>
+	<button id="cancel">Cancel</button>
 </div>
 
 </body>
