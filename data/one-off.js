@@ -101,11 +101,15 @@ on('autocompleteValuesResponse', function (data) {
 
 
 on('finished', function () {
-	// Would be nice if the panel stuck around, but calling the process causes focus to be lost
-	$('#processExecuted').style.display = 'block';
-	setTimeout(function () {
+	$('#processExecuted').style.visibility = 'visible';
+	if (!$('#keepOpen').checked) {
 		emit('buttonClick', {id: 'cancel'});
-	}, 2000);
+	}
+	else {
+		setTimeout(function () {
+			$('#processExecuted').style.visibility = 'hidden';
+		}, 2000);
+	}
 });
 
 function fileOrDirResult (data) {

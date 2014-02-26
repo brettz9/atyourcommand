@@ -6,7 +6,6 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 
 # Possible to-dos
 
-1. Path of executable
 1. Substitution of current page contents, URL
 
 1. One-off command line dialog: add optionally savable name (for saving)
