@@ -4,7 +4,7 @@ self.on('click', function (node, data) {'use strict';
 	var msg = {
 		textContent: node.textContent,
 		outerHTML: node.outerHTML,
-		data: data,
+		type: data,
 		documentURL: document.URL,
 		pageHTML: document.documentElement.outerHTML,
 		pageBody: document.body.textContent,
