@@ -27,6 +27,16 @@ executable path (or save multiple options for drop-down)
 
 # Likely to-dos
 
+1. Opinion piece on great importance of data ownership and decoupling of local
+or remote data from applications (also discuss need for return to (user-approved)
+`globalStorage` for application independence and potential use in websites adopting
+application-neutral add-on frameworks, and
+[SharedStorage](https://gist.github.com/brettz9/8876920) and
+[AsYouWish namespaced storage](https://github.com/brettz9/asyouwish/)
+as hacks in the interim). Also consider idea for requesting or providing content
+(prefs, request for privs, drafts/documents/chat logs/social media content) stored
+in such `globalStorage` under user-approved (or site-approved) license and
+purchasing terms negotiated in the browser with acceptable third-party verifiers.
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
