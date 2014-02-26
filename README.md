@@ -7,6 +7,7 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 # Possible to-dos
 
 1. Substitution of current page contents, URL
+0. Allow URL-component-encoded versions (or other applauncher.js aspects)
 0. AtYourCommand to include HTTPQuery (partial) retrieval of remote content (though delegate partial saving back to webappfind?)
 0. Take into account base href!
 0. prepend/append to any type: save to temp file - whether to overwrite (and continue execution), optionally prompt or use a user-designated (and changeable within flags) directory; can use for copying whole file (or URLs too)
@@ -21,9 +22,9 @@ etc.). Substitute in path even or only args?
 1. As per AppLauncher feature request, inform users of substitutions for URL, text, etc.
 1. As per AppLauncher feature request, default to a specific, configurable executable path
 
-1. One-off command line dialog: add optionally savable name (for saving)
+1. One-off command line dialog: add optionally savable label (for saving)
 1. One-off command line dialog: add options to "save and execute", "save and close" and add context menu link to prefs dialog
-1. Prefs: name list: add, edit, delete, move up/down (adapt for AYW also?)
+1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)
 1. Include pre-sets for opening into WebAppFind (and Firefox) and example like notepad++
 1. i18n-ize
 1. Create icons, etc.
