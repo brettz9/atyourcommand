@@ -7,20 +7,27 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 # Possible to-dos
 
 1. Substitution of current page contents, URL
+0. AtYourCommand to include HTTPQuery (partial) retrieval of remote content (though delegate partial saving back to webappfind?)
+0. Take into account base href!
+0. prepend/append to any type: save to temp file - whether to overwrite (and continue execution), optionally prompt or use a user-designated (and changeable within flags) directory; can use for copying whole file (or URLs too)
+0. data URL or binary string
+0. current page's body as text or remote page's body as text/HTML (including file:// or C:\ pages)
+0. if current file or link reference is a file:// link, have option to convert to native path
+0. Conditional operator to check whether PUT, HTTPQuery, etc. is supported, and if so, change text sent to command line accordingly (convenience)
+1. Context menu to support substitutions to pass page, text selection, URL, image, and custom
+context(s) (for opening HTML or text of selection or page, images as binary or data URL,
+etc.). Substitute in path even or only args?
+1. Provide sample default paths for executables (at least cmd.exe and firefox.exe)
+1. As per AppLauncher feature request, inform users of substitutions for URL, text, etc.
+1. As per AppLauncher feature request, default to a specific, configurable executable path
 
 1. One-off command line dialog: add optionally savable name (for saving)
 1. One-off command line dialog: add options to "save and execute", "save and close" and add context menu link to prefs dialog
 1. Prefs: name list: add, edit, delete, move up/down (adapt for AYW also?)
-1. Context menu to support substitutions to pass page, text selection, URL, image, and custom
-context(s) (for opening HTML or text of selection or page, images as binary or data URL,
-etc.). Substitute in path even or only args?
 1. Include pre-sets for opening into WebAppFind (and Firefox) and example like notepad++
 1. i18n-ize
-1. Provide sample default paths for executables (at least cmd.exe and firefox.exe)
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
-1. As per AppLauncher feature request, inform users of substitutions for URL, text, etc.
-1. As per AppLauncher feature request, default to a specific, configurable executable path
 1. As per AppLauncher feature request, allow shortcuts on the toolbar
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
