@@ -1,9 +1,12 @@
 /*globals self*/
-self.on('click', function (node, data) {
+/*jslint vars: true*/
+self.on('click', function (node, data) {'use strict';
 	var msg = {
 		textContent: node.textContent,
-		innerHTML: node.innerHTML,
-		data: data
+		outerHTML: node.outerHTML,
+		data: data,
+		documentURL: document.URL,
+		pageHTML: document.documentElement.outerHTML
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (nodeName === 'a' && node.hasAttribute('href')) {
