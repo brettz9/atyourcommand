@@ -6,15 +6,15 @@ Firefox add-on for opening web content into the command line (including [WebAppF
 
 # Possible to-dos
 
-1. Substitution of current page contents, URL
 1. Path of executable
+1. Substitution of current page contents, URL
 
 1. One-off command line dialog: add optionally savable name (for saving)
 1. One-off command line dialog: add options to "save and execute", "save and close" and add context menu link to prefs dialog
 1. Prefs: name list: add, edit, delete, move up/down (adapt for AYW also?)
 1. Context menu to support substitutions to pass page, text selection, URL, image, and custom
 context(s) (for opening HTML or text of selection or page, images as binary or data URL,
-etc.).
+etc.). Substitute in path even or only args?
 1. Include pre-sets for opening into WebAppFind (and Firefox) and example like notepad++
 1. i18n-ize
 1. Provide sample default paths for executables (at least cmd.exe and firefox.exe)

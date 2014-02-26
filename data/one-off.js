@@ -1,7 +1,10 @@
 /*globals self, jml */
 (function () {'use strict';
 
-var id = 1, argNum = 1;
+var id = 1, argNum = 1,
+	emit = self.port.emit,
+	on = self.port.on,
+	options = self.options;
 
 function l (msg) {
 	console.log(msg);
@@ -49,7 +52,9 @@ function addArgument () {
 	argNum++;
 }
 
+
 // ADD EVENTS
+
 $('body').addEventListener('click', function (e) {
 	var target = e.target,
 		dataset = target.dataset || {},
@@ -61,7 +66,7 @@ $('body').addEventListener('click', function (e) {
 		removeArgument(dataset.id);
 	}
 	else {
-		self.port.emit('buttonClick', {
+		emit('buttonClick', {
 			id: target.id,
 			executablePath: $('#executablePath').value,
 			args: Array.from($$('.arg')).map(function (arg) {
@@ -71,15 +76,68 @@ $('body').addEventListener('click', function (e) {
 	}
 });
 
-self.port.on('finished', function () {
+$('#executablePath').addEventListener('input', function (e) {
+	var target = e.target, val = e.target.value;
+	emit('autocompleteValues', {
+		value: val,
+		listID: target.getAttribute('list')
+	});
+});
+
+// COPIED FROM filebrowser-enhanced directoryMod.js (RETURN ALL MODIFICATIONS THERE)
+on('autocompleteValuesResponse', function (data) {
+	var datalist = document.getElementById(data.listID);
+	while (datalist.firstChild) {
+		datalist.removeChild(datalist.firstChild);
+	}
+	data.optValues.forEach(function (optValue) {
+		var option = jml('option', {
+			// text: optValue,
+			value: optValue
+		});
+		datalist.appendChild(option);
+	});
+});
+
+
+on('finished', function () {
 	// Would be nice if the panel stuck around, but calling the process causes focus to be lost
 	$('#processExecuted').style.display = 'block';
 	setTimeout(function () {
-		self.port.emit('buttonClick', {id: 'cancel'});
+		emit('buttonClick', {id: 'cancel'});
 	}, 2000);
 });
 
-// ADD INITIAL ARGS
+function fileOrDirResult (data) {
+	var path = data.path,
+		selector = data.selector;
+	if (path) {
+		$(selector).value = path;
+	}
+}
+on('filePickResult', fileOrDirResult);
+
+$('#executablePick').addEventListener('click', function (e) {
+	var id = e.target.id,
+		sel = '#' + id.replace(/Pick$/, 'Path');
+	emit('filePick', {
+		dirPath: $(sel).value,
+		selector: sel,
+		defaultExtension: 'exe'
+	});
+});
+
+$('.revealButton').addEventListener('click', function (e) {
+	var sel = e.target.dataset.sel,
+		selVal = $(sel).value;
+	if (selVal) {
+		emit('reveal', selVal);
+	}
+});
+
+// SETUP
+$('.revealButton').style.backgroundImage = 'url("' + options.folderImage + '")';
+
 // todo: call multiple times and populate when prev. values stored
 addArgument();
 
