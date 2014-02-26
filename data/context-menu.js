@@ -6,7 +6,8 @@ self.on('click', function (node, data) {'use strict';
 		outerHTML: node.outerHTML,
 		data: data,
 		documentURL: document.URL,
-		pageHTML: document.documentElement.outerHTML
+		pageHTML: document.documentElement.outerHTML,
+		pageBody: document.body.textContent
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (nodeName === 'a' && node.hasAttribute('href')) {
