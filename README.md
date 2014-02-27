@@ -67,13 +67,12 @@ links on the currently loaded file (optionally with args)
 (though delegate partial saving back to webappfind?)
 1. Conditional operator to check whether PUT, HTTPQuery, etc. is supported,
 and if so, change text sent to command line accordingly (convenience)
-1. Handle file:// URLs and c:\ paths that are right-clicked (or currently loaded)
-to: expose folder, bare execution on
-desktop or with web app (without specific executable, args, etc. unless
-provide a prompt?), e.g., for executables/batch files
-    1. Launch file currently opened in Firefox (e.g., if text file opened from
-text, launch it to be able to edit it)
-    1. file: links to local, launchable files
+1. To handle file:// URLs and c:\ paths that are right-clicked (or currently
+loaded) to: expose folder (or copy folder/file path), bare execution on
+desktop or with web app (without specific executable, args, etc.; also
+provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
+to-do about splitting off its context menu/add-on bar file:// capabilities into
+separate add-on.
 
 # Possible to-dos
 
@@ -108,6 +107,9 @@ atyourcommand) but remember upon future loads of the content
         any arguments, passing URL and/or file contents); also allow
         WebAppFind detection (e.g., remote filetypes.json?) in addition
         to MIME detection?
+        1. Point out potential use in automatically launching WebAppFind-driven
+        web apps automatically with web data (and with PUT requests back to
+        server, could get full round-trip decoupling of data and app)
     1. As with my possible todo for
     [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
     site prefs, make the filebrowser-enhanced context
@@ -130,21 +132,10 @@ URL files? (as with invoking WebAppFind from filebrowser extended
 1. Ability to invoke web2desktop with a hand-typed (auto-complete
 prompt) local file and/or URL, respectively!!!! (or auto-create using
 Execute Builder and then immediately execute)
-1. Listener for specific sites to automatically open their contents
-with a webapp viewer or desktop file with optional command line args
 1. Allow context menu add-on to also have the ability to send content
 to web apps (readonly) or, in conjunction with filebrowser-enhanced,
 right-click a file path (in the FF file browser or as an add-on icon
 when browsing files) directly to web apps
-1. Add https://addons.mozilla.org/en-US/firefox/addon/local-filesystem-links/ to
-filebrowser-enhanced README and other types below to relevant READMEs as
-well, in section on "related add-ons" or such. Might also mention
-https://addons.mozilla.org/en-US/firefox/addon/launchy/
-1. Modify https://addons.mozilla.org/en-US/firefox/addon/local-filesystem-links/
-(and filebrowser-enhanced) to ask for command line args (and also for
-webappfind options not only in the file browser but also on right-click
-on the file icon); also to support right-click open with... for webappfind
-behavior
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
