@@ -2,12 +2,12 @@
 /*jslint vars: true*/
 self.on('click', function (node, data) {'use strict';
 	var msg = {
-		textContent: node.textContent,
-		outerHTML: node.outerHTML,
 		type: data,
+		selectedText: node.textContent,
+		selectedHTML: node.outerHTML,
 		documentURL: document.URL,
+		bodyText: document.body.textContent,
 		pageHTML: document.documentElement.outerHTML,
-		pageBody: document.body.textContent,
 		title: document.title
 	};
 	var nodeName = node.nodeName.toLowerCase();
