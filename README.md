@@ -1,7 +1,8 @@
 # atyourcommand
 
-Firefox add-on for opening web content into the command line
-(including [WebAppFind](https://github.com/brettz9/webappfind)).
+Firefox add-on for opening arbitrary web content into the command line
+(which also enables opening arbitrary web content into other web apps
+via [WebAppFind](https://github.com/brettz9/webappfind)).
 
 **This project is not yet functional.**
 
@@ -123,32 +124,14 @@ auto-escaped):
 
 # Notes I need to clean-up and integrate with the above
 
-1. Support calling AsYouWish from a context menu (or etc.) (like
-WebAppFind allows calling it from the desktop)
-    1. Command line API to AsYouWish to automatically grant privs if user
-    option enabled, etc. (can then be used by cm add-on to invoke WebAppFind
-    which invokes AYW with data or with a file?); how to prioritize AYW
-    command line with WAF command line? Could use WebAppFind to
-    allow a particular site to be opened in a hidden window, etc. for
-    batch-like functionality
-1. Web2desktop: when allowing users to create command line commands
-for context menus/menus/toolbars/add-on bar/etc., allow and demo
-(with Blockly?) JS prompts (useful for dynamic batch)
 1. Special protocol to optionally invoke desktop files or remote
 URL files? (as with invoking WebAppFind from filebrowser extended
 (which can be made folder-aware)); same one to invoke command line?
 1. Ability to invoke web2desktop with a hand-typed (auto-complete
 prompt) local file and/or URL, respectively!!!! (or auto-create using
 Execute Builder and then immediately execute)
-1. Send messages in other direction from WAF, Exec. Builder (to
-open web file from browser into a desktop app's command line;
-or to open a web file in a web app!)
 1. Listener for specific sites to automatically open their contents
 with a webapp viewer or desktop file with optional command line args
-1. Utilize (JavaScript-based) Blockly for pipelining of any kind of
-command (though avoid baking in UI as UI should be flexible, e.g.,
-to allow use in menu, toolbar, add-on bar, etc.); also macro-like
-development
 1. Allow context menu add-on to also have the ability to send content
 to web apps (readonly) or, in conjunction with filebrowser-enhanced,
 right-click a file path (in the FF file browser or as an add-on icon
@@ -168,6 +151,18 @@ behavior
 1. https://github.com/piroor/ctxextensions (restartless and to AMO?);
 support not only full custom control over context menu, but also
 toolbar, menu, add-on bar, key command, etc.
+    1. Break apart functionality to specialize in context menu
+    text and URL manipulations? (If so, ensure some other way to
+    have full control over where tools appear; do this by modifying
+    the Firefox Add-ons SDK itself so capability baked-in?)
+1. Utilize (JavaScript-based) Blockly for pipelining of any kind of
+command (though avoid baking in UI as UI should be flexible, e.g.,
+to allow use in menu, toolbar, add-on bar, etc.); also macro-like
+development
+1. When allowing users to create command line commands
+for context menus/menus/toolbars/add-on bar/etc., allow and demo
+(with Blockly?) JS prompts (useful for dynamic batch), e.g., to
+replicate atyourcommand functionality.
 
 # Inspiration
 
