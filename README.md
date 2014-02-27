@@ -160,11 +160,6 @@ menu and right-click on webappfind icon sensitive to site prefs so right-click
 arguments can optionally be remembered; share options across all of these
 addons?
 
-1. Modify filebrowser-enhanced to allow right-click on folder or file to get
-the path (could go to location bar for URL, but not for folder,
-so add this too)
-
-
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
 1. https://github.com/piroor/ctxextensions (restartless and to AMO?);
