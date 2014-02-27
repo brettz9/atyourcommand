@@ -103,7 +103,7 @@ programmability to regular users.
 
 Todos for a Firefox add-on (or series of add-ons, including expanding suitable existing ones) to
 bring web documents to be selected for its contents and/or URL to be passed to a desktop app
-via its command line interface (or possibly opened or executed on the desktop). Also Gopher-related todos
+via its command line interface (or possibly opened or executed on the desktop).
 
 1. https://github.com/piroor/ctxextensions (restartless and to AMO?); support not only full custom control over context menu, but also toolbar, menu, add-on bar, key command, etc.
     1. Support calling AsYouWish from a context menu (or etc.) (like WebAppFind allows calling it from the desktop)
