@@ -3,31 +3,31 @@
 <head>
     <meta charset="utf-8" />
     <title>One-off command</title>
-	<style>
-	#substitutions-explanation, #substitutions-used, #executableTableContainer {
-		overflow: auto;
-		border: 1px inset orange;
-	}
-	#substitutions-explanation {
-		height: 75px;
-	}
-	#substitutions-used {
-		height: 100px;
-	}
-	.focus {text-align:center;}
-	#processExecuted {color: red;}
-	.revealButton {
-		border: none;
-		margin-left: 5px;
-		width: 25px;
-		background-color: transparent;
-		background-repeat: no-repeat;
-		background-size: 20px 20px;
-	}
-	#executableTableContainer {
-		height: 100px;
-	}
-	</style>
+    <style>
+    #substitutions-explanation, #substitutions-used, #executableTableContainer {
+        overflow: auto;
+        border: 1px inset orange;
+    }
+    #substitutions-explanation {
+        height: 75px;
+    }
+    #substitutions-used {
+        height: 100px;
+    }
+    .focus {text-align:center;}
+    #processExecuted {color: red;}
+    .revealButton {
+        border: none;
+        margin-left: 5px;
+        width: 25px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+    }
+    #executableTableContainer {
+        height: 100px;
+    }
+    </style>
 </head>
 <body>
 <div id="processExecuted" style="visibility:hidden;">
@@ -103,13 +103,13 @@ Sequences:
 <table>
 <!--<tr><td><label>Label:</td><td><input id="label" /></label></td></tr>-->
 <tr>
-	<td><label for="executablePath">Path of executable:</label></td>
-	<td>
-		<input type="text" size="55" id="executablePath" list="datalist" autocomplete="off" value="" required="required" />
-		<input type="button" id="executablePick" value="Browse&#x2026;" />
-		<datalist id="datalist"></datalist>
-		<input type="button" class="revealButton" data-sel="#executablePath" />
-	</td></tr>
+    <td><label for="executablePath">Path of executable:</label></td>
+    <td>
+        <input type="text" size="55" id="executablePath" list="datalist" autocomplete="off" value="" required="required" />
+        <input type="button" id="executablePick" value="Browse&#x2026;" />
+        <datalist id="datalist"></datalist>
+        <input type="button" class="revealButton" data-sel="#executablePath" />
+    </td></tr>
 </table>
 <div id="executableTableContainer">
 <table id="executableTable">
@@ -117,12 +117,12 @@ Sequences:
 </div>
 <br />
 <div class="focus">
-	<!--<button id="saveAndExecute">Save and execute</button>
-	<button id="saveAndClose">Save and close</button>
-	<br /><br />-->
-	<label>Keep this dialog open after execution?<input type="checkbox" id="keepOpen" /></label><br />
-	<button id="execute">Execute</button>
-	<button id="cancel">Cancel</button>
+    <!--<button id="saveAndExecute">Save and execute</button>
+    <button id="saveAndClose">Save and close</button>
+    <br /><br />-->
+    <label>Keep this dialog open after execution?<input type="checkbox" id="keepOpen" /></label><br />
+    <button id="execute">Execute</button>
+    <button id="cancel">Cancel</button>
 </div>
 
 </body>

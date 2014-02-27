@@ -70,9 +70,9 @@ and if so, change text sent to command line accordingly (convenience)
 to: expose folder, bare execution on
 desktop or with web app (without specific executable, args, etc. unless
 provide a prompt?), e.g., for executables/batch files
-	1. Launch file currently opened in Firefox (e.g., if text file opened from
+    1. Launch file currently opened in Firefox (e.g., if text file opened from
 text, launch it to be able to edit it)
-	1. file: links to local, launchable files
+    1. file: links to local, launchable files
 
 # Possible to-dos
 
@@ -89,28 +89,28 @@ link and page HTML)
 1. Allow atyourcommand to send content to web apps directly through WebAppFind
 code when present (as opposed to through command line)?
 1. Remote site supply of commands
-	1. Way for websites to register commands or groups of commands upon
-	user introspection and permission
-	1. Served with special content type and protocol meant for external launching?
-		1. Create protocol to force dialog asking to launch app (so if user
-		clicks link, will get asked), optionally with args
+    1. Way for websites to register commands or groups of commands upon
+    user introspection and permission
+    1. Served with special content type and protocol meant for external launching?
+        1. Create protocol to force dialog asking to launch app (so if user
+        clicks link, will get asked), optionally with args
 1. De-coupling of remote content from its executable (as in regular
 atyourcommand) but remember upon future loads of the content
-	1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
-	add-on to allow launching of a file URL including with own args (and
-	optional saving/editing of the command for reuse across atyourcommand
-	content)
-		1. Overlay
-		[Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
-		but make it support site prefs (but not by domain as with Mozilla content prefs!)
-		so choice will be remembered (checkbox to remember choice including
-		any arguments, passing URL and/or file contents); also allow
-		WebAppFind detection (e.g., remote filetypes.json?) in addition
-		to MIME detection?
+    1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
+    add-on to allow launching of a file URL including with own args (and
+    optional saving/editing of the command for reuse across atyourcommand
+    content)
+        1. Overlay
+        [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
+        but make it support site prefs (but not by domain as with Mozilla content prefs!)
+        so choice will be remembered (checkbox to remember choice including
+        any arguments, passing URL and/or file contents); also allow
+        WebAppFind detection (e.g., remote filetypes.json?) in addition
+        to MIME detection?
 1. To make atyourcommand more meaningful, ensure works with a
 Gopher-over-HTTP protocol (e.g., one limited to <li> elements and other tags
 auto-escaped):
-	1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
+    1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
     1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
     1. Use WebDAV request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
 
@@ -118,12 +118,12 @@ auto-escaped):
 
 1. Support calling AsYouWish from a context menu (or etc.) (like
 WebAppFind allows calling it from the desktop)
-	1. Command line API to AsYouWish to automatically grant privs if user
-	option enabled, etc. (can then be used by cm add-on to invoke WebAppFind
-	which invokes AYW with data or with a file?); how to prioritize AYW
-	command line with WAF command line? Could use WebAppFind to
-	allow a particular site to be opened in a hidden window, etc. for
-	batch-like functionality
+    1. Command line API to AsYouWish to automatically grant privs if user
+    option enabled, etc. (can then be used by cm add-on to invoke WebAppFind
+    which invokes AYW with data or with a file?); how to prioritize AYW
+    command line with WAF command line? Could use WebAppFind to
+    allow a particular site to be opened in a hidden window, etc. for
+    batch-like functionality
 1. Web2desktop: when allowing users to create command line commands
 for context menus/menus/toolbars/add-on bar/etc., allow and demo
 (with Blockly?) JS prompts (useful for dynamic batch)
@@ -161,7 +161,7 @@ arguments can optionally be remembered; share options across all of these
 addons?
 
 1. Modify filebrowser-enhanced to allow right-click on folder or file to get
-the path as path (could go to location bar for URL, but not for folder,
+the path (could go to location bar for URL, but not for folder,
 so add this too)
 
 
