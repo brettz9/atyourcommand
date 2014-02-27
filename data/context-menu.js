@@ -5,10 +5,10 @@ self.on('click', function (node, data) {'use strict';
 		type: data,
 		selectedText: node.textContent,
 		selectedHTML: node.outerHTML,
-		documentURL: document.URL,
+		pageURL: document.URL,
 		bodyText: document.body.textContent,
 		pageHTML: document.documentElement.outerHTML,
-		title: document.title
+		pageTitle: document.title
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (nodeName === 'a' && node.hasAttribute('href')) {

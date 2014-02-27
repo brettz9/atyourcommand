@@ -8,9 +8,6 @@ Firefox add-on for opening web content into the command line
 # Immediate to-dos
 
 1. Finish substitution of current page contents, URL, etc.
-1. Mention how to escape < and > (%3C and %3E, respectively);
-show current URL, title, etc. (on input mouseover when present?) since
-content could otherwise change before execution
 1. Show current substitution at bottom of dialog in overflow area; put the
 already used ones asterisked at the top
 1. Prepend/append to any type: save to temp file - whether to overwrite (and

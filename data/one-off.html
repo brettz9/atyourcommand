@@ -4,6 +4,14 @@
     <meta charset="utf-8" />
     <title>One-off command</title>
 	<style>
+	#substitutions-explanation {
+		height: 65px;
+		overflow: auto;
+	}
+	#substitutions-used {
+		height: 100px;
+		overflow: auto;
+	}
 	.focus {text-align:center;}
 	#processExecuted {color: red;}
 	.revealButton {
@@ -19,6 +27,57 @@
 <body>
 <div id="processExecuted" style="visibility:hidden;">
 Process executed!
+</div>
+<h3>Substitutions explained</h3>
+<div id="substitutions-explanation">
+Substitution sequences allow dynamic insertion of web content into a command line.
+They all begin and end with the delimiters "<" and ">", respectively. If you
+need these in raw form, add a backslash before the character (a single
+backslash before it will be stripped). If you need these delimiters anywhere
+within a resulting URL, you should be using
+%3C and %3E, respectively, anyways.
+
+A prefix or prefixes can be applied before any sequence.
+
+<dl>
+<dt>save-temp-</dt><dd>Added to indicate that the targeted contents should first be saved to a temporary file</dd>
+<dt>ucencode-</dt><dd>Encode the content for safe inclusion within a URI component (the portion beginning with "?")</dd>
+<dt>uencode-</dt><dd>Encode the content for safe inclusion AS a whole URI</dd>
+</dl>
+
+Sequences:
+<dl>
+<dt>pageTitle</dt><dd>The title of the current page</dd>
+<dt>pageURL</dt><dd>The URL of the current page</dd>
+<dt>pageHTML</dt><dd>The HTML source of the current page</dd>
+<dt>bodyText</dt><dd>The text of the current page (the concatenated text of the current document's body content)</dd>
+<dt>selectedHTML</dt><dd>The HTML source of the text highlighted on the current page</dd>
+<dt>selectedText</dt><dd>The text highlighted on the current page</dd>
+</dl>
+</div>
+
+<h3>Substitutions used</h3>
+The currently available sequences are as follows. Note that
+if you execute now, we will utilize the information displayed for
+the substitutions even if you change the selected text before
+closing this dialog. Items marked in red with an asterisk are
+currently being employed within your arguments in at least one place.
+<div id="substitutions-used">
+<dl>
+<dt>save-temp-</dt><dd></dd>
+<dt>ucencode-</dt><dd></dd>
+<dt>uencode-</dt><dd></dd>
+</dl>
+
+Sequences:
+<dl>
+<dt>pageTitle</dt><dd></dd>
+<dt>pageURL</dt><dd></dd>
+<dt>pageHTML</dt><dd></dd>
+<dt>bodyText</dt><dd></dd>
+<dt>selectedHTML</dt><dd></dd>
+<dt>selectedText</dt><dd></dd>
+</dl>
 </div>
 <table id="executableTable">
 <!--<tr><td><label>Label:</td><td><input id="label" /></label></td></tr>-->
