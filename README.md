@@ -44,6 +44,9 @@ uniform approach (which could subsume the local SQLite API as well)
 toward allowing universal and
 neutral APIs to obtain and save *portions* of documents as well as whole
 documents among open data sources and applications.
+1. Idea for command line apps to align themselves with a uniform,
+atyourcommand-friendly syntax to simplify supplying of data (and to allow for
+UI-building of such arguments for apps which are compliant).
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
