@@ -37,7 +37,7 @@ function addArgument () {
 					['label', {'for': 'arg' + id, 'class': 'argNumber'}, ['Arg ' + argNum + ':']]
 				]],
 				['td', [
-					['input', {id: 'arg' + id, 'class': 'arg', size: 65}]
+					['input', {id: 'arg' + id, 'class': 'arg', size: 75}]
 				]],
 				['td', [
 					['button', {'class': 'addArg'}, ['+']]

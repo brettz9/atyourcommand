@@ -4,13 +4,15 @@
     <meta charset="utf-8" />
     <title>One-off command</title>
 	<style>
-	#substitutions-explanation {
-		height: 65px;
+	#substitutions-explanation, #substitutions-used, #executableTableContainer {
 		overflow: auto;
+		border: 1px inset orange;
+	}
+	#substitutions-explanation {
+		height: 75px;
 	}
 	#substitutions-used {
 		height: 100px;
-		overflow: auto;
 	}
 	.focus {text-align:center;}
 	#processExecuted {color: red;}
@@ -21,6 +23,9 @@
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-size: 20px 20px;
+	}
+	#executableTableContainer {
+		height: 100px;
 	}
 	</style>
 </head>
@@ -79,7 +84,7 @@ Sequences:
 <dt>selectedText</dt><dd></dd>
 </dl>
 </div>
-<table id="executableTable">
+<table>
 <!--<tr><td><label>Label:</td><td><input id="label" /></label></td></tr>-->
 <tr>
 	<td><label for="executablePath">Path of executable:</label></td>
@@ -90,6 +95,10 @@ Sequences:
 		<input type="button" class="revealButton" data-sel="#executablePath" />
 	</td></tr>
 </table>
+<div id="executableTableContainer">
+<table id="executableTable">
+</table>
+</div>
 <br />
 <div class="focus">
 	<!--<button id="saveAndExecute">Save and execute</button>
