@@ -12,11 +12,11 @@ self.on('click', function (node, data) {'use strict';
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (nodeName === 'a' && node.hasAttribute('href')) {
-		msg.linkPageURL = node.getAttribute('href'); // Todo: Take into account base href!
+		msg.linkPageURL = node.getAttribute('href'); // Todo: Take into account document.baseURI
 		// We retrieve "linkPageTitle", "linkBodyText", and "linkPageHTML" only as needed
 	}
 	else if (nodeName === 'img' && node.hasAttribute('src')) {
-		msg.imageURL = node.getAttribute('src'); // Todo: Take into account base href!
+		msg.imageURL = node.getAttribute('src'); // Todo: Take into account document.baseURI
 	}
 	
 	self.postMessage(msg); // We need privs on the dialogs we open

@@ -52,10 +52,6 @@ which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
 with browser gaining same workflow access to the opening and, optionally,
 editing, of a document, including online editing).
-1. AtYourCommand to include HTTPQuery (partial) retrieval of remote content
-(though delegate partial saving back to webappfind?)
-1. Conditional operator to check whether PUT, HTTPQuery, etc. is supported,
-and if so, change text sent to command line accordingly (convenience)
 1. One-off command line dialog: add optionally savable label (for saving)
 1. One-off command line dialog: add options to "save and execute",
 "save and close" and add context menu link to prefs dialog
@@ -63,8 +59,15 @@ and if so, change text sent to command line accordingly (convenience)
 1. Include pre-sets for opening into WebAppFind (and Firefox) and
 example like Notepad++
 1. Investigate other applauncher.js aspects for possible types of substitutions?
-1. Ensure filebrowser-enhanced can launch the currently loaded
-file (optionally with args) by using atyourcommand
+1. Make reference to potential use with filebrowser or filebrowser-enhanced
+links on the currently loaded file (optionally with args)
+1. AtYourCommand to include HTTPQuery (partial) retrieval of remote content
+(though delegate partial saving back to webappfind?)
+1. Conditional operator to check whether PUT, HTTPQuery, etc. is supported,
+and if so, change text sent to command line accordingly (convenience)
+1. Handle file:// URLs and c:\ paths to: expose folder, bare execution on
+desktop or with web app (without specific executable, args, etc. unless
+provide a prompt?), e.g., for executables/batch files
 
 # Possible to-dos
 
@@ -113,7 +116,6 @@ via its command line interface (or possibly opened or executed on the desktop).
 1. special protocol to optionally invoke desktop files or remote URL files? (as with invoking webappfind from filebrowser (which can also be folder-aware)); same one to invoke command line?
 1. Ability to invoke web2desktop with a hand-typed (auto-complete prompt) local file and/or URL, respectively!!!! (or auto-create using Execute Builder and then immediately execute)
 1. Send messages in other direction from waf, exec. builder (to open web file from browser into a desktop app's command line; or to open a web file in a web app!)
-1. Ensure web->desktop also handling file:// URLs and c:\ paths to: folder, execute on desktop, execute with web app
 1. listener for specific sites to automatically open their contents with a webapp viewer or desktop file with optional command line args
 1. Utilize (JavaScript-based) Blockly for pipelining of any kind of command (though avoid baking in UI as UI should be flexible, e.g., to allow use in menu, toolbar, add-on bar, etc.); also macro-like development
 1. allow context menu add-on to also have the ability to send content to web apps (readonly) or, in conjunction with filebrowser-enhanced, right-click a file path (in the FF file browser or as an add-on icon when browsing files) directly to web apps
@@ -133,8 +135,12 @@ behavior
         1. Overlay prompt at https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/ but make it support site prefs
 		so choice will be remembered (checkbox to remember choice including any arguments, passing URL and/or file contents);
 		also allow WAF detection (e.g., remote filetypes.json?) in addition to MIME detection?
-1. As with "open with browser" site prefs, make filebrowser-enhanced context menu and right-click on webappfind icon sensitive to site prefs so right-click arguments can optionally be remembered; share options across all of these addons?
-1. Open directory of already opened file or path
-1. Modify filebrowser-enhanced to allow right-click on folder or file to get the path as path (could go to location bar for URL, but not for folder, so add this too)
-1. Launch file currently opened in Firefox (e.g., if text file opened from text, launch it to be able to edit it)
-1. Run file as executable (e.g., a batch)
+1. As with "open with browser" site prefs, make filebrowser-enhanced context
+menu and right-click on webappfind icon sensitive to site prefs so right-click
+arguments can optionally be remembered; share options across all of these
+addons?
+1. Modify filebrowser-enhanced to allow right-click on folder or file to get
+the path as path (could go to location bar for URL, but not for folder,
+so add this too)
+1. Launch file currently opened in Firefox (e.g., if text file opened from
+text, launch it to be able to edit it)
