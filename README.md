@@ -107,6 +107,13 @@ atyourcommand) but remember upon future loads of the content
         any arguments, passing URL and/or file contents); also allow
         WebAppFind detection (e.g., remote filetypes.json?) in addition
         to MIME detection?
+    1. As with my possible todo for
+    [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
+    site prefs, make the filebrowser-enhanced context
+    menu and right-click on WebAppFind icon (for the opening of the current
+    browser document into WebAppFind) sensitive to site prefs so right-click
+    arguments can optionally be remembered; share options across all of these
+    addons?
 1. To make atyourcommand more meaningful, ensure works with a
 Gopher-over-HTTP protocol (e.g., one limited to <li> elements and other tags
 auto-escaped):
@@ -128,8 +135,8 @@ WebAppFind allows calling it from the desktop)
 for context menus/menus/toolbars/add-on bar/etc., allow and demo
 (with Blockly?) JS prompts (useful for dynamic batch)
 1. Special protocol to optionally invoke desktop files or remote
-URL files? (as with invoking webappfind from filebrowser (which
-can also be folder-aware)); same one to invoke command line?
+URL files? (as with invoking WebAppFind from filebrowser extended
+(which can be made folder-aware)); same one to invoke command line?
 1. Ability to invoke web2desktop with a hand-typed (auto-complete
 prompt) local file and/or URL, respectively!!!! (or auto-create using
 Execute Builder and then immediately execute)
@@ -155,17 +162,12 @@ https://addons.mozilla.org/en-US/firefox/addon/launchy/
 webappfind options not only in the file browser but also on right-click
 on the file icon); also to support right-click open with... for webappfind
 behavior
-1. As with "open with browser" site prefs, make filebrowser-enhanced context
-menu and right-click on webappfind icon sensitive to site prefs so right-click
-arguments can optionally be remembered; share options across all of these
-addons?
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
 1. https://github.com/piroor/ctxextensions (restartless and to AMO?);
 support not only full custom control over context menu, but also
 toolbar, menu, add-on bar, key command, etc.
-
 
 # Inspiration
 
