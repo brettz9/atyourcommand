@@ -12,10 +12,10 @@ self.on('click', function (node, data) {'use strict';
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (nodeName === 'a' && node.hasAttribute('href')) {
-		msg.href = node.getAttribute('href');
+		msg.linkLocation = node.getAttribute('href'); // Todo: Take into account base href!
 	}
 	else if (nodeName === 'img' && node.hasAttribute('src')) {
-		msg.src = node.getAttribute('src');
+		msg.imageLocation = node.getAttribute('src'); // Todo: Take into account base href!
 	}
 	
 	self.postMessage(msg); // We need privs on the dialogs we open
