@@ -8,6 +8,11 @@ Firefox add-on for opening web content into the command line
 # Immediate to-dos
 
 1. Finish substitution of current page contents, URL, etc.
+1. Mention how to escape < and > (%3C and %3E, respectively);
+show current URL, title, etc. (on input mouseover when present?) since
+content could otherwise change before execution
+1. Show current substitution at bottom of dialog in overflow area; put the
+already used ones asterisked at the top
 1. Prepend/append to any type: save to temp file - whether to overwrite (and
 continue execution), optionally prompt or use a user-designated (and
 changeable within flags) directory; can use for copying whole file (or
@@ -30,8 +35,11 @@ executable path (or save multiple options for drop-down)
 or remote data from applications (also discuss need for return to (user-approved)
 `globalStorage` for application independence and potential use in websites adopting
 application-neutral add-on frameworks, and
-[SharedStorage](https://gist.github.com/brettz9/8876920) and
-[AsYouWish namespaced storage](https://github.com/brettz9/asyouwish/)
+[SharedStorage](https://gist.github.com/brettz9/8876920),
+[AsYouWish namespaced storage](https://github.com/brettz9/asyouwish/),
+and the HTML5 download attribute (whose ability to save anywhere is nice
+but does not allow the site to prompt for a specific directory and does not
+allow for automatic reading back of the file),
 as hacks in the interim). Also consider idea for requesting or providing content
 (prefs, request for privs, drafts/documents/chat logs/social media content) stored
 in such `globalStorage` under user-approved (or site-approved) license and
@@ -41,7 +49,8 @@ discussions. Ridiculousness of effort at code being decoupled when web (and
 desktop in connection with the web) is itself not decoupled. Also cover the
 ideas for PUT requests (for decoupled saving) and interfaces to the
 likes of Firefox's SQLite database (including for access to its localStorage
-contents) and HTTPQuery/PATCH requests for a potentially friendly and
+contents) or to FileWriter/FileSystem files and HTTPQuery/PATCH requests
+for a potentially friendly and
 uniform approach (which could subsume the local SQLite API as well)
 toward allowing universal and
 neutral APIs to obtain and save *portions* of documents as well as whole
