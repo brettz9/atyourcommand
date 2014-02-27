@@ -93,7 +93,9 @@ code when present (as opposed to through command line)?
     user introspection and permission
     1. Served with special content type and protocol meant for external launching?
         1. Create protocol to force dialog asking to launch app (so if user
-        clicks link, will get asked), optionally with args
+        clicks link, will get asked), optionally with args, and optionally with
+        desktop file or remote URLs, etc. as content; will thereby also be
+        able to support (and demo) WebAppFind invocation from remote
 1. De-coupling of remote content from its executable (as in regular
 atyourcommand) but remember upon future loads of the content
     1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
@@ -126,16 +128,9 @@ auto-escaped):
 
 # Notes I need to clean-up and integrate with the above
 
-1. Special protocol to optionally invoke desktop files or remote
-URL files? (as with invoking WebAppFind from filebrowser extended
-(which can be made folder-aware)); same one to invoke command line?
 1. Ability to invoke web2desktop with a hand-typed (auto-complete
 prompt) local file and/or URL, respectively!!!! (or auto-create using
 Execute Builder and then immediately execute)
-1. Allow context menu add-on to also have the ability to send content
-to web apps (readonly) or, in conjunction with filebrowser-enhanced,
-right-click a file path (in the FF file browser or as an add-on icon
-when browsing files) directly to web apps
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
