@@ -37,6 +37,9 @@ as hacks in the interim). Also consider idea for requesting or providing content
 (prefs, request for privs, drafts/documents/chat logs/social media content) stored
 in such `globalStorage` under user-approved (or site-approved) license and
 purchasing terms negotiated in the browser with acceptable third-party verifiers.
+Cover need for "data ownership" to more frequently accompany privacy
+discussions. Ridiculousness of effort at code being decoupled when web (and
+desktop in connection with the web) is itself not decoupled.
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
