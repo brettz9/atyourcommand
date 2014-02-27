@@ -12,13 +12,11 @@ Firefox add-on for opening web content into the command line
 continue execution), optionally prompt or use a user-designated (and
 changeable within flags) directory; can use for copying whole file (or
 URLs too even if PUT back to server)
-1. Data URL or binary string
-1. Remote page's body as text/HTML (including file:// or C:\ pages)
-1. If current file or link reference is a file:// link, have option to convert to native path
-1. Substitute in path even in executable path or only args?
+
 1. Provide sample default paths for executables (at least cmd.exe and firefox.exe)
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
+1. Command line necessities (escaping, e.g., for use within a quoted string)
 
 # Likely to-dos
 
