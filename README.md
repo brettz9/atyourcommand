@@ -39,7 +39,13 @@ in such `globalStorage` under user-approved (or site-approved) license and
 purchasing terms negotiated in the browser with acceptable third-party verifiers.
 Cover need for "data ownership" to more frequently accompany privacy
 discussions. Ridiculousness of effort at code being decoupled when web (and
-desktop in connection with the web) is itself not decoupled.
+desktop in connection with the web) is itself not decoupled. Also cover the
+ideas for PUT requests (for decoupled saving) and interfaces to the
+likes of Firefox's SQLite database (including for access to its localStorage
+contents) and HTTPQuery for a potentially friendly and uniform approach (which
+could subsume the local SQLite API as well) toward allowing universal and
+neutral APIs to obtain and save *portions* of documents as well as whole
+documents among open data sources and applications.
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
