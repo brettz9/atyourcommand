@@ -52,15 +52,15 @@ function ExpandableInputs (cfg) {
         throw "A config object with a table ID must be supplied to ExpandableInputs";
     }
     this.table = cfg.table;
-    this.prefix = (cfg.prefix && cfg.prefix.replace(/-$/, '') || 'ei') + '-';
-    this.ns = (cfg.namespace && cfg.namespace.replace(/-$/, '') || (ns++).toString()) + '-';
+    this.prefix = ((cfg.prefix && cfg.prefix.replace(/-$/, '')) || 'ei') + '-';
+    this.ns = ((cfg.namespace && cfg.namespace.replace(/-$/, '')) || (ns++).toString()) + '-';
     this.label = cfg.label || '%s:';
     this.pattern = cfg.pattern || /%s/g;
     this.inputType = cfg.inputType && cfg.inputType !== 'file' ? cfg.inputType : 'text';
     this.inputSize = cfg.inputSize || 50;
 
     // State variables
-    this.fileType = cfg.inputType === 'file'; // Todo: Add behavior if a file type
+    this.fileType = cfg.inputType === 'file';
     this.id = 1;
     this.num = 1;
 }
@@ -89,7 +89,8 @@ ExpandableInputs.prototype.remove = function (id) {
 };
 
 ExpandableInputs.prototype.add = function () {
-    var prefixedNS = this.getPrefixedNamespace();
+    var that = this,
+        prefixedNS = this.getPrefixedNamespace();
     $('#' + this.table).appendChild(jml(
         'tr', {
             'id': prefixedNS + 'row-' + this.id,
@@ -102,12 +103,61 @@ ExpandableInputs.prototype.add = function () {
                     }, [this.getLabel(this.num)]]
                 ]],
                 ['td', [
-                    ['input', {
-                        id: prefixedNS + 'input-' + this.id,
-                        type: this.inputType,
-                        'class': prefixedNS + 'input',
-                        size: this.inputSize
-                    }]
+                    (this.fileType ?
+                        ($$('.temps').length > 0 ?
+                            (function () {
+                                var select = $('.temps').cloneNode(true);
+                                select.id = prefixedNS + 'select-' + that.id;
+                                select.dataset.sel = '#' + prefixedNS + 'input-' + that.id;
+                                return select;
+                            }()) :
+                            ['select', {
+                                id: prefixedNS + 'select-' + this.id,
+                                'class': 'temps executable',
+                                dataset: {sel: '#' + prefixedNS + 'input-' + this.id}
+                            }]
+                        ) :
+                        ''
+                    ),
+                    ['input', (function () {
+                        var atts = {
+                            id: prefixedNS + 'input-' + that.id,
+                            type: that.inputType,
+                            'class': prefixedNS + 'input ' + prefixedNS + 'path',
+                            size: that.inputSize,
+                            value: ''
+                        };
+                        if (that.fileType) {
+                            atts.list = prefixedNS + 'tempDatalist-' + that.id;
+                            atts.autocomplete = 'off';
+                        }
+                        return atts;
+                    }())],
+                    // Todo: resolve any issues with fragments and Jamilih and use here to reduce following code checks
+                    (this.fileType ?
+                        ['datalist', {id: prefixedNS + 'tempDatalist-' + this.id}] :
+                        ''
+                    ),
+                    (this.fileType ?
+                        ['input', {
+                            type: 'button',
+                            'class': 'tempPick picker',
+                            dataset: {
+                                sel: '#' + prefixedNS + 'input-' + this.id,
+                                select: {folder: 'true'}
+                            },
+                            value: 'Browse\u2026'
+                        }] :
+                        ''
+                    ),
+                    (this.fileType ?
+                        ['input', {type: 'button', 'class': 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}}] :
+                        ''
+                    ),
+                    (this.fileType ?
+                        ['label', [' ', ['input', {type: 'checkbox'}], 'Directory?']] :
+                        ''
+                    )
                 ]],
                 ['td', [
                     ['button', {

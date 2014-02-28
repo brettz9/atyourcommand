@@ -23,7 +23,7 @@ var
         table: 'fileArguments',
         namespace: 'files',
         label: 'File %s:',
-        inputSize: 40,
+        inputSize: 25,
         inputType: 'file'
     });
 
@@ -49,7 +49,8 @@ function forSel (sel, cb) {
 // ADD EVENTS
 
 $('body').addEventListener('click', function (e) {
-    var target = e.target,
+    var val, sel, selVal,
+        target = e.target,
         dataset = target.dataset || {},
         cl = target.classList;
     function getInputValues (expInput) {
@@ -59,8 +60,34 @@ $('body').addEventListener('click', function (e) {
         });
     }
 
+    if (cl.contains('executable') || (target.parentNode && target.parentNode.classList.contains('executable'))) {
+        val = target.value;
+		if (!val) {
+			return;
+		}
+        sel = dataset.sel || (target.parentNode && target.parentNode.dataset.sel);
+        if (sel) {
+            $(sel).value = val;
+        }
+    }
+    else if (cl.contains('picker')) {
+        sel = dataset.sel;
+        emit('filePick', {
+            dirPath: $(sel).value,
+            selector: sel,
+            defaultExtension: dataset.defaultExtension || undefined,
+            selectFolder: dataset.selectFolder ? true : undefined
+        });
+    }
+    else if (cl.contains('revealButton')) {
+        sel = dataset.sel;
+        selVal = sel && $(sel).value;
+        if (selVal) {
+            emit('reveal', selVal);
+        }
+    }
     // Abstract this
-    if (cl.contains(files.getPrefixedNamespace() + 'add')) {
+    else if (cl.contains(files.getPrefixedNamespace() + 'add')) {
         files.add();
     }
     else if (cl.contains(files.getPrefixedNamespace() + 'remove')) {
@@ -89,14 +116,14 @@ $('body').addEventListener('click', function (e) {
     }
 });
 
-forSel('#executablePath,#tempPath', function (el) {
-    el.addEventListener('input', function (e) {
-        var target = e.target, val = e.target.value;
+$('body').addEventListener('input', function (e) {
+    var target = e.target, val = e.target.value;
+    if (target.classList.contains('path')) {
         emit('autocompleteValues', {
             value: val,
             listID: target.getAttribute('list')
         });
-    });
+    }
 });
 
 // COPIED FROM filebrowser-enhanced directoryMod.js (RETURN ALL MODIFICATIONS THERE)
@@ -136,52 +163,29 @@ function fileOrDirResult (data) {
 }
 on('filePickResult', fileOrDirResult);
 
-forSel('#executablePick,#tempPick', function (el) {
-    el.addEventListener('click', function (e) {
-        var id = e.target.id,
-            sel = '#' + id.replace(/Pick$/, 'Path');
-        emit('filePick', {
-            dirPath: $(sel).value,
-            selector: sel,
-            defaultExtension: id.contains('executable') ? 'exe' : undefined,
-            selectFolder: id.contains('temp') ? true : undefined
-        });
-    });
-});
-
 // SETUP
-forSel('.revealButton', function (el) {
-    el.addEventListener('click', function (e) {
-        var sel = e.target.dataset.sel,
-            selVal = $(sel).value;
-        if (selVal) {
-            emit('reveal', selVal);
-        }
-    });
-    el.style.backgroundImage = 'url("' + options.folderImage + '")';
-});
+
+// Insert this as a class, so it works for others inserted into doc
+$('#dynamicStyleRules').sheet.insertRule(
+    '.revealButton {background-image: url("' + options.folderImage + '");}', 0
+);
 
 function handleOptions (data) {
     var paths = data.paths,
-        id = data.type;
-	$('#' + id).addEventListener('click', function (e) {
-		var val = e.target.value;
-		if (!val) {
-			return;
-		}
-		$('#' + id.replace(/s$/, '') + 'Path').value = val;
-	});
-	paths.forEach(function (pathInfo) {
+        type = data.type,
+        sel = type === 'executables' ? '#' + type : '.temps';
+
+    paths.forEach(function (pathInfo) {
 		var option = document.createElement('option');
 		option.text = pathInfo[0];
 		option.value = pathInfo[1];
-		$('#' + id).appendChild(option);
+		$(sel).appendChild(option);
 	});
 }
 on('executables', handleOptions);
 on('temps', handleOptions);
 
-// Todo: call multiple times and populate when prev. values stored
+// Todo: For prefs when prev. values stored, call multiple times and populate
 args.add();
 urls.add();
 files.add();
