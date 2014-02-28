@@ -105,6 +105,7 @@ atyourcommand) but remember upon future loads of the content
         1. Overlay
         [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
         but make it support site prefs (but not by domain as with Mozilla content prefs!)
+        (in addition to mapping MIME to commands)
         so choice will be remembered (checkbox to remember choice including
         any arguments, passing URL and/or file contents); also allow
         WebAppFind detection (e.g., remote filetypes.json?) in addition
