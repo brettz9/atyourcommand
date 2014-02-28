@@ -12,9 +12,9 @@ content as HTML or text, etc.
 
 # Immediate to-dos
 
-1. UI additions
-    1. Add autocomplete, reveal button, etc. for files
-    1. Temp saving: Optionally prompt or use a user-designated (and changeable within flags) directory
+1. UI fixes
+    1. Change temp directory item into pull-down with file
+    1. Add autocomplete, reveal button, etc. for files (or with checkboxes, directories)
 1. Behavior additons
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (see to-dos in code).

@@ -27,11 +27,11 @@
             <dt>save-temp</dt><dd>Added to indicate that the targeted contents should first be saved to a temporary file.
                                                         This can be used for copying a whole file (or URLs too even if sending a PUT
                                                         back to the server for the original location).
-                                                        Can be followed by "overwrite=" and "yes", "no", or "prompt" to
+                                                        Can be followed by whitespace and "overwrite=" and "yes", "no", or "prompt" to
                                                         indicate what to do when a file in the location already exists.
-                                                        Can be followed by "continue=" and "yes" or "no" for whether to continue
-                                                        execution when a file is found in the location and "overwrite" is "no" or
-                                                        "prompt" with a resulting "no" answer by the user.</dd>
+                                                        Can be followed by whitespace and "continue=" and "yes" or "no" for
+                                                        whether to continue execution when a file is found in the location and
+                                                        "overwrite" is "no" or "prompt" with a resulting "no" answer by the user.</dd>
             <dt>ucencode-</dt><dd>Encode the content for safe inclusion within a URI component (the portion beginning with "?")</dd>
             <dt>uencode-</dt><dd>Encode the content for safe inclusion AS a whole URI</dd>
             <dt>escquotes-</dt><dd>Escape quotes (Note that this might be applied automatically to content in the future)</dd>
@@ -39,7 +39,7 @@
 
         <b>Sequences:</b>
         <dl>
-            <dt>eval:</dt><dd>Evaluate the JavaScript following the "eval:". Substitutions will be usable within the string.</dd>
+            <dt>eval</dt><dd>Evaluate the JavaScript following the "eval" and a space. Substitutions will be usable within the string.</dd>
             <dt>pageURL</dt><dd>The URL of the current page</dd>
             <dt>pageTitle</dt><dd>The title of the current page</dd>
             <dt>pageHTML</dt><dd>The HTML source of the current page</dd>
@@ -98,13 +98,23 @@
 <table>
 <!--<tr><td><label>Label:</td><td><input id="label" /></label></td></tr>-->
     <tr>
-        <td><label for="executablePath">Path of executable:</label></td>
+        <td class="path"><label for="executablePath">Path of executable:</label></td>
         <td>
             <select id="executables"></select>
             <input type="text" size="55" id="executablePath" list="datalist" autocomplete="off" value="" required="required" />
             <input type="button" id="executablePick" value="Browse&#x2026;" />
             <datalist id="datalist"></datalist>
             <input type="button" class="revealButton" data-sel="#executablePath" />
+        </td>
+    </tr>
+    <tr>
+        <td class="path"><label for="tempPath">Path of temp directory (used with "save-temp"):</label></td>
+        <td>
+            <select id="temps"></select>
+            <input type="text" size="55" id="tempPath" list="tempDatalist" autocomplete="off" value="" />
+            <input type="button" id="tempPick" value="Browse&#x2026;" />
+            <datalist id="tempDatalist"></datalist>
+            <input type="button" class="revealButton" data-sel="#tempPath" />
         </td>
     </tr>
 </table>

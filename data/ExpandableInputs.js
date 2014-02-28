@@ -56,10 +56,11 @@ function ExpandableInputs (cfg) {
     this.ns = (cfg.namespace && cfg.namespace.replace(/-$/, '') || (ns++).toString()) + '-';
     this.label = cfg.label || '%s:';
     this.pattern = cfg.pattern || /%s/g;
-    this.inputType = cfg.inputType || 'text';
+    this.inputType = cfg.inputType && cfg.inputType !== 'file' ? cfg.inputType : 'text';
     this.inputSize = cfg.inputSize || 50;
 
     // State variables
+    this.fileType = cfg.inputType === 'file'; // Todo: Add behavior if a file type
     this.id = 1;
     this.num = 1;
 }

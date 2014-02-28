@@ -23,9 +23,16 @@ var
         table: 'fileArguments',
         namespace: 'files',
         label: 'File %s:',
-        inputSize: 40
+        inputSize: 40,
+        inputType: 'file'
     });
 
+// POLYFILLS
+Array.from = function (arg) {
+    return [].slice.call(arg);
+};
+
+// UTILITIES
 function l (msg) {
     console.log(msg);
 }
@@ -34,6 +41,9 @@ function $ (sel) {
 }
 function $$ (sel) {
     return document.querySelectorAll(sel);
+}
+function forSel (sel, cb) {
+    Array.from($$(sel)).forEach(cb);
 }
 
 // ADD EVENTS
@@ -79,11 +89,13 @@ $('body').addEventListener('click', function (e) {
     }
 });
 
-$('#executablePath').addEventListener('input', function (e) {
-    var target = e.target, val = e.target.value;
-    emit('autocompleteValues', {
-        value: val,
-        listID: target.getAttribute('list')
+forSel('#executablePath,#tempPath', function (el) {
+    el.addEventListener('input', function (e) {
+        var target = e.target, val = e.target.value;
+        emit('autocompleteValues', {
+            value: val,
+            listID: target.getAttribute('list')
+        });
     });
 });
 
@@ -124,42 +136,50 @@ function fileOrDirResult (data) {
 }
 on('filePickResult', fileOrDirResult);
 
-$('#executablePick').addEventListener('click', function (e) {
-    var id = e.target.id,
-        sel = '#' + id.replace(/Pick$/, 'Path');
-    emit('filePick', {
-        dirPath: $(sel).value,
-        selector: sel,
-        defaultExtension: 'exe'
+forSel('#executablePick,#tempPick', function (el) {
+    el.addEventListener('click', function (e) {
+        var id = e.target.id,
+            sel = '#' + id.replace(/Pick$/, 'Path');
+        emit('filePick', {
+            dirPath: $(sel).value,
+            selector: sel,
+            defaultExtension: id.contains('executable') ? 'exe' : undefined,
+            selectFolder: id.contains('temp') ? true : undefined
+        });
     });
 });
 
-$('.revealButton').addEventListener('click', function (e) {
-    var sel = e.target.dataset.sel,
-        selVal = $(sel).value;
-    if (selVal) {
-        emit('reveal', selVal);
-    }
+// SETUP
+forSel('.revealButton', function (el) {
+    el.addEventListener('click', function (e) {
+        var sel = e.target.dataset.sel,
+            selVal = $(sel).value;
+        if (selVal) {
+            emit('reveal', selVal);
+        }
+    });
+    el.style.backgroundImage = 'url("' + options.folderImage + '")';
 });
 
-// SETUP
-$('.revealButton').style.backgroundImage = 'url("' + options.folderImage + '")';
-
-on('executables', function (exes) {
-	$('#executables').addEventListener('click', function (e) {
+function handleOptions (data) {
+    var paths = data.paths,
+        id = data.type;
+	$('#' + id).addEventListener('click', function (e) {
 		var val = e.target.value;
 		if (!val) {
 			return;
 		}
-		$('#executablePath').value = val;
+		$('#' + id.replace(/s$/, '') + 'Path').value = val;
 	});
-	exes.forEach(function (exe) {
+	paths.forEach(function (pathInfo) {
 		var option = document.createElement('option');
-		option.text = exe[0];
-		option.value = exe[1];
-		$('#executables').appendChild(option);
+		option.text = pathInfo[0];
+		option.value = pathInfo[1];
+		$('#' + id).appendChild(option);
 	});
-});
+}
+on('executables', handleOptions);
+on('temps', handleOptions);
 
 // Todo: call multiple times and populate when prev. values stored
 args.add();
