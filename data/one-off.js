@@ -53,14 +53,20 @@ $('body').addEventListener('click', function (e) {
         target = e.target,
         dataset = target.dataset || {},
         cl = target.classList;
-    function getInputValues (expInput) {
-        var sel = expInput.getPrefixedNamespace() + 'input';
+    function getValues (type, expInput) {
+        var sel = '.' + expInput.getPrefixedNamespace() + type;
         return Array.from($$(sel)).map(function (arg) {
+            if (arg.type === 'checkbox') {
+                return arg.checked;
+            }
             return arg.value;
         });
     }
+    function getInputValues (expInput) {
+        return getValues('input', expInput);
+    }
 
-    if (cl.contains('executable') || (target.parentNode && target.parentNode.classList.contains('executable'))) {
+    if (cl.contains('ei-files-executable') || (target.parentNode && target.parentNode.classList.contains('ei-files-executable'))) {
         val = target.value;
 		if (!val) {
 			return;
@@ -70,7 +76,7 @@ $('body').addEventListener('click', function (e) {
             $(sel).value = val;
         }
     }
-    else if (cl.contains('picker')) {
+    else if (cl.contains('ei-files-picker')) {
         sel = dataset.sel;
         emit('filePick', {
             dirPath: $(sel).value,
@@ -79,7 +85,7 @@ $('body').addEventListener('click', function (e) {
             selectFolder: dataset.selectFolder ? true : undefined
         });
     }
-    else if (cl.contains('revealButton')) {
+    else if (cl.contains('ei-files-revealButton')) {
         sel = dataset.sel;
         selVal = sel && $(sel).value;
         if (selVal) {
@@ -105,13 +111,14 @@ $('body').addEventListener('click', function (e) {
     else if (cl.contains(args.getPrefixedNamespace() + 'remove')) {
         args.remove(dataset.id);
     }
-    else {
+    else if (target.id === 'execute') {
         emit('buttonClick', {
             id: target.id,
             executablePath: $('#executablePath').value,
             args: getInputValues(args),
             files: getInputValues(files),
-            urls: getInputValues(urls)
+            urls: getInputValues(urls),
+            dirs: getValues('directory', files)
         });
     }
 });
@@ -167,13 +174,13 @@ on('filePickResult', fileOrDirResult);
 
 // Insert this as a class, so it works for others inserted into doc
 $('#dynamicStyleRules').sheet.insertRule(
-    '.revealButton {background-image: url("' + options.folderImage + '");}', 0
+    '.ei-files-revealButton {background-image: url("' + options.folderImage + '");}', 0
 );
 
 function handleOptions (data) {
     var paths = data.paths,
         type = data.type,
-        sel = type === 'executables' ? '#' + type : '.temps';
+        sel = type === 'executables' ? '#' + type : '.ei-files-temps';
 
     paths.forEach(function (pathInfo) {
 		var option = document.createElement('option');

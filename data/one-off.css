@@ -26,14 +26,11 @@
 }
 .focus {text-align:center;}
 #processExecuted {color: red;}
-.revealButton {
+.ei-files-revealButton {
     border: none;
     margin-left: 5px;
     width: 25px;
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 20px 20px;
-}
-
-.path {
 }

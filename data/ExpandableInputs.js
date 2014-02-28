@@ -104,16 +104,16 @@ ExpandableInputs.prototype.add = function () {
                 ]],
                 ['td', [
                     (this.fileType ?
-                        ($$('.temps').length > 0 ?
+                        ($$('.' + prefixedNS + 'temps').length > 0 ?
                             (function () {
-                                var select = $('.temps').cloneNode(true);
+                                var select = $('.' + prefixedNS + 'temps').cloneNode(true);
                                 select.id = prefixedNS + 'select-' + that.id;
                                 select.dataset.sel = '#' + prefixedNS + 'input-' + that.id;
                                 return select;
                             }()) :
                             ['select', {
                                 id: prefixedNS + 'select-' + this.id,
-                                'class': 'temps executable',
+                                'class': prefixedNS + 'temps ' + prefixedNS + 'executable',
                                 dataset: {sel: '#' + prefixedNS + 'input-' + this.id}
                             }]
                         ) :
@@ -141,7 +141,7 @@ ExpandableInputs.prototype.add = function () {
                     (this.fileType ?
                         ['input', {
                             type: 'button',
-                            'class': 'tempPick picker',
+                            'class': prefixedNS + 'picker',
                             dataset: {
                                 sel: '#' + prefixedNS + 'input-' + this.id,
                                 select: {folder: 'true'}
@@ -151,11 +151,11 @@ ExpandableInputs.prototype.add = function () {
                         ''
                     ),
                     (this.fileType ?
-                        ['input', {type: 'button', 'class': 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}}] :
+                        ['input', {type: 'button', 'class': prefixedNS + 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}}] :
                         ''
                     ),
                     (this.fileType ?
-                        ['label', [' ', ['input', {type: 'checkbox'}], 'Directory?']] :
+                        ['label', [' ', ['input', {type: 'checkbox', 'class': prefixedNS + 'directory'}], 'Directory?']] :
                         ''
                     )
                 ]],
