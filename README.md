@@ -14,6 +14,8 @@ continue execution), optionally prompt or use a user-designated (and
 changeable within flags) directory; can use for copying whole file (or
 URLs too even if PUT back to server)
 
+1. Ability to invoke with link to or contents of a hand-typed (auto-complete
+drop-down) local file and/or URL (including option to encode, etc.)
 1. Provide sample default paths for executables (at least cmd.exe and firefox.exe)
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
@@ -125,12 +127,6 @@ auto-escaped):
     1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
     1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
     1. Use WebDAV request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
-
-# Notes I need to clean-up and integrate with the above
-
-1. Ability to invoke web2desktop with a hand-typed (auto-complete
-prompt) local file and/or URL, respectively!!!! (or auto-create using
-Execute Builder and then immediately execute)
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
