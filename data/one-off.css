@@ -1,9 +1,16 @@
+#substitutions-explanation-container {
+    padding-right: 1%;
+}
+#substitutions-explanation-container, #substitutions-used-container {
+    float: left;
+    width: 49.5%;
+}
 #substitutions-explanation, #substitutions-used, #executableTableContainer {
 	overflow: auto;
 	border: 1px inset orange;
 }
 #substitutions-explanation {
-	height: 75px;
+	height: 205px;
 }
 #substitutions-used {
 	height: 100px;
