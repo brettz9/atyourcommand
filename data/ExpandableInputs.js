@@ -133,34 +133,30 @@ ExpandableInputs.prototype.add = function () {
                         }
                         return atts;
                     }())],
-                    // Todo: resolve any issues with fragments and Jamilih and use here to reduce following code checks
                     (this.fileType ?
-                        ['datalist', {id: prefixedNS + 'tempDatalist-' + this.id}] :
-                        ''
-                    ),
-                    (this.fileType ?
-                        ['input', {
-                            type: 'button',
-                            'class': prefixedNS + 'picker',
-                            dataset: {
-                                sel: '#' + prefixedNS + 'input-' + this.id,
-                                directory: '#' + prefixedNS + 'directory' + this.id
+                        // Todo: resolve any issues with fragments and Jamilih and use here to reduce need for jml() call here
+                        jml(
+                            'datalist', {id: prefixedNS + 'tempDatalist-' + this.id},
+                            'input', {
+                                type: 'button',
+                                'class': prefixedNS + 'picker',
+                                dataset: {
+                                    sel: '#' + prefixedNS + 'input-' + this.id,
+                                    directory: '#' + prefixedNS + 'directory' + this.id
+                                },
+                                value: 'Browse\u2026'
                             },
-                            value: 'Browse\u2026'
-                        }] :
-                        ''
-                    ),
-                    (this.fileType ?
-                        ['input', {type: 'button', 'class': prefixedNS + 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}}] :
-                        ''
-                    ),
-                    (this.fileType ?
-                        ['label', [' ',
-                            ['input', {
-                                id: prefixedNS + 'directory' + this.id,
-                                type: 'checkbox',
-                                'class': prefixedNS + 'directory'
-                            }], 'Directory?']] :
+                            'input', {type: 'button', 'class': prefixedNS + 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}},
+                            'label', [' ',
+                                ['input', {
+                                    id: prefixedNS + 'directory' + this.id,
+                                    type: 'checkbox',
+                                    'class': prefixedNS + 'directory'
+                                }],
+                                'Directory?'
+                            ],
+                            null
+                        ) :
                         ''
                     )
                 ]],
