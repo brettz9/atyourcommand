@@ -82,7 +82,7 @@ $('body').addEventListener('click', function (e) {
             dirPath: $(sel).value,
             selector: sel,
             defaultExtension: dataset.defaultExtension || undefined,
-            selectFolder: dataset.selectFolder ? true : undefined
+            selectFolder: ($(dataset.directory) && $(dataset.directory).checked) ? true : undefined
         });
     }
     else if (cl.contains('ei-files-revealButton')) {

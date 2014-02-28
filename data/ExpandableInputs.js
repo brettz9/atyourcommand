@@ -144,7 +144,7 @@ ExpandableInputs.prototype.add = function () {
                             'class': prefixedNS + 'picker',
                             dataset: {
                                 sel: '#' + prefixedNS + 'input-' + this.id,
-                                select: {folder: 'true'}
+                                directory: '#' + prefixedNS + 'directory' + this.id
                             },
                             value: 'Browse\u2026'
                         }] :
@@ -155,7 +155,12 @@ ExpandableInputs.prototype.add = function () {
                         ''
                     ),
                     (this.fileType ?
-                        ['label', [' ', ['input', {type: 'checkbox', 'class': prefixedNS + 'directory'}], 'Directory?']] :
+                        ['label', [' ',
+                            ['input', {
+                                id: prefixedNS + 'directory' + this.id,
+                                type: 'checkbox',
+                                'class': prefixedNS + 'directory'
+                            }], 'Directory?']] :
                         ''
                     )
                 ]],

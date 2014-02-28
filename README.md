@@ -14,7 +14,6 @@ content as HTML or text, etc.
 
 1. UI fixes
     1. Fix behavior of temp. dir. autocomplete
-    1. Ensure checkbox influences picker
 1. Behavior additons
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (see to-dos in code).
