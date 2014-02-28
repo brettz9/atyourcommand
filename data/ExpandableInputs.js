@@ -41,6 +41,7 @@ function $$ (sel) {
     of expandable inputs. If none is supplied, an incrementing value will be used.
 * @param {string} [cfg.label="%s:"] The label to be shown. (See cfg.pattern for the regular expression used to do substitutions.)
 * @param {string} [cfg.pattern=/%s/g] The regular expression for finding numbers within labels.
+* @param {string} [cfg.inputType="text"] The type for text inputs
 * @param {number} [cfg.inputSize=50] The size for text inputs
 */
 function ExpandableInputs (cfg) {
@@ -55,6 +56,7 @@ function ExpandableInputs (cfg) {
     this.ns = (cfg.namespace && cfg.namespace.replace(/-$/, '') || (ns++).toString()) + '-';
     this.label = cfg.label || '%s:';
     this.pattern = cfg.pattern || /%s/g;
+    this.inputType = cfg.inputType || 'text';
     this.inputSize = cfg.inputSize || 50;
 
     // State variables
@@ -101,6 +103,7 @@ ExpandableInputs.prototype.add = function () {
                 ['td', [
                     ['input', {
                         id: prefixedNS + 'input-' + this.id,
+                        type: this.inputType,
                         'class': prefixedNS + 'input',
                         size: this.inputSize
                     }]

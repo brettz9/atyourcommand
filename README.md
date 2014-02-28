@@ -1,22 +1,24 @@
 # atyourcommand
 
+***NOTE: This project is not yet functional.***
+
 Firefox add-on for opening arbitrary web content into the command line
 (which also enables opening arbitrary web content into other web apps
 via [WebAppFind](https://github.com/brettz9/webappfind)).
 
-**This project is not yet functional.**
+A number of automatic substitutions are available (and documented within
+the dialog) such as obtaining the current URL, title,
+content as HTML or text, etc.
 
 # Immediate to-dos
 
-1. Finish substitution of current page contents, URL, etc. (see to-dos in code)
-1. Prepend/append to any type: save to temp file - whether to overwrite (and
-continue execution), optionally prompt or use a user-designated (and
-changeable within flags) directory; can use for copying whole file (or
-URLs too even if PUT back to server)
+1. UI additions
+    1. Add autocomplete, reveal button, etc. for files
+    1. Temp saving: Optionally prompt or use a user-designated (and changeable within flags) directory
+1. Behavior additons
+    1. Finish behavior providing substitution of current
+page contents, URL, etc. (see to-dos in code).
 
-1. As per AppLauncher feature request, default to a specific, configurable
-executable path (or save multiple options for drop-down)
-1. Command line necessities (escaping, e.g., for use within a quoted string)
 
 # Likely to-dos
 
@@ -53,6 +55,8 @@ which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
 with browser gaining same workflow access to the opening and, optionally,
 editing, of a document, including online editing).
+1. As per AppLauncher feature request, default to a specific, configurable
+executable path (or save multiple options for drop-down)
 1. One-off command line dialog: add optionally savable label (for saving)
 1. One-off command line dialog: add options to "save and execute",
 "save and close" and add context menu link to prefs dialog
@@ -78,6 +82,7 @@ separate add-on.
 1. i18n-ize
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
+1. Any other command line necessities (besides quoted string escaping)?
 1. As per AppLauncher feature request, allow shortcuts on the toolbar; also
 modify to work with main menu, app-bar, or key command as well
 1. Option to have context menu items, based on the substitutions used (or

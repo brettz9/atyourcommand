@@ -16,7 +16,8 @@ var
         table: 'URLArguments',
         namespace: 'urls',
         label: 'URL %s:',
-        inputSize: 40
+        inputSize: 40,
+        inputType: 'url'
     }),
     files = new ExpandableInputs({
         table: 'fileArguments',
