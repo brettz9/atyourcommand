@@ -17,7 +17,7 @@ content as HTML or text, etc.
     1. Temp saving: Optionally prompt or use a user-designated (and changeable within flags) directory
 1. Behavior additons
     1. Finish behavior providing substitution of current
-page contents, URL, etc. (see to-dos in code).
+    page contents, URL, etc. (see to-dos in code).
 
 
 # Likely to-dos
