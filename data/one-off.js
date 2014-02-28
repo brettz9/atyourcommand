@@ -1,10 +1,29 @@
-/*globals self, jml */
+/*globals ExpandableInputs, self, jml */
+
 (function () {'use strict';
 
-var id = 1, argNum = 1,
+var
     emit = self.port.emit,
     on = self.port.on,
-    options = self.options;
+    options = self.options,
+    args = new ExpandableInputs({
+        table: 'executableTable',
+        namespace: 'args',
+        label: 'Arg %s:',
+        inputSize: 100
+    }),
+    urls = new ExpandableInputs({
+        table: 'URLArguments',
+        namespace: 'urls',
+        label: 'URL %s:',
+        inputSize: 40
+    }),
+    files = new ExpandableInputs({
+        table: 'fileArguments',
+        namespace: 'files',
+        label: 'File %s:',
+        inputSize: 40
+    });
 
 function l (msg) {
     console.log(msg);
@@ -15,43 +34,6 @@ function $ (sel) {
 function $$ (sel) {
     return document.querySelectorAll(sel);
 }
-Array.from = function (arg) {
-    return [].slice.call(arg);
-};
-
-function removeArgument (id) {
-    if ($$('.row').length === 1) { // Don't delete if only one remaining
-        return;
-    }
-    $('#row' + id).parentNode.removeChild($('#row' + id));
-    // Renumber to ensure args remain incrementing by one
-    argNum = 1;
-    Array.from($$('.argNumber')).forEach(function (argNumHolder) {
-        argNumHolder.replaceChild(document.createTextNode('Arg ' + (argNum++) + ':'), argNumHolder.firstChild);
-    });
-}
-function addArgument () {
-    $('#executableTable').appendChild(jml(
-        'tr', {'id': 'row' + id, 'class': 'row'}, [
-                ['td', [
-                    ['label', {'for': 'arg' + id, 'class': 'argNumber'}, ['Arg ' + argNum + ':']]
-                ]],
-                ['td', [
-                    ['input', {id: 'arg' + id, 'class': 'arg', size: 75}]
-                ]],
-                ['td', [
-                    ['button', {'class': 'addArg'}, ['+']]
-                ]],
-                ['td', [
-                    ['button', {'class': 'removeArg', dataset: {id: id}}, ['-']]
-                ]]
-            ], null
-        )
-    );
-    id++;
-    argNum++;
-}
-
 
 // ADD EVENTS
 
@@ -59,19 +41,39 @@ $('body').addEventListener('click', function (e) {
     var target = e.target,
         dataset = target.dataset || {},
         cl = target.classList;
-    if (cl.contains('addArg')) {
-        addArgument();
+    function getInputValues (expInput) {
+        var sel = expInput.getPrefixedNamespace() + 'input';
+        return Array.from($$(sel)).map(function (arg) {
+            return arg.value;
+        });
     }
-    else if (cl.contains('removeArg')) {
-        removeArgument(dataset.id);
+
+    // Abstract this
+    if (cl.contains(files.getPrefixedNamespace() + 'add')) {
+        files.add();
+    }
+    else if (cl.contains(files.getPrefixedNamespace() + 'remove')) {
+        files.remove(dataset.id);
+    }
+    else if (cl.contains(urls.getPrefixedNamespace() + 'add')) {
+        urls.add();
+    }
+    else if (cl.contains(urls.getPrefixedNamespace() + 'remove')) {
+        urls.remove(dataset.id);
+    }
+    else if (cl.contains(args.getPrefixedNamespace() + 'add')) {
+        args.add();
+    }
+    else if (cl.contains(args.getPrefixedNamespace() + 'remove')) {
+        args.remove(dataset.id);
     }
     else {
         emit('buttonClick', {
             id: target.id,
             executablePath: $('#executablePath').value,
-            args: Array.from($$('.arg')).map(function (arg) {
-                return arg.value;
-            })
+            args: getInputValues(args),
+            files: getInputValues(files),
+            urls: getInputValues(urls)
         });
     }
 });
@@ -158,7 +160,9 @@ on('executables', function (exes) {
 	});
 });
 
-// todo: call multiple times and populate when prev. values stored
-addArgument();
+// Todo: call multiple times and populate when prev. values stored
+args.add();
+urls.add();
+files.add();
 
 }());

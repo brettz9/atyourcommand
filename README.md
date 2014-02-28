@@ -16,9 +16,6 @@ URLs too even if PUT back to server)
 
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
-1. Ability to invoke with link to or contents of a sequence of hand-typed
-(auto-complete drop-down) local files and/or URLs (including option
-to encode, etc.)
 1. Command line necessities (escaping, e.g., for use within a quoted string)
 
 # Likely to-dos
