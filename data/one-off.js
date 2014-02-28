@@ -142,6 +142,22 @@ $('.revealButton').addEventListener('click', function (e) {
 // SETUP
 $('.revealButton').style.backgroundImage = 'url("' + options.folderImage + '")';
 
+on('executables', function (exes) {
+	$('#executables').addEventListener('click', function (e) {
+		var val = e.target.value;
+		if (!val) {
+			return;
+		}
+		$('#executablePath').value = val;
+	});
+	exes.forEach(function (exe) {
+		var option = document.createElement('option');
+		option.text = exe[0];
+		option.value = exe[1];
+		$('#executables').appendChild(option);
+	});
+});
+
 // todo: call multiple times and populate when prev. values stored
 addArgument();
 
