@@ -125,7 +125,7 @@ $('body').addEventListener('click', function (e) {
 
 $('body').addEventListener('input', function (e) {
     var target = e.target, val = e.target.value;
-    if (target.classList.contains('path')) {
+    if (target.classList.contains('ei-files-path')) {
         emit('autocompleteValues', {
             value: val,
             listID: target.getAttribute('list')
