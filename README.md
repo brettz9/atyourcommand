@@ -14,8 +14,9 @@ continue execution), optionally prompt or use a user-designated (and
 changeable within flags) directory; can use for copying whole file (or
 URLs too even if PUT back to server)
 
-1. Ability to invoke with link to or contents of a hand-typed (auto-complete
-drop-down) local file and/or URL (including option to encode, etc.)
+1. Ability to invoke with link to or contents of a sequence of hand-typed
+(auto-complete drop-down) local files and/or URLs (including option
+to encode, etc.)
 1. Provide sample default paths for executables (at least cmd.exe and firefox.exe)
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
