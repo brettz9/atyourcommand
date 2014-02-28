@@ -6,25 +6,26 @@
     width: 49.5%;
 }
 #substitutions-explanation, #substitutions-used, #executableTableContainer {
-	overflow: auto;
-	border: 1px inset orange;
+    overflow: auto;
+    border: 1px inset orange;
 }
 #substitutions-explanation {
-	height: 205px;
+    height: 205px;
 }
 #substitutions-used {
-	height: 100px;
+    /*height: 100px; Height to use if main explanatory text is before scrolling block*/
+    height: 205px;
 }
 .focus {text-align:center;}
 #processExecuted {color: red;}
 .revealButton {
-	border: none;
-	margin-left: 5px;
-	width: 25px;
-	background-color: transparent;
-	background-repeat: no-repeat;
-	background-size: 20px 20px;
+    border: none;
+    margin-left: 5px;
+    width: 25px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
 }
 #executableTableContainer {
-	height: 100px;
+    height: 100px;
 }
