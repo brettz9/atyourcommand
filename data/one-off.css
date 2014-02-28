@@ -1,14 +1,22 @@
-#substitutions-explanation-container {
+#substitutions-explanation-container,
+#fileArguments {
     padding-right: 1%;
 }
-#substitutions-explanation-container, #substitutions-used-container {
+#substitutions-explanation-container, #substitutions-used-container,
+#fileArguments, #URLArguments {
     float: left;
     width: 49.5%;
 }
-#substitutions-explanation, #substitutions-used, #executableTableContainer {
+#substitutions-explanation, #substitutions-used,
+#executableTableContainer, #fileAndURLArgumentContainer {
     overflow: auto;
     border: 1px inset orange;
 }
+#executableTableContainer,
+#fileAndURLArgumentContainer {
+    height: 100px;
+}
+
 #substitutions-explanation {
     height: 205px;
 }
@@ -25,7 +33,4 @@
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 20px 20px;
-}
-#executableTableContainer {
-    height: 100px;
 }

@@ -6,9 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="one-off.css" />
 </head>
 <body>
+
 <div id="processExecuted" style="visibility:hidden;">
-Process executed!
+    Process executed!
 </div>
+
 <div id="substitutions-explanation-container">
     <h3>Substitutions explained</h3>
     <div id="substitutions-explanation">
@@ -95,11 +97,19 @@ Process executed!
         </td>
     </tr>
 </table>
+
 <div id="executableTableContainer">
-    <table id="executableTable">
-    </table>
+    <table id="executableTable"></table>
 </div>
+
+<div id="fileAndURLArgumentContainer">
+    <b>Hard-coded files and URLs:</b>
+    <table id="fileArguments"></table>
+    <table id="URLArguments"></table>
+</div>
+
 <br />
+
 <div class="focus">
     <!--<button id="saveAndExecute">Save and execute</button>
     <button id="saveAndClose">Save and close</button>
