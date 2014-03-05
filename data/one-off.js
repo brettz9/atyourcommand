@@ -9,20 +9,20 @@ var
     args = new ExpandableInputs({
         table: 'executableTable',
         namespace: 'args',
-        label: 'Arg %s:',
+        label: "Arg %s:",
         inputSize: 100
     }),
     urls = new ExpandableInputs({
         table: 'URLArguments',
         namespace: 'urls',
-        label: 'URL %s:',
+        label: "URL %s:",
         inputSize: 40,
         inputType: 'url'
     }),
     files = new ExpandableInputs({
         table: 'fileArguments',
         namespace: 'files',
-        label: 'File %s:',
+        label: "File %s:",
         inputSize: 25,
         inputType: 'file'
     });

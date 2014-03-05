@@ -49,7 +49,7 @@ function ExpandableInputs (cfg) {
         return new ExpandableInputs(cfg);
     }
     if (!cfg || typeof cfg !== 'object' || !cfg.table) {
-        throw "A config object with a table ID must be supplied to ExpandableInputs";
+        throw 'A config object with a table ID must be supplied to ExpandableInputs';
     }
     this.table = cfg.table;
     this.prefix = ((cfg.prefix && cfg.prefix.replace(/-$/, '')) || 'ei') + '-';
@@ -144,7 +144,7 @@ ExpandableInputs.prototype.add = function () {
                                     sel: '#' + prefixedNS + 'input-' + this.id,
                                     directory: '#' + prefixedNS + 'directory' + this.id
                                 },
-                                value: 'Browse\u2026'
+                                value: "Browse\u2026"
                             },
                             'input', {type: 'button', 'class': prefixedNS + 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}},
                             'label', [' ',
@@ -153,7 +153,7 @@ ExpandableInputs.prototype.add = function () {
                                     type: 'checkbox',
                                     'class': prefixedNS + 'directory'
                                 }],
-                                'Directory?'
+                                "Directory?"
                             ],
                             null
                         ) :
