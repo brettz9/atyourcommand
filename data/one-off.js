@@ -24,7 +24,8 @@ var
         namespace: 'files',
         label: "File %s:",
         inputSize: 25,
-        inputType: 'file'
+        inputType: 'file',
+        selects: true
     });
 
 // POLYFILLS
@@ -66,7 +67,8 @@ $('body').addEventListener('click', function (e) {
         return getValues('input', expInput);
     }
 
-    if (cl.contains('ei-files-executable') || (target.parentNode && target.parentNode.classList.contains('ei-files-executable'))) {
+    if (cl.contains('ei-files-presets') || (target.parentNode && target.parentNode.classList.contains('ei-files-presets')) ||
+        cl.contains('ei-exe-presets') || (target.parentNode && target.parentNode.classList.contains('ei-exe-presets'))) {
         val = target.value;
 		if (!val) {
 			return;
@@ -76,7 +78,7 @@ $('body').addEventListener('click', function (e) {
             $(sel).value = val;
         }
     }
-    else if (cl.contains('ei-files-picker')) {
+    else if (cl.contains('ei-files-picker') || cl.contains('ei-exe-picker')) {
         sel = dataset.sel;
         emit('filePick', {
             dirPath: $(sel).value,
@@ -85,7 +87,7 @@ $('body').addEventListener('click', function (e) {
             selectFolder: ($(dataset.directory) && $(dataset.directory).checked) ? true : undefined
         });
     }
-    else if (cl.contains('ei-files-revealButton')) {
+    else if (cl.contains('ei-files-revealButton') || cl.contains('ei-exe-revealButton')) {
         sel = dataset.sel;
         selVal = sel && $(sel).value;
         if (selVal) {
@@ -174,13 +176,13 @@ on('filePickResult', fileOrDirResult);
 
 // Insert this as a class, so it works for others inserted into doc
 $('#dynamicStyleRules').sheet.insertRule(
-    '.ei-files-revealButton {background-image: url("' + options.folderImage + '");}', 0
+    '.ei-files-revealButton, .ei-exe-revealButton {background-image: url("' + options.folderImage + '");}', 0
 );
 
 function handleOptions (data) {
     var paths = data.paths,
         type = data.type,
-        sel = type === 'executables' ? '#' + type : '.ei-files-temps';
+        sel = type === 'executables' ? '#' + type : '.ei-files-presets';
 
     paths.forEach(function (pathInfo) {
 		var option = document.createElement('option');

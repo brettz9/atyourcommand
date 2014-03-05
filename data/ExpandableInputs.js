@@ -42,7 +42,9 @@ function $$ (sel) {
 * @param {string} [cfg.label="%s:"] The label to be shown. (See cfg.pattern for the regular expression used to do substitutions.)
 * @param {string} [cfg.pattern=/%s/g] The regular expression for finding numbers within labels.
 * @param {string} [cfg.inputType="text"] The type for text inputs
+* @param {boolean} [cfg.selects=false] Whether to include a select menu for preset file paths or directories
 * @param {number} [cfg.inputSize=50] The size for text inputs
+* @param {string} [cfg.locale] A locale. Default to an English locale. (Note that the label property ought to also be localized.)
 */
 function ExpandableInputs (cfg) {
     if (!(this instanceof ExpandableInputs)) {
@@ -54,10 +56,18 @@ function ExpandableInputs (cfg) {
     this.table = cfg.table;
     this.prefix = ((cfg.prefix && cfg.prefix.replace(/-$/, '')) || 'ei') + '-';
     this.ns = ((cfg.namespace && cfg.namespace.replace(/-$/, '')) || (ns++).toString()) + '-';
-    this.label = cfg.label || '%s:';
+    this.label = cfg.label || "%s:";
     this.pattern = cfg.pattern || /%s/g;
     this.inputType = cfg.inputType && cfg.inputType !== 'file' ? cfg.inputType : 'text';
+    this.selects = cfg.selects || false;
     this.inputSize = cfg.inputSize || 50;
+    this.locale = cfg.locale || {
+        browse: "Browse\u2026",
+        directory: "Directory?",
+        plus: "+",
+        minus: "-",
+        reveal: " " // We use a background-image of a folder instead of text
+    };
 
     // State variables
     this.fileType = cfg.inputType === 'file';
@@ -103,17 +113,17 @@ ExpandableInputs.prototype.add = function () {
                     }, [this.getLabel(this.num)]]
                 ]],
                 ['td', [
-                    (this.fileType ?
-                        ($$('.' + prefixedNS + 'temps').length > 0 ?
+                    (this.fileType && this.selects ?
+                        ($$('.' + prefixedNS + 'presets').length > 0 ?
                             (function () {
-                                var select = $('.' + prefixedNS + 'temps').cloneNode(true);
+                                var select = $('.' + prefixedNS + 'presets').cloneNode(true);
                                 select.id = prefixedNS + 'select-' + that.id;
                                 select.dataset.sel = '#' + prefixedNS + 'input-' + that.id;
                                 return select;
                             }()) :
                             ['select', {
                                 id: prefixedNS + 'select-' + this.id,
-                                'class': prefixedNS + 'temps ' + prefixedNS + 'executable',
+                                'class': prefixedNS + 'presets',
                                 dataset: {sel: '#' + prefixedNS + 'input-' + this.id}
                             }]
                         ) :
@@ -128,7 +138,7 @@ ExpandableInputs.prototype.add = function () {
                             value: ''
                         };
                         if (that.fileType) {
-                            atts.list = prefixedNS + 'tempDatalist-' + that.id;
+                            atts.list = prefixedNS + 'fileDatalist-' + that.id;
                             atts.autocomplete = 'off';
                         }
                         return atts;
@@ -136,7 +146,7 @@ ExpandableInputs.prototype.add = function () {
                     (this.fileType ?
                         // Todo: resolve any issues with fragments and Jamilih and use here to reduce need for jml() call here
                         jml(
-                            'datalist', {id: prefixedNS + 'tempDatalist-' + this.id},
+                            'datalist', {id: prefixedNS + 'fileDatalist-' + this.id},
                             'input', {
                                 type: 'button',
                                 'class': prefixedNS + 'picker',
@@ -144,16 +154,16 @@ ExpandableInputs.prototype.add = function () {
                                     sel: '#' + prefixedNS + 'input-' + this.id,
                                     directory: '#' + prefixedNS + 'directory' + this.id
                                 },
-                                value: "Browse\u2026"
+                                value: this.locale.browse
                             },
                             'input', {type: 'button', 'class': prefixedNS + 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}},
-                            'label', [' ',
+                            'label', [this.locale.reveal,
                                 ['input', {
                                     id: prefixedNS + 'directory' + this.id,
                                     type: 'checkbox',
                                     'class': prefixedNS + 'directory'
                                 }],
-                                "Directory?"
+                                this.locale.directory
                             ],
                             null
                         ) :
@@ -163,13 +173,13 @@ ExpandableInputs.prototype.add = function () {
                 ['td', [
                     ['button', {
                         'class': prefixedNS + 'add'
-                    }, ['+']]
+                    }, [this.locale.plus]]
                 ]],
                 ['td', [
                     ['button', {
                         'class': prefixedNS + 'remove',
                         dataset: {id: this.id}
-                    }, ['-']]
+                    }, [this.locale.minus]]
                 ]]
             ], null
         )
