@@ -136,6 +136,7 @@ toolbar, menu, add-on bar, key command, etc.
     text and URL manipulations? (If so, ensure some other way to
     have full control over where tools appear; do this by modifying
     the Firefox Add-ons SDK itself so capability baked-in?)
+    1. Integrate with or replicate Greasemonkey behavior also?
 1. Utilize (JavaScript-based) Blockly for pipelining of any kind of
 command (though avoid baking in UI as UI should be flexible, e.g.,
 to allow use in menu, toolbar, add-on bar, etc.); also macro-like
