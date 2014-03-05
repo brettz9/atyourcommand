@@ -66,7 +66,7 @@ function ExpandableInputs (cfg) {
         directory: "Directory?",
         plus: "+",
         minus: "-",
-        reveal: " " // We use a background-image of a folder instead of text
+        reveal: "" // We use a background-image of a folder instead of text
     };
 
     // State variables
@@ -156,8 +156,8 @@ ExpandableInputs.prototype.add = function () {
                                 },
                                 value: this.locale.browse
                             },
-                            'input', {type: 'button', 'class': prefixedNS + 'revealButton', dataset: {sel: '#' + prefixedNS + 'input-' + this.id}},
-                            'label', [this.locale.reveal,
+                            'input', {type: 'button', 'class': prefixedNS + 'revealButton', value: this.locale.reveal, dataset: {sel: '#' + prefixedNS + 'input-' + this.id}},
+                            'label', [
                                 ['input', {
                                     id: prefixedNS + 'directory' + this.id,
                                     type: 'checkbox',
