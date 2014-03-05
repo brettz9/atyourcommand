@@ -12,6 +12,8 @@ content as HTML or text, etc.
 
 # Immediate to-dos
 
+1. UI Todos
+    1. Allow (FF-resizable) textareas instead of inputs for args?
 1. Behavior additons
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (see to-dos in code).
