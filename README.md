@@ -139,6 +139,10 @@ toolbar, menu, add-on bar, key command, etc.
     have full control over where tools appear; do this by modifying
     the Firefox Add-ons SDK itself so capability baked-in?)
     1. Integrate with or replicate Greasemonkey behavior also?
+    1. Get context menu to support hiding items via whitelist or
+    blacklist until exposed by a key command (so that for normal
+    browsing, the context menu is light, but can be made more
+    powerful at a keystroke).
 1. Utilize (JavaScript-based) Blockly for pipelining of any kind of
 command (though avoid baking in UI as UI should be flexible, e.g.,
 to allow use in menu, toolbar, add-on bar, etc.); also macro-like
