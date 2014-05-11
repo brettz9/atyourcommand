@@ -88,6 +88,8 @@ user choice), cause them to only appear under certain, correct conditions
 (but ensure commands can utilize multiple components (e.g., highlighted
 link and page HTML)
 1. Ability to confirm selected text content is a path, URL or file URL, etc.?
+1. Optional pre-processing of highlighted contents esp. if cannot convert to
+HTML (e.g., toDataURL on canvas)
 1. Allow atyourcommand to send content to web apps directly through WebAppFind
 code when present (as opposed to through command line)?
 1. Remote site supply of commands
