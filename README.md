@@ -43,7 +43,11 @@ for a potentially friendly and
 uniform approach (which could subsume the local SQLite API as well)
 toward allowing universal and
 neutral APIs to obtain and save *portions* of documents as well as whole
-documents among open data sources and applications.
+documents among open data sources and applications (e.g., to right-click
+when using a Firefox add-on for localStorage, FileSystem, or IndexedDB
+browsing and send the data to the command line, including optionally
+to WebAppFind for discovering a suitable web-app, and allowing an API
+for saving back, thus freeing the user from local storage data lock-in).
 1. Idea for command line apps to align themselves with a uniform,
 atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
