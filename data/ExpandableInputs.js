@@ -4,7 +4,7 @@
 * @class ExpandableInputs
 * @requires jamilih
 */
-var ExpandableInputs = (function () {'use strict';
+var ExpandableInputs = (function (undef) {'use strict';
 
 // STATIC VARS
 var ns = 0; // Used to prevent conflicts if the user does not supply their own namespace
@@ -62,7 +62,9 @@ function ExpandableInputs (cfg) {
     this.inputType = cfg.inputType && cfg.inputType !== 'file' ? cfg.inputType : 'text';
     this.selects = cfg.selects || false;
     this.inputSize = cfg.inputSize || 50;
-    this.rows = cfg.rows;
+    if (cfg.rows !== undef) {
+        this.rows = cfg.rows;
+    }
     this.locale = cfg.locale || {
         browse: "Browse\u2026",
         directory: "Directory?",
@@ -131,7 +133,7 @@ ExpandableInputs.prototype.add = function () {
                         ) :
                         ''
                     ),
-                    [(this.rows ? 'textarea' : 'input'), (function () {
+                    [(this.hasOwnProperty('rows') ? 'textarea' : 'input'), (function () {
                         var atts = {
                             id: prefixedNS + 'input-' + that.id,
                             'class': prefixedNS + 'input ' + prefixedNS + 'path'
