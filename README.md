@@ -19,6 +19,9 @@ content as HTML or text, etc.
 
 # Likely to-dos
 
+1. Complete i18n (convert one-off.html to Jamilih and access locale on
+contentScriptOptions as self.options.locale; this will also facilitate dynamic
+population of stored commands)
 1. Opinion piece on great importance of data ownership and decoupling of local
 or remote data from applications (also discuss need for return to (user-approved)
 `globalStorage` for application independence and potential use in websites adopting
@@ -80,8 +83,6 @@ separate add-on.
 
 # Possible to-dos
 
-1. Complete i18n (convert one-off.html to Jamilih and access locale on
-contentScriptOptions as self.options.locale)
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?
