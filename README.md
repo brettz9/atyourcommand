@@ -15,7 +15,7 @@ content as HTML or text, etc.
 1. Behavior additions
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (in main.js under "buttonClick" "execute" event)
-1. Review to-dos in code (main.js, one-off.js)
+1. Review other to-dos in main.js
 
 # Likely to-dos
 
@@ -80,7 +80,7 @@ separate add-on.
 
 # Possible to-dos
 
-1. i18n-ize
+1. Complete i18n
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?
