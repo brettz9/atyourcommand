@@ -15,8 +15,7 @@ content as HTML or text, etc.
 1. Fix regression in button events?
 1. Behavior additions
     1. Finish behavior providing substitution of current
-    page contents, URL, etc. (in main.js under "buttonClick" "execute" event)
-1. Review other to-dos in main.js
+    page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 
 # Likely to-dos
 
@@ -81,7 +80,8 @@ separate add-on.
 
 # Possible to-dos
 
-1. Complete i18n
+1. Complete i18n (convert one-off.html to Jamilih and access locale on
+contentScriptOptions as self.options.locale)
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?

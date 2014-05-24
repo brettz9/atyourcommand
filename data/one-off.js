@@ -6,27 +6,28 @@ var
     emit = self.port.emit,
     on = self.port.on,
     options = self.options,
+    locale = options.locale,
     args = new ExpandableInputs({
-        locale: options.locale,
+        locale: locale,
         table: 'executableTable',
         namespace: 'args',
-        label: "Arg %s:",
+        label: locale.args_num,
         inputSize: 60,
         rows: 1 // Might perhaps make this optional to save space, but this triggers creation of a textarea so args could be more readable (since to auto-escape newlines as needed)
     }),
     urls = new ExpandableInputs({
-        locale: options.locale,
+        locale: locale,
         table: 'URLArguments',
         namespace: 'urls',
-        label: "URL %s:",
+        label: locale.url_num,
         inputSize: 40,
         inputType: 'url'
     }),
     files = new ExpandableInputs({
-        locale: options.locale,
+        locale: locale,
         table: 'fileArguments',
         namespace: 'files',
-        label: "File %s:",
+        label: locale.file_num,
         inputSize: 25,
         inputType: 'file',
         selects: true
