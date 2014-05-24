@@ -10,7 +10,8 @@ var
         table: 'executableTable',
         namespace: 'args',
         label: "Arg %s:",
-        inputSize: 100
+        inputSize: 60,
+        rows: 1 // Might perhaps make this optional to save space, but this triggers creation of a textarea so args could be more readable (since to auto-escape newlines as needed)
     }),
     urls = new ExpandableInputs({
         table: 'URLArguments',
@@ -70,9 +71,9 @@ $('body').addEventListener('click', function (e) {
     if (cl.contains('ei-files-presets') || (target.parentNode && target.parentNode.classList.contains('ei-files-presets')) ||
         cl.contains('ei-exe-presets') || (target.parentNode && target.parentNode.classList.contains('ei-exe-presets'))) {
         val = target.value;
-		if (!val) {
-			return;
-		}
+        if (!val) {
+            return;
+        }
         sel = dataset.sel || (target.parentNode && target.parentNode.dataset.sel);
         if (sel) {
             $(sel).value = val;
@@ -185,11 +186,11 @@ function handleOptions (data) {
         sel = type === 'executables' ? '#' + type : '.ei-files-presets';
 
     paths.forEach(function (pathInfo) {
-		var option = document.createElement('option');
-		option.text = pathInfo[0];
-		option.value = pathInfo[1];
-		$(sel).appendChild(option);
-	});
+        var option = document.createElement('option');
+        option.text = pathInfo[0];
+        option.value = pathInfo[1];
+        $(sel).appendChild(option);
+    });
 }
 on('executables', handleOptions);
 on('temps', handleOptions);

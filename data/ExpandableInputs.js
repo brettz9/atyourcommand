@@ -44,6 +44,7 @@ function $$ (sel) {
 * @param {string} [cfg.inputType="text"] The type for text inputs
 * @param {boolean} [cfg.selects=false] Whether to include a select menu for preset file paths or directories
 * @param {number} [cfg.inputSize=50] The size for text inputs
+* @param {number} [cfg.rows] The number of rows; auto-changes input to a textarea (even if set to 1)
 * @param {string} [cfg.locale] A locale. Default to an English locale. (Note that the label property ought to also be localized.)
 */
 function ExpandableInputs (cfg) {
@@ -61,6 +62,7 @@ function ExpandableInputs (cfg) {
     this.inputType = cfg.inputType && cfg.inputType !== 'file' ? cfg.inputType : 'text';
     this.selects = cfg.selects || false;
     this.inputSize = cfg.inputSize || 50;
+    this.rows = cfg.rows;
     this.locale = cfg.locale || {
         browse: "Browse\u2026",
         directory: "Directory?",
@@ -129,14 +131,20 @@ ExpandableInputs.prototype.add = function () {
                         ) :
                         ''
                     ),
-                    ['input', (function () {
+                    [(this.rows ? 'textarea' : 'input'), (function () {
                         var atts = {
                             id: prefixedNS + 'input-' + that.id,
-                            type: that.inputType,
-                            'class': prefixedNS + 'input ' + prefixedNS + 'path',
-                            size: that.inputSize,
-                            value: ''
+                            'class': prefixedNS + 'input ' + prefixedNS + 'path'
                         };
+                        if (that.hasOwnProperty('rows')) { // textarea
+                            atts.cols = that.inputSize;
+                            atts.rows = that.rows;
+                        }
+                        else { // input
+                            atts.size = that.inputSize;
+                            atts.type = that.inputType;
+                            atts.value = '';
+                        }
                         if (that.fileType) {
                             atts.list = prefixedNS + 'fileDatalist-' + that.id;
                             atts.autocomplete = 'off';
