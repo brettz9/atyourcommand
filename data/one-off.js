@@ -7,6 +7,7 @@ var
     on = self.port.on,
     options = self.options,
     args = new ExpandableInputs({
+        locale: options.locale,
         table: 'executableTable',
         namespace: 'args',
         label: "Arg %s:",
@@ -14,6 +15,7 @@ var
         rows: 1 // Might perhaps make this optional to save space, but this triggers creation of a textarea so args could be more readable (since to auto-escape newlines as needed)
     }),
     urls = new ExpandableInputs({
+        locale: options.locale,
         table: 'URLArguments',
         namespace: 'urls',
         label: "URL %s:",
@@ -21,6 +23,7 @@ var
         inputType: 'url'
     }),
     files = new ExpandableInputs({
+        locale: options.locale,
         table: 'fileArguments',
         namespace: 'files',
         label: "File %s:",

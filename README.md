@@ -12,6 +12,7 @@ content as HTML or text, etc.
 
 # Immediate to-dos
 
+1. Fix regression in button events?
 1. Behavior additions
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (in main.js under "buttonClick" "execute" event)
