@@ -14,7 +14,8 @@ content as HTML or text, etc.
 
 1. Behavior additons
     1. Finish behavior providing substitution of current
-    page contents, URL, etc. (see to-dos in code).
+    page contents, URL, etc. (in main.js under "buttonClick" "execute" event)
+1. Review to-dos in code (main.js, one-off.js)
 
 # Likely to-dos
 
