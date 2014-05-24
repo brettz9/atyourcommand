@@ -12,7 +12,7 @@ content as HTML or text, etc.
 
 # Immediate to-dos
 
-1. Behavior additons
+1. Behavior additions
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (in main.js under "buttonClick" "execute" event)
 1. Review to-dos in code (main.js, one-off.js)
