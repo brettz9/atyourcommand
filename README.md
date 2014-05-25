@@ -15,6 +15,7 @@ content as HTML or text, etc.
 1. Behavior additions
     1. Finish behavior providing substitution of current
     page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
+    1. Support defaults (including empty ones)
 
 # Likely to-dos
 
@@ -170,7 +171,9 @@ development
 1. When allowing users to create command line commands
 for context menus/menus/toolbars/add-on bar/etc., allow and demo
 (with Blockly?) JS prompts (useful for dynamic batch), e.g., to
-replicate atyourcommand functionality.
+replicate atyourcommand functionality. Might automatically provide
+prompts when a variable is indicated without a value unless
+marked as having a default (including an empty one).
 
 # Inspiration
 
