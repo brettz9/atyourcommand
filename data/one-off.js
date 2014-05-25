@@ -7,27 +7,28 @@ var
     on = self.port.on,
     options = self.options,
     locale = options.locale,
+    ei_locale = options.ei_locale,
     args = new ExpandableInputs({
-        locale: locale,
+        locale: ei_locale,
         table: 'executableTable',
         namespace: 'args',
-        label: locale.args_num,
+        label: ei_locale.args_num,
         inputSize: 60,
         rows: 1 // Might perhaps make this optional to save space, but this triggers creation of a textarea so args could be more readable (since to auto-escape newlines as needed)
     }),
     urls = new ExpandableInputs({
-        locale: locale,
+        locale: ei_locale,
         table: 'URLArguments',
         namespace: 'urls',
-        label: locale.url_num,
+        label: ei_locale.url_num,
         inputSize: 40,
         inputType: 'url'
     }),
     files = new ExpandableInputs({
-        locale: locale,
+        locale: ei_locale,
         table: 'fileArguments',
         namespace: 'files',
-        label: locale.file_num,
+        label: ei_locale.file_num,
         inputSize: 25,
         inputType: 'file',
         selects: true
@@ -51,8 +52,121 @@ function $$ (sel) {
 function forSel (sel, cb) {
     Array.from($$(sel)).forEach(cb);
 }
+function _ (key) {
+    return locale[key] || '(Non-internationalized string--FIXME!)';
+}
 
 // ADD EVENTS
+
+document.title = _("title");
+jml('div', [
+    ['div', {id: 'processExecuted', style: 'visibility:hidden;'}, [
+        _("Process executed")
+    ]],
+    ['div', {id: 'substitutions-explanation-container'}, [
+        ['h3', [_("Substitutions explained")]],
+        ['div', {id: 'substitutions-explanation'}, [
+            _("Substitution_sequences_allow"),
+            _("prefixes_can_be_applied"),
+            ['dl', [
+                    'save-temp', 'ucencode-', 'uencode-', 'escquotes-'
+                ].reduce(function (children, prefix) {
+                    children.push(['dt', [prefix]]);
+                    children.push(['dd', [_("prefix_" + prefix)]]);
+                    return children;
+                }, [])
+            ],
+            ['b', [_("Sequences")]],
+            ['dl', [
+                    'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
+                    'selectedHTML', 'selectedText', 'linkPageURL',
+                    'linkPageURLAsNativePath', 'linkPageTitle',
+                    'linkBodyText', 'linkPageHTML', 'imageURL',
+                    'imageDataURL', 'imageDataBinary'
+                ].reduce(function (children, seq) {
+                    children.push(['dt', [seq]]);
+                    children.push(['dd', [_("seq_" + seq)]]);
+                    return children;
+                }, [])
+            ]
+        ]]
+    ]],
+    ['div', {id: 'substitutions-used-container'}, [
+        ['h3', [_("Substitutions used")]],
+        ['div', {id: 'substitutions-used'}, [
+            _("currently_available_sequences"),
+            ['br'],['br'],
+            /*
+            ['dl', [
+                ['dt', ['save-temp-']], ['dd'],
+                ['dt', ['ucencode-']], ['dd'],
+                ['dt', ['uencode-']], ['dd'],
+                ['dt', ['escquotes-']], ['dd'],
+            ]],
+            */
+            ['b', [_("Sequences")]],
+            ['dl', [
+                    'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
+                    'selectedHTML', 'selectedText', 'linkPageURL',
+                    'linkPageURLAsNativePath', 'linkPageTitle',
+                    'linkBodyText', 'linkPageHTML', 'imageURL',
+                    'imageDataURL', 'imageDataBinary'
+                ].reduce(function (children, seq) {
+                    children.push(['dt', [seq]]);
+                    children.push(['dd']);
+                    return children;
+                }, [])
+            ]
+        ]]
+    ]],
+    ['table', [
+        /*
+        ['tr', [
+            ['td', [
+                ['label', [_("Label:")]]
+            ]],
+            ['td', [
+                ['input', {id: 'label'}]
+            ]]
+        ]]
+        */
+        ['tr', [
+            ['td', [
+                ['label', {'for': 'executablePath'}, [_("Path of executable")]]
+            ]],
+            ['td', [
+                ['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
+                ['input', {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'}],
+                ['input', {type: 'button', id: 'executablePick', dataset: {sel: '#executablePath', 'default-extension': 'exe', 'class': 'ei-exe-picker', value: _("Browse")}}],
+                ['datalist', {id: 'datalist'}],
+                ['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
+            ]]
+        ]]
+    ]],
+    ['div', {id: 'executableTableContainer'}, [
+        ['table', {id: 'executableTable'}]
+    ]],
+    ['div', {id: 'fileAndURLArgumentContainer'}, [
+        ['b', [_("Hard-coded files and URLs")]],
+        ['br'],
+        ['table', {id: 'fileArguments'}],
+        ['table', {id: 'URLArguments'}]
+    ]],
+    ['br'],
+    ['div', {'class': 'focus'}, [
+        /*
+        ['button', {id: 'saveAndExecute'}, [_("Save and execute")]],
+        ['button', {id: 'saveAndClose'}, [_("Save and close")]]
+        ['br'],
+        ['br']
+        */
+        ['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
+        ['br'],
+        ['button', {id: 'execute'}, [_("Execute")]],
+        ['button', {id: 'cancel'}, [_("Cancel")]]
+    ]]
+], $('body'));
+
 
 $('body').addEventListener('click', function (e) {
     var val, sel, selVal,
