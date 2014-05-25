@@ -137,7 +137,7 @@ jml('div', [
             ['td', [
                 ['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
                 ['input', {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'}],
-                ['input', {type: 'button', id: 'executablePick', dataset: {sel: '#executablePath', 'default-extension': 'exe', 'class': 'ei-exe-picker', value: _("Browse")}}],
+                ['input', {type: 'button', id: 'executablePick', dataset: {sel: '#executablePath', 'default-extension': 'exe', 'class': 'ei-exe-picker'}, value: _("Browse")}],
                 ['datalist', {id: 'datalist'}],
                 ['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
             ]]
