@@ -142,6 +142,12 @@ auto-escaped):
     1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
     1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
     1. Use WebDAV request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
+1. Exporting as batch files, and converting batch files upon import (also in
+conjunction with
+[Executable Builder](https://github.com/brettz9/executable-builder/)) which
+could allow for convenient reuse of the content when attaching the batch
+script to a "Open with..." handler. Use approach like
+http://stackoverflow.com/a/5215844/271577
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
