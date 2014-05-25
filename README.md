@@ -10,6 +10,12 @@ A number of automatic substitutions are available (and documented within
 the dialog) such as obtaining the current URL, title,
 content as HTML or text, etc.
 
+# Installation
+
+One can directly install the bundled XPI file or install with npm:
+
+`npm install atyourcommand`
+
 # Immediate to-dos
 
 1. Behavior additions
