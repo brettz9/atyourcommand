@@ -62,6 +62,8 @@ which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
 with browser gaining same workflow access to the opening and, optionally,
 editing, of a document, including online editing).
+1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
+toDataURL canvas snapshot as an argument.
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
 1. One-off command line dialog: add optionally savable label (for saving)
