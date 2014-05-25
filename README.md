@@ -23,7 +23,7 @@ One can directly install the bundled XPI file or install with npm:
     page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
     1. Support defaults (including empty ones)
 
-# Likely to-dos
+# Higher priority to-dos
 
 1. Opinion piece on great importance of data ownership and decoupling of local
 or remote data from applications (also discuss need for return to (user-approved)
@@ -91,6 +91,7 @@ desktop or with web app (without specific executable, args, etc.; also
 provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
 to-do about splitting off its context menu/add-on bar file:// capabilities into
 separate add-on.
+1. Allow storage of own "path" environment for greater portability across OS.
 
 # Possible to-dos
 
