@@ -49,10 +49,16 @@ when using a Firefox add-on for localStorage, FileSystem, or IndexedDB
 browsing and send the data to the command line, including optionally
 to WebAppFind for discovering a suitable web-app, and allowing an API
 for saving back, thus freeing the user from local storage data lock-in).
+Likewise for right-clicking a particular element (or XPath/CSS Selector
+expression?) within a document to do a PATCH back to the server for
+replacing just that portion with whatever value is indicated by the user or
+by the web app which was delegated responsibility for the PUT/PATCH (an
+HTML/XML document is itself a kind of database).
 1. Idea for command line apps to align themselves with a uniform,
 atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
-wiki projects supporting
+wiki projects supporting. (Or better yet, parse existing help files or
+command line help flag commands, if structured enough.)
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
