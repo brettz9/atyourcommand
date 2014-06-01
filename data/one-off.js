@@ -60,7 +60,13 @@ function _ (key) {
 
 document.title = _("title");
 jml('div', [
-	['div', {id: 'names', hidden: true}, [
+	['div', (function (options) {
+		var atts = {id: 'names'};
+		if (options.itemType === 'one-off') {
+			atts.hidden = true;
+		}
+		return atts;
+	}(options)), [
 		['select', {id: 'selectNames', size: 50, $on: {click: function (e) {
 			if (e.target.nodeName.toLowerCase() !== 'option') {
 				return;
@@ -76,7 +82,11 @@ jml('div', [
 			['option', ['Name2']]
 		]]
 	]],
-	['div', {id: 'main'}, [
+	['div', (function (options) {
+		var atts = {id: 'main'};
+		atts.className = options.itemType === 'one-off' ? 'closed' : 'open';
+		return atts;
+	}(options)), [
 		['button', {id: 'showNames', $on: {click: function () {
 			$('#names').hidden = !$('#names').hidden;
 			var showNames = $('#showNames');
@@ -89,7 +99,7 @@ jml('div', [
 				showNames.replaceChild(document.createTextNode(_("gt")), showNames.firstChild);
 			}
 		}}}, [
-			_("gt")
+			_(options.itemType === 'one-off' ? "gt" : "lt")
 		]],
 		['div', {id: 'processExecuted', style: 'visibility:hidden;'}, [
 			_("Process executed")
@@ -151,10 +161,16 @@ jml('div', [
 				]
 			]]
 		]],
-		['div', [
+		['div', {id: 'command-name-section'}, [
 			['label', {title: _("if_present_command_saved")}, [
 				_("Command name") + ' ',
-				['input', {id: 'command-name', size: '55'}]
+				['input', (function (options) {
+					var atts = {id: 'command-name', size: '55'};
+					if (options.itemType === 'commands') {
+						atts.autofocus = 'autofocus';
+					}
+					return atts;
+				}(options))]
 			]]
 		]],
 		['table', [
@@ -174,7 +190,13 @@ jml('div', [
 				]],
 				['td', [
 					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
-					['input', {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'}],
+					['input', (function (options) {
+						var atts = {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'};
+						if (options.itemType === 'one-off') {
+							atts.autofocus = 'autofocus';
+						}
+						return atts;
+					}(options))],
 					['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {sel: '#executablePath', 'default-extension': 'exe'}, value: _("Browse")}],
 					['datalist', {id: 'datalist'}],
 					['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
@@ -205,7 +227,6 @@ jml('div', [
 		]]
 	]]
 ], $('body'));
-
 
 $('body').addEventListener('click', function (e) {
 	var val, sel, selVal,
