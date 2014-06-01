@@ -78,7 +78,7 @@ jml('div', [
 				
 			}
 		}}}, [
-			['option', {value: ''}, [_("create_new_command")]],
+			['option', {value: '', selected: 'selected'}, [_("create_new_command")]],
 			['option', ['Name2']]
 		]]
 	]],
@@ -293,7 +293,7 @@ $('body').addEventListener('click', function (e) {
 		args.remove(dataset.id);
 	}
 	else if (target.id === 'cancel') {
-		emit('buttonClick', {id: 'cancel'});
+		emit('buttonClick', {id: target.id});
 	}
 	else if (target.id === 'execute') {
 		emit('buttonClick', {
