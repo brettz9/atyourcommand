@@ -1,3 +1,20 @@
+#main.closed {
+	float: left;
+	width:100%;
+}
+#main.open {
+	float: left;
+	width:70%;
+}
+#names {
+	float: left;
+	width: 30%;
+}
+#selectNames {
+	width: 98%;
+	padding: 2%;
+}
+
 #substitutions-explanation-container,
 #fileArguments {
 	padding-right: 1%;

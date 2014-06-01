@@ -53,117 +53,156 @@ function forSel (sel, cb) {
 	Array.from($$(sel)).forEach(cb);
 }
 function _ (key) {
-	return locale[key] || '(Non-internationalized string--FIXME!)';
+	return locale[key] || '(Non-internationalized string--FIXME!)' + key;
 }
 
 // ADD EVENTS
 
 document.title = _("title");
 jml('div', [
-	['div', {id: 'processExecuted', style: 'visibility:hidden;'}, [
-		_("Process executed")
-	]],
-	['div', {id: 'substitutions-explanation-container'}, [
-		['h3', [_("Substitutions explained")]],
-		['div', {id: 'substitutions-explanation'}, [
-			_("Substitution_sequences_allow"),
-			_("prefixes_can_be_applied"),
-			['dl', [
-					'save-temp', 'ucencode-', 'uencode-', 'escquotes-'
-				].reduce(function (children, prefix) {
-					children.push(['dt', [prefix]]);
-					children.push(['dd', [_("prefix_" + prefix)]]);
-					return children;
-				}, [])
-			],
-			['b', [_("Sequences")]],
-			['dl', [
-					'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
-					'selectedHTML', 'selectedText', 'linkPageURL',
-					'linkPageURLAsNativePath', 'linkPageTitle',
-					'linkBodyText', 'linkPageHTML', 'imageURL',
-					'imageDataURL', 'imageDataBinary'
-				].reduce(function (children, seq) {
-					children.push(['dt', [seq]]);
-					children.push(['dd', [_("seq_" + seq)]]);
-					return children;
-				}, [])
-			]
+	['div', {id: 'names', hidden: true}, [
+		['select', {id: 'selectNames', size: 50, $on: {click: function (e) {
+			if (e.target.nodeName.toLowerCase() !== 'option') {
+				return;
+			}
+			if (e.target.value === '') { // Create new command
+				
+			}
+			else {
+				
+			}
+		}}}, [
+			['option', {value: ''}, [_("create_new_command")]],
+			['option', ['Name2']]
 		]]
 	]],
-	['div', {id: 'substitutions-used-container'}, [
-		['h3', [_("Substitutions used")]],
-		['div', {id: 'substitutions-used'}, [
-			_("currently_available_sequences"),
-			['br'],['br'],
+	['div', {id: 'main'}, [
+		['button', {id: 'showNames', $on: {click: function () {
+			$('#names').hidden = !$('#names').hidden;
+			var showNames = $('#showNames');
+			if (!$('#names').hidden) {
+				$('#main').className = 'open';
+				showNames.replaceChild(document.createTextNode(_("lt")), showNames.firstChild);
+			}
+			else {
+				$('#main').className = 'closed';
+				showNames.replaceChild(document.createTextNode(_("gt")), showNames.firstChild);
+			}
+		}}}, [
+			_("gt")
+		]],
+		['div', {id: 'processExecuted', style: 'visibility:hidden;'}, [
+			_("Process executed")
+		]],
+		['div', {id: 'substitutions-explanation-container'}, [
+			['h3', [_("Substitutions explained")]],
+			['div', {id: 'substitutions-explanation'}, [
+				_("Substitution_sequences_allow"),
+				['br'],['br'],
+				_("prefixes_can_be_applied"),
+				['dl', [
+						'save-temp', 'ucencode-', 'uencode-', 'escquotes-'
+					].reduce(function (children, prefix) {
+						children.push(['dt', [prefix]]);
+						children.push(['dd', [_("prefix_" + prefix)]]);
+						return children;
+					}, [])
+				],
+				['b', [_("Sequences")]],
+				['dl', [
+						'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
+						'selectedHTML', 'selectedText', 'linkPageURL',
+						'linkPageURLAsNativePath', 'linkPageTitle',
+						'linkBodyText', 'linkPageHTML', 'imageURL',
+						'imageDataURL', 'imageDataBinary'
+					].reduce(function (children, seq) {
+						children.push(['dt', [seq]]);
+						children.push(['dd', [_("seq_" + seq)]]);
+						return children;
+					}, [])
+				]
+			]]
+		]],
+		['div', {id: 'substitutions-used-container'}, [
+			['h3', [_("Substitutions used")]],
+			['div', {id: 'substitutions-used'}, [
+				_("currently_available_sequences"),
+				['br'],['br'],
+				/*
+				['dl', [
+					['dt', ['save-temp-']], ['dd'],
+					['dt', ['ucencode-']], ['dd'],
+					['dt', ['uencode-']], ['dd'],
+					['dt', ['escquotes-']], ['dd'],
+				]],
+				*/
+				['b', [_("Sequences")]],
+				['dl', [
+						'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
+						'selectedHTML', 'selectedText', 'linkPageURL',
+						'linkPageURLAsNativePath', 'linkPageTitle',
+						'linkBodyText', 'linkPageHTML', 'imageURL',
+						'imageDataURL', 'imageDataBinary'
+					].reduce(function (children, seq) {
+						children.push(['dt', [seq]]);
+						children.push(['dd']);
+						return children;
+					}, [])
+				]
+			]]
+		]],
+		['div', [
+			['label', {title: _("if_present_command_saved")}, [
+				_("Command name") + ' ',
+				['input', {id: 'command-name', size: '55'}]
+			]]
+		]],
+		['table', [
 			/*
-			['dl', [
-				['dt', ['save-temp-']], ['dd'],
-				['dt', ['ucencode-']], ['dd'],
-				['dt', ['uencode-']], ['dd'],
-				['dt', ['escquotes-']], ['dd'],
-			]],
+			['tr', [
+				['td', [
+					['label', [_("Label:")]]
+				]],
+				['td', [
+					['input', {id: 'label'}]
+				]]
+			]]
 			*/
-			['b', [_("Sequences")]],
-			['dl', [
-					'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
-					'selectedHTML', 'selectedText', 'linkPageURL',
-					'linkPageURLAsNativePath', 'linkPageTitle',
-					'linkBodyText', 'linkPageHTML', 'imageURL',
-					'imageDataURL', 'imageDataBinary'
-				].reduce(function (children, seq) {
-					children.push(['dt', [seq]]);
-					children.push(['dd']);
-					return children;
-				}, [])
-			]
-		]]
-	]],
-	['table', [
-		/*
-		['tr', [
-			['td', [
-				['label', [_("Label:")]]
-			]],
-			['td', [
-				['input', {id: 'label'}]
+			['tr', [
+				['td', [
+					['label', {'for': 'executablePath'}, [_("Path of executable")]]
+				]],
+				['td', [
+					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
+					['input', {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'}],
+					['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {sel: '#executablePath', 'default-extension': 'exe'}, value: _("Browse")}],
+					['datalist', {id: 'datalist'}],
+					['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
+				]]
 			]]
+		]],
+		['div', {id: 'executableTableContainer'}, [
+			['table', {id: 'executableTable'}]
+		]],
+		['div', {id: 'fileAndURLArgumentContainer'}, [
+			['b', [_("Hard-coded files and URLs")]],
+			['br'],
+			['table', {id: 'fileArguments'}],
+			['table', {id: 'URLArguments'}]
+		]],
+		['br'],
+		['div', {'class': 'focus'}, [
+			/*
+			['button', {id: 'saveAndExecute'}, [_("Save and execute")]],
+			['button', {id: 'saveAndClose'}, [_("Save and close")]]
+			['br'],
+			['br']
+			*/
+			['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
+			['br'],
+			['button', {id: 'execute'}, [_("Execute")]],
+			['button', {id: 'cancel'}, [_("Cancel")]]
 		]]
-		*/
-		['tr', [
-			['td', [
-				['label', {'for': 'executablePath'}, [_("Path of executable")]]
-			]],
-			['td', [
-				['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
-				['input', {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'}],
-				['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {sel: '#executablePath', 'default-extension': 'exe'}, value: _("Browse")}],
-				['datalist', {id: 'datalist'}],
-				['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
-			]]
-		]]
-	]],
-	['div', {id: 'executableTableContainer'}, [
-		['table', {id: 'executableTable'}]
-	]],
-	['div', {id: 'fileAndURLArgumentContainer'}, [
-		['b', [_("Hard-coded files and URLs")]],
-		['br'],
-		['table', {id: 'fileArguments'}],
-		['table', {id: 'URLArguments'}]
-	]],
-	['br'],
-	['div', {'class': 'focus'}, [
-		/*
-		['button', {id: 'saveAndExecute'}, [_("Save and execute")]],
-		['button', {id: 'saveAndClose'}, [_("Save and close")]]
-		['br'],
-		['br']
-		*/
-		['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
-		['br'],
-		['button', {id: 'execute'}, [_("Execute")]],
-		['button', {id: 'cancel'}, [_("Cancel")]]
 	]]
 ], $('body'));
 
