@@ -62,7 +62,8 @@ HTML/XML document is itself a kind of database).
 atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
 wiki projects supporting. (Or better yet, parse existing help files or
-command line help flag commands, if structured enough.)
+command line help flag commands, if structured enough.) Also
+allow joining of commands.
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
