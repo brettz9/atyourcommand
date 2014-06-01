@@ -1,5 +1,5 @@
 /*globals ExpandableInputs, self, jml */
-
+/*jslint todo:true*/
 (function () {'use strict';
 
 var
@@ -137,7 +137,7 @@ jml('div', [
             ['td', [
                 ['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
                 ['input', {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'}],
-                ['input', {type: 'button', id: 'executablePick', dataset: {sel: '#executablePath', 'default-extension': 'exe', 'class': 'ei-exe-picker'}, value: _("Browse")}],
+                ['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {sel: '#executablePath', 'default-extension': 'exe'}, value: _("Browse")}],
                 ['datalist', {id: 'datalist'}],
                 ['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
             ]]
@@ -174,8 +174,8 @@ $('body').addEventListener('click', function (e) {
         dataset = target.dataset || {},
         cl = target.classList;
     function getValues (type, expInput) {
-        var sel = '.' + expInput.getPrefixedNamespace() + type;
-        return Array.from($$(sel)).map(function (arg) {
+        var selector = '.' + expInput.getPrefixedNamespace() + type;
+        return Array.from($$(selector)).map(function (arg) {
             if (arg.type === 'checkbox') {
                 return arg.checked;
             }
@@ -232,6 +232,9 @@ $('body').addEventListener('click', function (e) {
     else if (cl.contains(args.getPrefixedNamespace() + 'remove')) {
         args.remove(dataset.id);
     }
+    else if (target.id === 'cancel') {
+        emit('buttonClick', {id: 'cancel'});
+    }
     else if (target.id === 'execute') {
         emit('buttonClick', {
             id: target.id,
@@ -246,7 +249,7 @@ $('body').addEventListener('click', function (e) {
 
 $('body').addEventListener('input', function (e) {
     var target = e.target, val = e.target.value;
-    if (target.classList.contains('ei-files-path')) {
+    if (target.classList.contains('ei-files-path') || target.classList.contains('ei-exe-path')) {
         emit('autocompleteValues', {
             value: val,
             listID: target.getAttribute('list')
