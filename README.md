@@ -19,9 +19,9 @@ One can directly install the bundled XPI file or install with npm:
 # Immediate to-dos
 
 1. Behavior additions
-    1. Finish behavior providing substitution of current
-    page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
-    1. Support defaults (including empty ones)
+	1. Finish behavior providing substitution of current
+	page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
+	1. Support defaults (including empty ones)
 
 # Higher priority to-dos
 
@@ -110,45 +110,45 @@ HTML (e.g., toDataURL on canvas)
 1. Allow atyourcommand to send content to web apps directly through WebAppFind
 code when present (as opposed to through command line)?
 1. Remote site supply of commands
-    1. Way for websites to register commands or groups of commands upon
-    user introspection and permission
-    1. Served with special content type and protocol meant for external launching?
-        1. Create protocol to force dialog asking to launch app (so if user
-        clicks link, will get asked), optionally with args, and optionally with
-        desktop file or remote URLs, etc. as content; will thereby also be
-        able to support (and demo) WebAppFind invocation from remote
+	1. Way for websites to register commands or groups of commands upon
+	user introspection and permission
+	1. Served with special content type and protocol meant for external launching?
+		1. Create protocol to force dialog asking to launch app (so if user
+		clicks link, will get asked), optionally with args, and optionally with
+		desktop file or remote URLs, etc. as content; will thereby also be
+		able to support (and demo) WebAppFind invocation from remote
 1. De-coupling of remote content from its executable (as in regular
 atyourcommand) but remember upon future loads of the content
-    1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
-    add-on to allow launching of a file URL including with own args (and
-    optional saving/editing of the command for reuse across atyourcommand
-    content)
-        1. Overlay
-        [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
-        but make it support site prefs (but not by domain as with Mozilla content prefs!)
-        (in addition to mapping MIME to commands)
-        so choice will be remembered (checkbox to remember choice including
-        any arguments, passing URL and/or file contents); also allow
-        WebAppFind detection (e.g., remote filetypes.json?) in addition
-        to MIME detection?
-        1. Point out potential use in automatically launching WebAppFind-driven
-        web apps automatically with web data (and with PUT requests back to
-        server, could get full round-trip decoupling of data and app)
-        1. Allow all file:// URLs to optionally be opened externally as per https://support.mozilla.org/en-US/questions/758172
-        1. Cover usage of http://kb.mozillazine.org/View_source.editor.external and http://kb.mozillazine.org/View_source.editor.path
-    1. As with my possible todo for
-    [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
-    site prefs, make the filebrowser-enhanced context
-    menu and right-click on WebAppFind icon (for the opening of the current
-    browser document into WebAppFind) sensitive to site prefs so right-click
-    arguments can optionally be remembered; share options across all of these
-    addons?
+	1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
+	add-on to allow launching of a file URL including with own args (and
+	optional saving/editing of the command for reuse across atyourcommand
+	content)
+		1. Overlay
+		[Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
+		but make it support site prefs (but not by domain as with Mozilla content prefs!)
+		(in addition to mapping MIME to commands)
+		so choice will be remembered (checkbox to remember choice including
+		any arguments, passing URL and/or file contents); also allow
+		WebAppFind detection (e.g., remote filetypes.json?) in addition
+		to MIME detection?
+		1. Point out potential use in automatically launching WebAppFind-driven
+		web apps automatically with web data (and with PUT requests back to
+		server, could get full round-trip decoupling of data and app)
+		1. Allow all file:// URLs to optionally be opened externally as per https://support.mozilla.org/en-US/questions/758172
+		1. Cover usage of http://kb.mozillazine.org/View_source.editor.external and http://kb.mozillazine.org/View_source.editor.path
+	1. As with my possible todo for
+	[Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
+	site prefs, make the filebrowser-enhanced context
+	menu and right-click on WebAppFind icon (for the opening of the current
+	browser document into WebAppFind) sensitive to site prefs so right-click
+	arguments can optionally be remembered; share options across all of these
+	addons?
 1. To make atyourcommand more meaningful, ensure works with a
 Gopher-over-HTTP protocol (e.g., one limited to <li> elements and other tags
 auto-escaped):
-    1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
-    1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
-    1. Use WebDAV request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
+	1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
+	1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
+	1. Use WebDAV request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
 1. Exporting as batch files, and converting batch files upon import (also in
 conjunction with
 [Executable Builder](https://github.com/brettz9/executable-builder/)) which
@@ -161,15 +161,15 @@ http://stackoverflow.com/a/5215844/271577
 1. https://github.com/piroor/ctxextensions (restartless and to AMO?);
 support not only full custom control over context menu, but also
 toolbar, menu, add-on bar, key command, etc.
-    1. Break apart functionality to specialize in context menu
-    text and URL manipulations? (If so, ensure some other way to
-    have full control over where tools appear; do this by modifying
-    the Firefox Add-ons SDK itself so capability baked-in?)
-    1. Integrate with or replicate Greasemonkey behavior also?
-    1. Get context menu to support hiding items via whitelist or
-    blacklist until exposed by a key command (so that for normal
-    browsing, the context menu is light, but can be made more
-    powerful at a keystroke).
+	1. Break apart functionality to specialize in context menu
+	text and URL manipulations? (If so, ensure some other way to
+	have full control over where tools appear; do this by modifying
+	the Firefox Add-ons SDK itself so capability baked-in?)
+	1. Integrate with or replicate Greasemonkey behavior also?
+	1. Get context menu to support hiding items via whitelist or
+	blacklist until exposed by a key command (so that for normal
+	browsing, the context menu is light, but can be made more
+	powerful at a keystroke).
 1. Utilize (JavaScript-based) Blockly for pipelining of any kind of
 command (though avoid baking in UI as UI should be flexible, e.g.,
 to allow use in menu, toolbar, add-on bar, etc.); also macro-like
