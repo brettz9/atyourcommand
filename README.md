@@ -22,6 +22,11 @@ One can directly install the bundled XPI file or install with npm:
 	1. Finish behavior providing substitution of current
 	page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	1. Support defaults (including empty ones)
+1. Give user choice on whether to provide content only in certain
+selector-based contexts (but making necessary JSON-friendly
+conversions, e.g., canvas to data URL, for them)
+1. Complete saving work
+1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)?
 
 # Higher priority to-dos
 
@@ -73,10 +78,6 @@ editing, of a document, including online editing).
 toDataURL canvas snapshot as an argument.
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
-1. One-off command line dialog: add optionally savable label (for saving)
-1. One-off command line dialog: add options to "save and execute",
-"save and close" and add context menu link to prefs dialog
-1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)
 1. Include pre-sets for opening into WebAppFind (and Firefox) and
 example like Notepad++
 1. Investigate other applauncher.js aspects for possible types of substitutions?
@@ -110,6 +111,8 @@ link and page HTML)
 HTML (e.g., toDataURL on canvas)
 1. Allow atyourcommand to send content to web apps directly through WebAppFind
 code when present (as opposed to through command line)?
+1. Might add items like JSON-stringified array of current <script src>'s,
+<link href>'s or <html manifest> string.
 1. Remote site supply of commands
 	1. Way for websites to register commands or groups of commands upon
 	user introspection and permission
