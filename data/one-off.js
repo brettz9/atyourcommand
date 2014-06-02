@@ -79,15 +79,7 @@ jml('div', [
 			else {
 				createNewCommand = false;
 			}
-		}}}, Object.keys(oldStorage).reduce(
-			function (opts, commandName) {
-				opts.push(['option', [commandName]]);
-				return opts;
-			},
-			[
-				['option', {value: '', selected: 'selected'}, [_("create_new_command")]]
-			]
-		)
+		}}}
 	]]],
 	['div', (function (options) {
 		var atts = {id: 'main'};
@@ -224,8 +216,8 @@ jml('div', [
 		['div', {'class': 'focus'}, [
 			['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
 			['br'],
-			['button', {id: 'saveAndExecute', 'class': 'passData execute save'}, [_("Save and execute")]],
-			['button', {id: 'saveAndClose', 'class': 'passData close save'}, [_("Save and close")]],
+			['button', {id: 'saveAndClose', 'class': 'passData save'}, [_("Save")]],
+			['button', {id: 'saveAndClose', 'class': 'passData delete'}, [_("Delete")]],
 			['br'],
 			['button', {id: 'execute', 'class': 'passData execute'}, [_("Execute")]],
 			['button', {id: 'cancel'}, [_("Cancel")]]
@@ -303,7 +295,10 @@ $('body').addEventListener('click', function (e) {
 	else if (cl.contains('passData')) {
 		// Todo: Depending on whether command name changed and was supposed to, prevent this
 		var name = $('#command-name').value;
-		if (cl.contains('save')) { //  && nameChanged
+		if (cl.contains('delete') && !createNewCommand) {
+			emit('buttonClick', {name: name, remove: true});
+		}
+		else if (cl.contains('save')) { //  && nameChanged
 			if (!name) {
 				alert(_("supply_name"));
 				return;
@@ -321,9 +316,6 @@ $('body').addEventListener('click', function (e) {
 				dirs: getValues('directory', files)
 			}
 		};
-		if (target.id === 'saveAndClose') {
-			data.close = true;
-		}
 		if (cl.contains('execute')) {
 			data.execute = true;
 		}
@@ -340,6 +332,25 @@ $('body').addEventListener('input', function (e) {
 		});
 	}
 });
+
+function rebuildCommandList () {
+	while ($('#selectNames').firstChild) {
+		$('#selectNames').removeChild($('#selectNames').firstChild);
+	}
+
+	jml({'#': Object.keys(oldStorage).reduce(
+		function (opts, commandName) {
+			opts.push(['option', [commandName]]);
+			return opts;
+		},
+		[
+			['option', {value: '', selected: 'selected'}, [_("create_new_command")]]
+		]
+	)}, $('#selectNames'));
+
+}
+
+rebuildCommandList();
 
 // COPIED FROM filebrowser-enhanced directoryMod.js (RETURN ALL MODIFICATIONS THERE)
 on('autocompleteValuesResponse', function (data) {
@@ -399,6 +410,10 @@ function handleOptions (data) {
 }
 on('executables', handleOptions);
 on('temps', handleOptions);
+on('remove', function (newStorage) {
+	oldStorage = newStorage;
+	rebuildCommandList();
+});
 
 // Todo: For prefs when prev. values stored, call multiple times and populate
 args.add();
