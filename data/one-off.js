@@ -4,6 +4,7 @@
 
 var
 	createNewCommand = true,
+	changed = false,
 	emit = self.port.emit,
 	on = self.port.on,
 	options = self.options,
@@ -58,6 +59,11 @@ function _ (key) {
 	return locale[key] || '(Non-internationalized string--FIXME!)' + key;
 }
 
+function createEmptyForm () {
+	$('#delete').style.display = 'none';
+	// Todo: set values as blank
+}
+
 // ADD EVENTS
 
 document.title = _("title");
@@ -73,11 +79,14 @@ jml('div', [
 			if (e.target.nodeName.toLowerCase() !== 'option') {
 				return;
 			}
+			// Todo: Confirm user wants to change if in change state
 			if (e.target.value === '') { // Create new command
 				createNewCommand = true;
+				createEmptyForm();
 			}
 			else {
 				createNewCommand = false;
+				$('#delete').style.display = 'block';
 			}
 		}}}
 	]]],
@@ -216,10 +225,10 @@ jml('div', [
 		['div', {'class': 'focus'}, [
 			['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
 			['br'],
-			['button', {id: 'saveAndClose', 'class': 'passData save'}, [_("Save")]],
-			['button', {id: 'saveAndClose', 'class': 'passData delete'}, [_("Delete")]],
+			['button', {'class': 'passData save'}, [_("Save")]],
+			['button', {id: 'delete', 'class': 'passData delete', hidden: true}, [_("Delete")]],
 			['br'],
-			['button', {id: 'execute', 'class': 'passData execute'}, [_("Execute")]],
+			['button', {'class': 'passData execute'}, [_("Execute")]],
 			['button', {id: 'cancel'}, [_("Cancel")]]
 		]]
 	]]
@@ -295,15 +304,19 @@ $('body').addEventListener('click', function (e) {
 	else if (cl.contains('passData')) {
 		// Todo: Depending on whether command name changed and was supposed to, prevent this
 		var name = $('#command-name').value;
-		if (cl.contains('delete') && !createNewCommand) {
+		if (cl.contains('delete')) {
 			emit('buttonClick', {name: name, remove: true});
+			return;
 		}
-		else if (cl.contains('save')) { //  && nameChanged
+		if (cl.contains('save')) {
 			if (!name) {
 				alert(_("supply_name"));
 				return;
 			}
-			oldStorage[name];
+			if (changed && // Inform user if no changes made?
+				!createNewCommand) {
+				oldStorage[name]; // Todo: Check whether name changed or exists and if so, confirm user wishes to rename
+			}
 			return;
 		}
 		var data = {
@@ -410,9 +423,15 @@ function handleOptions (data) {
 }
 on('executables', handleOptions);
 on('temps', handleOptions);
-on('remove', function (newStorage) {
+
+on('newStorage', function (newStorage) {
 	oldStorage = newStorage;
 	rebuildCommandList();
+});
+on('removeStorage', function (newStorage) {
+	oldStorage = newStorage;
+	rebuildCommandList();
+	createEmptyForm();
 });
 
 // Todo: For prefs when prev. values stored, call multiple times and populate
