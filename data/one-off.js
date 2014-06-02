@@ -126,7 +126,7 @@ jml('div', [
 		}}}
 	]]],
 	['div', (function (options) {
-		var atts = {id: 'main', $on: {change: function () {
+		var atts = {id: 'main', $on: {change: function (e) {
 			changed = true;
 			if (e.target.id === 'command-name') {
 				nameChanged = true;
