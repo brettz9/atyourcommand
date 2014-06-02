@@ -43,8 +43,8 @@ discussions. Ridiculousness of effort at code being decoupled when web (and
 desktop in connection with the web) is itself not decoupled. Also cover the
 ideas for PUT requests (for decoupled saving) and interfaces to the
 likes of Firefox's SQLite database (including for access to its localStorage
-contents) or to FileWriter/FileSystem files and HTTPQuery/PATCH requests
-for a potentially friendly and
+contents) or to FileWriter/FileSystem and cached files and
+HTTPQuery/PATCH requests for a potentially friendly and
 uniform approach (which could subsume the local SQLite API as well)
 toward allowing universal and
 neutral APIs to obtain and save *portions* of documents as well as whole
