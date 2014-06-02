@@ -79,7 +79,6 @@ function setInputValues (expInput, blank) {
 function populateEmptyForm () {
 	createNewCommand = true;
 	$('#delete').style.display = 'none';
-	// Todo: set values as blank
 	
 	// Could also put select's at selectedIndex = 0
 	$('#executablePath').value = '';
