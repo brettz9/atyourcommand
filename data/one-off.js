@@ -3,6 +3,7 @@
 (function () {'use strict';
 
 var
+	currentName,
 	createNewCommand = true,
 	changed = false,
 	emit = self.port.emit,
@@ -59,9 +60,44 @@ function _ (key) {
 	return locale[key] || '(Non-internationalized string--FIXME!)' + key;
 }
 
-function createEmptyForm () {
+function setValues (type, expInput, key) {
+	var selector = '.' + expInput.getPrefixedNamespace() + type;
+	
+	Array.from($$(selector)).forEach(function (arg, i) {
+		if (arg.type === 'checkbox') {
+			arg.checked = currentName && key ? oldStorage[currentName][key][i] : false;
+		}
+		else {
+			arg.value = currentName && key ? oldStorage[currentName][key][i] : '';
+		}
+	});
+}
+function setInputValues (expInput, blank) {
+	return setValues('input', expInput, blank);
+}
+
+function populateEmptyForm () {
+	createNewCommand = true;
 	$('#delete').style.display = 'none';
 	// Todo: set values as blank
+	
+	// Could also put select's at selectedIndex = 0
+	$('#executablePath').value = '';
+	setInputValues(args);
+	setInputValues(files);
+	setInputValues(urls);
+	setValues('directory', files);
+}
+
+function populateFormWithStorage () {
+	createNewCommand = false;
+	$('#delete').style.display = 'block';
+	
+	$('#executablePath').value = oldStorage[currentName].executablePath;
+	setInputValues(args, 'args');
+	setInputValues(files, 'files');
+	setInputValues(urls, 'urls');
+	setValues('directory', files, 'dirs');
 }
 
 // ADD EVENTS
@@ -80,13 +116,12 @@ jml('div', [
 				return;
 			}
 			// Todo: Confirm user wants to change if in change state
+			currentName = e.target.value;
 			if (e.target.value === '') { // Create new command
-				createNewCommand = true;
-				createEmptyForm();
+				populateEmptyForm();
 			}
 			else {
-				createNewCommand = false;
-				$('#delete').style.display = 'block';
+				populateFormWithStorage();
 			}
 		}}}
 	]]],
@@ -431,7 +466,7 @@ on('newStorage', function (newStorage) {
 on('removeStorage', function (newStorage) {
 	oldStorage = newStorage;
 	rebuildCommandList();
-	createEmptyForm();
+	populateEmptyForm();
 });
 
 // Todo: For prefs when prev. values stored, call multiple times and populate
