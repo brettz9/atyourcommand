@@ -22,11 +22,17 @@ One can directly install the bundled XPI file or install with npm:
 	1. Finish behavior providing substitution of current
 	page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	1. Support defaults (including empty ones)
-1. Give user choice on whether to provide content only in certain
-selector-based contexts (but making necessary JSON-friendly
-conversions, e.g., canvas to data URL, for them)
+1. Option to have context menu items, based on the substitutions used (or
+user choice), cause them to only appear under certain, correct conditions
+(but ensure commands can utilize multiple components (e.g., highlighted
+link and page HTML)
+	1. Give user choice on whether to provide content only in certain
+	selector-based contexts (but making necessary JSON-friendly
+	conversions, e.g., canvas to data URL, for them)
 1. Complete saving work
 1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)?
+1. Optional pre-processing of highlighted contents esp. if cannot convert to
+HTML (e.g., toDataURL on canvas)
 
 # Higher priority to-dos
 
@@ -46,11 +52,7 @@ purchasing terms negotiated in the browser with acceptable third-party verifiers
 Cover need for "data ownership" to more frequently accompany privacy
 discussions. Ridiculousness of effort at code being decoupled when web (and
 desktop in connection with the web) is itself not decoupled. Also cover the
-ideas for PUT requests (for decoupled saving) and interfaces to the
-likes of Firefox's SQLite database (including for access to its localStorage
-contents) or to FileWriter/FileSystem and cached files and
-HTTPQuery/PATCH requests for a potentially friendly and
-uniform approach (which could subsume the local SQLite API as well)
+ideas for PUT requests (for decoupled saving), SQL/local file/cache (see below)
 toward allowing universal and
 neutral APIs to obtain and save *portions* of documents as well as whole
 documents among open data sources and applications (e.g., to right-click
@@ -63,6 +65,13 @@ expression?) within a document to do a PATCH back to the server for
 replacing just that portion with whatever value is indicated by the user or
 by the web app which was delegated responsibility for the PUT/PATCH (an
 HTML/XML document is itself a kind of database).
+1. Add interfaces to the likes of Firefox's SQLite database (including
+for access to its localStorage contents) or to FileWriter/FileSystem
+and cached files (e.g., when right-clicking on a document, getting its
+HTML cache or resource file cache files, or its localStorage, etc. so
+no data is inaccessible) and HTTPQuery/PATCH requests for a
+potentially friendly and uniform approach (which could subsume the
+local SQLite API as well)
 1. Idea for command line apps to align themselves with a uniform,
 atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
@@ -94,6 +103,8 @@ provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
 to-do about splitting off its context menu/add-on bar file:// capabilities into
 separate add-on.
 1. Allow storage of own "path" environment for greater portability across OS.
+1. Might add items like JSON-stringified array of current <script src>'s,
+<link href>'s or <html manifest> string.
 
 # Possible to-dos
 
@@ -102,17 +113,9 @@ separate add-on.
 1. Any other command line necessities (besides quoted string escaping)?
 1. As per AppLauncher feature request, allow shortcuts on the toolbar; also
 modify to work with main menu, app-bar, or key command as well
-1. Option to have context menu items, based on the substitutions used (or
-user choice), cause them to only appear under certain, correct conditions
-(but ensure commands can utilize multiple components (e.g., highlighted
-link and page HTML)
 1. Ability to confirm selected text content is a path, URL or file URL, etc.?
-1. Optional pre-processing of highlighted contents esp. if cannot convert to
-HTML (e.g., toDataURL on canvas)
 1. Allow atyourcommand to send content to web apps directly through WebAppFind
 code when present (as opposed to through command line)?
-1. Might add items like JSON-stringified array of current <script src>'s,
-<link href>'s or <html manifest> string.
 1. Remote site supply of commands
 	1. Way for websites to register commands or groups of commands upon
 	user introspection and permission
