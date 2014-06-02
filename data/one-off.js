@@ -1,12 +1,14 @@
 /*globals ExpandableInputs, self, jml */
-/*jslint todo:true*/
+/*jslint vars:true, todo:true*/
 (function () {'use strict';
 
 var
+	createNewCommand = true,
 	emit = self.port.emit,
 	on = self.port.on,
 	options = self.options,
 	locale = options.locale,
+	oldStorage = options.oldStorage,
 	ei_locale = options.ei_locale,
 	args = new ExpandableInputs({
 		locale: ei_locale,
@@ -67,21 +69,26 @@ jml('div', [
 		}
 		return atts;
 	}(options)), [
-		['select', {id: 'selectNames', size: 50, $on: {click: function (e) {
+		['select', {id: 'selectNames', size: 39, $on: {click: function (e) {
 			if (e.target.nodeName.toLowerCase() !== 'option') {
 				return;
 			}
 			if (e.target.value === '') { // Create new command
-				
+				createNewCommand = true;
 			}
 			else {
-				
+				createNewCommand = false;
 			}
-		}}}, [
-			['option', {value: '', selected: 'selected'}, [_("create_new_command")]],
-			['option', ['Name2']]
-		]]
-	]],
+		}}}, Object.keys(oldStorage).reduce(
+			function (opts, commandName) {
+				opts.push(['option', [commandName]]);
+				return opts;
+			},
+			[
+				['option', {value: '', selected: 'selected'}, [_("create_new_command")]]
+			]
+		)
+	]]],
 	['div', (function (options) {
 		var atts = {id: 'main'};
 		atts.className = options.itemType === 'one-off' ? 'closed' : 'open';
@@ -101,9 +108,10 @@ jml('div', [
 		}}}, [
 			_(options.itemType === 'one-off' ? "gt" : "lt")
 		]],
-		['div', {id: 'processExecuted', style: 'visibility:hidden;'}, [
+		['div', {id: 'processExecuted', style: 'display:none;'}, [
 			_("Process executed")
 		]],
+		['br'],
 		['div', {id: 'substitutions-explanation-container'}, [
 			['h3', [_("Substitutions explained")]],
 			['div', {id: 'substitutions-explanation'}, [
@@ -214,10 +222,10 @@ jml('div', [
 		]],
 		['br'],
 		['div', {'class': 'focus'}, [
-			['button', {id: 'saveAndExecute', 'class': 'passData execute'}, [_("Save and execute")]],
-			['button', {id: 'saveAndClose', 'class': 'passData close'}, [_("Save and close")]]
-			['br'],['br'],
 			['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
+			['br'],
+			['button', {id: 'saveAndExecute', 'class': 'passData execute save'}, [_("Save and execute")]],
+			['button', {id: 'saveAndClose', 'class': 'passData close save'}, [_("Save and close")]],
 			['br'],
 			['button', {id: 'execute', 'class': 'passData execute'}, [_("Execute")]],
 			['button', {id: 'cancel'}, [_("Cancel")]]
@@ -294,8 +302,17 @@ $('body').addEventListener('click', function (e) {
 	}
 	else if (cl.contains('passData')) {
 		// Todo: Depending on whether command name changed and was supposed to, prevent this
+		var name = $('#command-name').value;
+		if (cl.contains('save')) { //  && nameChanged
+			if (!name) {
+				alert(_("supply_name"));
+				return;
+			}
+			oldStorage[name];
+			return;
+		}
 		var data = {
-			name: $('#command-name').value,
+			name: name,
 			storage: {
 				executablePath: $('#executablePath').value,
 				args: getInputValues(args),
@@ -341,13 +358,13 @@ on('autocompleteValuesResponse', function (data) {
 
 
 on('finished', function () {
-	$('#processExecuted').style.visibility = 'visible';
+	$('#processExecuted').style.display = 'block';
 	if (!$('#keepOpen').checked) {
 		emit('buttonClick', {id: 'cancel'});
 	}
 	else {
 		setTimeout(function () {
-			$('#processExecuted').style.visibility = 'hidden';
+			$('#processExecuted').style.display = 'none';
 		}, 2000);
 	}
 });

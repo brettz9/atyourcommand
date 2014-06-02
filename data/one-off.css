@@ -1,3 +1,7 @@
+#main {
+	overflow:auto;
+	height: 650px;
+}
 #main.closed {
 	float: left;
 	width:100%;
@@ -14,6 +18,7 @@
 	width: 98%;
 	padding: 2%;
 }
+#showNames {position: fixed;}
 #command-name-section {clear:left;}
 
 #substitutions-explanation-container,
