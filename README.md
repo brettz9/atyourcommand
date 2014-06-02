@@ -35,8 +35,10 @@ One can directly install the bundled XPI file or install with npm:
 1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)?
 1. Optional pre-processing of highlighted contents esp. if cannot convert to
 HTML (e.g., toDataURL on canvas)
+	1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
+	toDataURL canvas snapshot as an argument.
 
-# Higher priority to-dos
+# Higher priority to-dos (longer)
 
 1. Opinion piece on great importance of data ownership and decoupling of local
 or remote data from applications (also discuss need for return to (user-approved)
@@ -74,19 +76,24 @@ HTML cache or resource file cache files, or its localStorage, etc. so
 no data is inaccessible) and HTTPQuery/PATCH requests for a
 potentially friendly and uniform approach (which could subsume the
 local SQLite API as well)
+1. AtYourCommand to include HTTPQuery (partial) retrieval of remote content
+(though delegate partial saving back to webappfind?)
+1. Conditional operator to check whether PUT, HTTPQuery, etc. is supported,
+and if so, change text sent to command line accordingly (convenience)
 1. Idea for command line apps to align themselves with a uniform,
 atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
 wiki projects supporting. (Or better yet, parse existing help files or
 command line help flag commands, if structured enough.) Also
 allow joining of commands.
+
+# Higher priority to-dos (shorter)
+
 1. Add demo of data page being opened into WebAppFind and sent to web app
 which feeds data to a plug-in and receives data back for a PUT save back to
 the remote file (important for showing capability of native apps integrated
 with browser gaining same workflow access to the opening and, optionally,
 editing, of a document, including online editing).
-1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
-toDataURL canvas snapshot as an argument.
 1. As per AppLauncher feature request, default to a specific, configurable
 executable path (or save multiple options for drop-down)
 1. Include pre-sets for opening into WebAppFind (and Firefox) and
@@ -94,10 +101,6 @@ example like Notepad++
 1. Investigate other applauncher.js aspects for possible types of substitutions?
 1. Make reference to potential use with filebrowser or filebrowser-enhanced
 links on the currently loaded file (optionally with args)
-1. AtYourCommand to include HTTPQuery (partial) retrieval of remote content
-(though delegate partial saving back to webappfind?)
-1. Conditional operator to check whether PUT, HTTPQuery, etc. is supported,
-and if so, change text sent to command line accordingly (convenience)
 1. To handle file:// URLs and c:\ paths that are right-clicked (or currently
 loaded) to: expose folder (or copy folder/file path), bare execution on
 desktop or with web app (without specific executable, args, etc.; also
