@@ -214,15 +214,12 @@ jml('div', [
 		]],
 		['br'],
 		['div', {'class': 'focus'}, [
-			/*
-			['button', {id: 'saveAndExecute'}, [_("Save and execute")]],
-			['button', {id: 'saveAndClose'}, [_("Save and close")]]
-			['br'],
-			['br']
-			*/
+			['button', {id: 'saveAndExecute', 'class': 'passData execute'}, [_("Save and execute")]],
+			['button', {id: 'saveAndClose', 'class': 'passData close'}, [_("Save and close")]]
+			['br'],['br'],
 			['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
 			['br'],
-			['button', {id: 'execute'}, [_("Execute")]],
+			['button', {id: 'execute', 'class': 'passData execute'}, [_("Execute")]],
 			['button', {id: 'cancel'}, [_("Cancel")]]
 		]]
 	]]
@@ -292,18 +289,28 @@ $('body').addEventListener('click', function (e) {
 	else if (cl.contains(args.getPrefixedNamespace() + 'remove')) {
 		args.remove(dataset.id);
 	}
-	else if (target.id === 'cancel') {
-		emit('buttonClick', {id: target.id});
+	else if (e.target.id === 'cancel') {
+		emit('buttonClick', {close: true});
 	}
-	else if (target.id === 'execute') {
-		emit('buttonClick', {
-			id: target.id,
-			executablePath: $('#executablePath').value,
-			args: getInputValues(args),
-			files: getInputValues(files),
-			urls: getInputValues(urls),
-			dirs: getValues('directory', files)
-		});
+	else if (cl.contains('passData')) {
+		// Todo: Depending on whether command name changed and was supposed to, prevent this
+		var data = {
+			name: $('#command-name').value,
+			storage: {
+				executablePath: $('#executablePath').value,
+				args: getInputValues(args),
+				files: getInputValues(files),
+				urls: getInputValues(urls),
+				dirs: getValues('directory', files)
+			}
+		};
+		if (target.id === 'saveAndClose') {
+			data.close = true;
+		}
+		if (cl.contains('execute')) {
+			data.execute = true;
+		}
+		emit('buttonClick', data);
 	}
 });
 
