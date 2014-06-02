@@ -391,7 +391,7 @@ function rebuildCommandList () {
 		$('#selectNames').removeChild($('#selectNames').firstChild);
 	}
 
-	jml({'#': Object.keys(oldStorage).reduce(
+	jml({'#': Object.keys(oldStorage).sort().reduce(
 		function (opts, commandName) {
 			opts.push(['option', [commandName]]);
 			return opts;
