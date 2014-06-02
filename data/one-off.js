@@ -6,6 +6,7 @@ var
 	currentName,
 	createNewCommand = true,
 	changed = false,
+	nameChanged = false,
 	emit = self.port.emit,
 	on = self.port.on,
 	options = self.options,
@@ -114,7 +115,7 @@ jml('div', [
 			if (e.target.nodeName.toLowerCase() !== 'option') {
 				return;
 			}
-			// Todo: Confirm user wants to change if in change state
+			// Todo: Confirm user wants to change if in change state (then reset nameChanged to false)
 			currentName = e.target.value;
 			if (e.target.value === '') { // Create new command
 				populateEmptyForm();
@@ -125,7 +126,12 @@ jml('div', [
 		}}}
 	]]],
 	['div', (function (options) {
-		var atts = {id: 'main'};
+		var atts = {id: 'main', $on: {change: function () {
+			changed = true;
+			if (e.target.id === 'command-name') {
+				nameChanged = true;
+			}
+		}}};
 		atts.className = options.itemType === 'one-off' ? 'closed' : 'open';
 		return atts;
 	}(options)), [
