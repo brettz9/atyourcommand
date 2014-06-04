@@ -86,7 +86,9 @@ atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
 wiki projects supporting. (Or better yet, parse existing help files or
 command line help flag commands, if structured enough.) Also
-allow joining of commands.
+allow joining of commands. This could actually work with WebAppFind,
+e.g., to make flags prefixed with webappfind- along with its own modes
+(e.g., view, edit, binaryedit) or custom modes--see next todo.
 1. Make desktop app (e.g., Notepad++ plugin?) which allows right-click
 of text or a URL, etc., and then displays commands stored by AtYourCommand
 (in files which themselves might be openable in a WebAppFind filetypes.json
