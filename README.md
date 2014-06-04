@@ -114,6 +114,8 @@ separate add-on.
 
 # Possible to-dos
 
+1. If a link type of command is chosen but no link is selected, find first
+link in page. Same with images, videos, script files, stylesheets, etc.
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?
