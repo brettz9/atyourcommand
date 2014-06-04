@@ -1,5 +1,5 @@
 /*globals ExpandableInputs, self, jml */
-/*jslint vars:true, todo:true*/
+/*jslint vars:true, todo:true, browser:true, devel:true */
 (function () {'use strict';
 
 var
@@ -83,6 +83,7 @@ function resetChanges () {
 }
 function populateEmptyForm () {
 	createNewCommand = true;
+	currentName = '';
 	$('#delete').style.display = 'none';
 	
 	// Could also put select's at selectedIndex = 0
@@ -94,8 +95,9 @@ function populateEmptyForm () {
 	resetChanges();
 }
 
-function populateFormWithStorage () {
+function populateFormWithStorage (name) {
 	createNewCommand = false;
+	currentName = name;
 	$('#delete').style.display = 'block';
 	
 	$('#executablePath').value = oldStorage[currentName].executablePath;
@@ -127,12 +129,12 @@ jml('div', [
 					return;
 				}
 			}
-			currentName = e.target.value;
-			if (e.target.value === '') { // Create new command
+			var name = e.target.value;
+			if (name === '') { // Create new command
 				populateEmptyForm();
 			}
 			else {
-				populateFormWithStorage();
+				populateFormWithStorage(name);
 			}
 		}}}
 	]]],
@@ -252,6 +254,7 @@ jml('div', [
 					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
 					['input', (function (options) {
 						var atts = {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'};
+						// Todo: instead of the following, update autofocus whenever changing to create a new item or select an existing one
 						if (options.itemType === 'one-off') {
 							atts.autofocus = 'autofocus';
 						}
