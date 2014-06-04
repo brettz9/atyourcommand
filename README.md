@@ -87,6 +87,13 @@ UI-building of such arguments for apps which are compliant). Indicate on
 wiki projects supporting. (Or better yet, parse existing help files or
 command line help flag commands, if structured enough.) Also
 allow joining of commands.
+1. Make desktop app (e.g., Notepad++ plugin?) which allows right-click
+of text or a URL, etc., and then displays commands stored by AtYourCommand
+(in files which themselves might be openable in a WebAppFind filetypes.json
+manner), determining relevance of commands by reverse detecting their
+"<text>" or whatever substitutions, demoing how a desktop app can in
+turn allow contextual snippets to be shuffled off to other applications
+including web-based ones (via WebAppFind).
 
 # Higher priority to-dos (shorter)
 
