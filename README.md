@@ -33,11 +33,14 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	link and page HTML)
 	1. Give user choice on whether to provide content only in certain
 	selector-based contexts (but making necessary JSON-friendly
-	conversions, e.g., canvas to data URL, for them)
+	conversions, e.g., canvas to data URL, for them); video, audio,
+	object/embed/applet URL, <a>, etc.
 1. Optional pre-processing of highlighted contents esp. if cannot convert to
 HTML (e.g., toDataURL on canvas)
 	1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
 	toDataURL canvas snapshot as an argument.
+	1. Any way to create convention to get data out of a plug-in by
+	right-click (and demo)?
 
 # Higher priority to-dos (longer)
 
