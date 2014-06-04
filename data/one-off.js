@@ -77,6 +77,10 @@ function setInputValues (expInput, blank) {
 	return setValues('input', expInput, blank);
 }
 
+function resetChanges () {
+	changed = false;
+	nameChanged = false;
+}
 function populateEmptyForm () {
 	createNewCommand = true;
 	$('#delete').style.display = 'none';
@@ -87,6 +91,7 @@ function populateEmptyForm () {
 	setInputValues(files);
 	setInputValues(urls);
 	setValues('directory', files);
+	resetChanges();
 }
 
 function populateFormWithStorage () {
@@ -98,6 +103,7 @@ function populateFormWithStorage () {
 	setInputValues(files, 'files');
 	setInputValues(urls, 'urls');
 	setValues('directory', files, 'dirs');
+	resetChanges();
 }
 
 // ADD EVENTS
@@ -115,7 +121,12 @@ jml('div', [
 			if (e.target.nodeName.toLowerCase() !== 'option') {
 				return;
 			}
-			// Todo: Confirm user wants to change if in change state (then reset nameChanged to false)
+			if (changed) {
+				var abandonUnsaved = confirm(_("have_unsaved_changes"));
+				if (!abandonUnsaved) {
+					return;
+				}
+			}
 			currentName = e.target.value;
 			if (e.target.value === '') { // Create new command
 				populateEmptyForm();
@@ -353,8 +364,9 @@ $('body').addEventListener('click', function (e) {
 				alert(_("supply_name"));
 				return;
 			}
-			if (changed && // Inform user if no changes made?
+			if (nameChanged && // Inform user if "changed" is false and thus no changes made?
 				!createNewCommand) {
+				// var renameInsteadOfNew = confirm(_("have_unsaved_name_change"));
 				oldStorage[name]; // Todo: Check whether name changed or exists and if so, confirm user wishes to rename
 			}
 			return;
