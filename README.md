@@ -18,11 +18,14 @@ One can directly install the bundled XPI file or install with npm:
 
 # Immediate to-dos
 
-1. Open context menu with a specific command line, a new command line, or prefs
-1. Behavior additions
-	1. Finish behavior providing substitution of current
-	page contents, URL, etc. (see todos in main.js under "buttonClick" "execute" event)
-	1. Support defaults (including empty ones)
+1. Complete saving work
+	1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)?
+1. Open context menu with a specific command line, a new command line, or prefs (immediately execute or just open to?)
+1. Finish behavior providing substitution of current page contents,
+URL, etc. (see todos in main.js under "buttonClick" "execute" event)
+1. Submit to AMO
+
+1. Support defaults (including empty ones)
 1. Also support text selection, URL, image, and custom context(s)
 	1. Option to have context menu items, based on the substitutions used (or
 	user choice), cause them to only appear under certain, correct conditions
@@ -31,8 +34,6 @@ One can directly install the bundled XPI file or install with npm:
 	1. Give user choice on whether to provide content only in certain
 	selector-based contexts (but making necessary JSON-friendly
 	conversions, e.g., canvas to data URL, for them)
-1. Complete saving work
-1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)?
 1. Optional pre-processing of highlighted contents esp. if cannot convert to
 HTML (e.g., toDataURL on canvas)
 	1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
