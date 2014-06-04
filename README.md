@@ -89,13 +89,16 @@ command line help flag commands, if structured enough.) Also
 allow joining of commands. This could actually work with WebAppFind,
 e.g., to make flags prefixed with webappfind- along with its own modes
 (e.g., view, edit, binaryedit) or custom modes--see next todo.
-1. Make desktop app (e.g., Notepad++ plugin?) which allows right-click
+1. Make desktop app (e.g., Notepad++ plugin? though ideally also a
+database app to demo with data that is typically otherwise "locked
+away" to other apps) which allows right-click
 of text or a URL, etc., and then displays commands stored by AtYourCommand
 (in files which themselves might be openable in a WebAppFind filetypes.json
 manner), determining relevance of commands by reverse detecting their
 "<text>" or whatever substitutions, demoing how a desktop app can in
 turn allow contextual snippets to be shuffled off to other applications
-including web-based ones (via WebAppFind).
+including web-based ones (via WebAppFind). See also todo for WebAppFind
+re: possible command line syntax within filetypes.json.
 
 # Higher priority to-dos (shorter)
 
