@@ -367,12 +367,21 @@ $('body').addEventListener('click', function (e) {
 				alert(_("supply_name"));
 				return;
 			}
-			if (nameChanged && // Inform user if "changed" is false and thus no changes made?
+			if (nameChanged &&
 				!createNewCommand) {
-				// var renameInsteadOfNew = confirm(_("have_unsaved_name_change"));
-				oldStorage[name]; // Todo: Check whether name changed or exists and if so, confirm user wishes to rename
+				var renameInsteadOfNew = confirm(_("have_unsaved_name_change"));
+				if (!renameInsteadOfNew) { // User wishes to create a new record (or cancel)
+					nameChanged = false;
+					return; // Return so that user has some way of correcting or avoiding (without renaming)
+				}
+				// Proceed with rename
+				delete oldStorage[$('#command-name').defaultValue];
 			}
-			return;
+			else if (!changed && !cl.contains('execute') {
+				// Todo: also inform user if "changed" is false and thus no changes made?
+				alert(_("no_changes_to_save"));
+				return;
+			}
 		}
 		var data = {
 			name: name,

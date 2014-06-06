@@ -19,10 +19,12 @@ One can directly install the bundled XPI file or install with npm:
 # Immediate to-dos
 
 1. Complete saving work
-	1. Prefs: label list: add, edit, delete, move up/down (adapt for AYW also?)?
-1. Open context menu with a specific command line, a new command line, or prefs (immediately execute or just open to?)
+1. Display of commands in dialog: label list: add, edit, delete, move up/down (adapt for AYW also?)?
+1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
+
 1. Finish behavior providing substitution of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
+
 1. Submit to AMO
 
 1. Support defaults (including empty ones)
