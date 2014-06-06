@@ -86,6 +86,7 @@ function populateEmptyForm () {
 	currentName = '';
 	$('#delete').style.display = 'none';
 	
+	$('#command-name').value = '';
 	// Could also put select's at selectedIndex = 0
 	$('#executablePath').value = '';
 	setInputValues(args);
