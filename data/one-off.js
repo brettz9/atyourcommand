@@ -427,7 +427,6 @@ function rebuildCommandList () {
 			['option', {value: '', selected: 'selected'}, [_("create_new_command")]]
 		]
 	)}, $('#selectNames'));
-
 }
 
 rebuildCommandList();
@@ -503,6 +502,7 @@ on('newStorage', function (data) {
 	oldStorage = data.storage;
 	rebuildCommandList();
 	setName(data.name);
+	resetChanges();
 });
 on('removeStorage', function (newStorage) {
 	oldStorage = newStorage;
