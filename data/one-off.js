@@ -88,6 +88,7 @@ function populateEmptyForm () {
 	$('#delete').style.display = 'none';
 	
 	$('#command-name').value = '';
+	$('#command-name').defaultValue = '';
 	$('#selectNames').selectedIndex = 0;
 	$('#executablePath').value = '';
 	setInputValues(args);
@@ -103,6 +104,7 @@ function populateFormWithStorage (name) {
 	$('#delete').style.display = 'inline';
 	
 	$('#command-name').value = name;
+	$('#command-name').defaultValue = name;
 	$('#executablePath').value = oldStorage[currentName].executablePath;
 	setInputValues(args, 'args');
 	setInputValues(files, 'files');
@@ -498,6 +500,7 @@ on('newStorage', function (data) {
 	rebuildCommandList();
 	setName(data.name);
 	resetChanges();
+	$('#command-name').defaultValue = data.name; // Ensure overwriting will be noticed
 });
 on('removeStorage', function (newStorage) {
 	oldStorage = newStorage;
