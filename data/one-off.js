@@ -508,7 +508,7 @@ on('removeStorage', function (newStorage) {
 	populateEmptyForm();
 });
 
-// Todo: For prefs when prev. values stored, call multiple times and populate
+// Todo: For prefs when prev. values stored, call multiple times and populate and reduce when not used
 args.add();
 urls.add();
 files.add();
