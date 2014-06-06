@@ -82,6 +82,7 @@ function resetChanges () {
 	nameChanged = false;
 }
 function populateEmptyForm () {
+	$('#executablePath').focus();
 	createNewCommand = true;
 	currentName = '';
 	$('#delete').style.display = 'none';
@@ -254,14 +255,10 @@ jml('div', [
 				]],
 				['td', [
 					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
-					['input', (function (options) {
-						var atts = {type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path', list: 'datalist', autocomplete: 'off', value: '', required:'required'};
-						// Todo: instead of the following, update autofocus whenever changing to create a new item or select an existing one
-						if (options.itemType === 'one-off') {
-							atts.autofocus = 'autofocus';
-						}
-						return atts;
-					}(options))],
+					['input', {
+						type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path',
+						list: 'datalist', autocomplete: 'off', value: '', required:'required'
+					}],
 					['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {sel: '#executablePath', 'default-extension': 'exe'}, value: _("Browse")}],
 					['datalist', {id: 'datalist'}],
 					['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
