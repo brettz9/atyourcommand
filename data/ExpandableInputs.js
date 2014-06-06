@@ -101,10 +101,31 @@ ExpandableInputs.prototype.remove = function (id) {
 		numHolder.replaceChild(document.createTextNode(that.getLabel(that.num++)), numHolder.firstChild);
 	});
 };
+ExpandableInputs.prototype.addTableEvent = function () {
+	var that = this;
+	$('#' + this.table).addEventListener('click', function (e) {
+		var dataset = e.target.dataset;
+		if (!dataset || !dataset.ei_type) {
+			return;
+		}
+		switch (dataset.ei_type) {
+			case 'remove':
+				that.remove(dataset.ei_id);
+				break;
+			case 'add':
+				that.add();
+				break;
+		}
+	});
+};
 
 ExpandableInputs.prototype.add = function () {
 	var that = this,
 		prefixedNS = this.getPrefixedNamespace();
+	if (!this.tableEventAdded) {
+		this.addTableEvent();
+		this.tableEventAdded = true;
+	}
 	$('#' + this.table).appendChild(jml(
 		'tr', {
 			'id': prefixedNS + 'row-' + this.id,
@@ -122,13 +143,13 @@ ExpandableInputs.prototype.add = function () {
 							(function () {
 								var select = $('.' + prefixedNS + 'presets').cloneNode(true);
 								select.id = prefixedNS + 'select-' + that.id;
-								select.dataset.sel = '#' + prefixedNS + 'input-' + that.id;
+								select.dataset.ei_sel = '#' + prefixedNS + 'input-' + that.id;
 								return select;
 							}()) :
 							['select', {
 								id: prefixedNS + 'select-' + this.id,
 								'class': prefixedNS + 'presets',
-								dataset: {sel: '#' + prefixedNS + 'input-' + this.id}
+								dataset: {ei_sel: '#' + prefixedNS + 'input-' + this.id}
 							}]
 						) :
 						''
@@ -155,46 +176,40 @@ ExpandableInputs.prototype.add = function () {
 					}())],
 					(this.fileType ?
 						// Todo: resolve any issues with fragments and Jamilih and use here to reduce need for jml() call here
-						jml(
-							'datalist', {id: prefixedNS + 'fileDatalist-' + this.id},
-							'input', {
+						{'#': [
+							['datalist', {id: prefixedNS + 'fileDatalist-' + this.id}],
+							['input', {
 								type: 'button',
 								'class': prefixedNS + 'picker',
 								dataset: {
-									sel: '#' + prefixedNS + 'input-' + this.id,
-									directory: '#' + prefixedNS + 'directory' + this.id
+									ei_sel: '#' + prefixedNS + 'input-' + this.id,
+									ei_directory: '#' + prefixedNS + 'directory' + this.id
 								},
 								value: this.locale.browse
-							},
-							'input', {type: 'button', 'class': prefixedNS + 'revealButton', value: this.locale.reveal, dataset: {sel: '#' + prefixedNS + 'input-' + this.id}},
-							'label', [
+							}],
+							['input', {type: 'button', 'class': prefixedNS + 'revealButton', value: this.locale.reveal, dataset: {ei_sel: '#' + prefixedNS + 'input-' + this.id}}],
+							['label', [
 								['input', {
 									id: prefixedNS + 'directory' + this.id,
 									type: 'checkbox',
 									'class': prefixedNS + 'directory'
 								}],
 								this.locale.directory
-							],
-							null
-						) :
+							]]
+						]} :
 						''
 					)
 				]],
 				['td', [
 					['button', {
 						'class': prefixedNS + 'add',
-						$on: {click: function () {
-							that.add();
-						}}
+						dataset: {ei_type: 'add'}
 					}, [this.locale.plus]]
 				]],
 				['td', [
 					['button', {
 						'class': prefixedNS + 'remove',
-						dataset: {id: this.id},
-						$on: {click: function (e) {
-							that.remove(e.target.dataset.id);
-						}}
+						dataset: {ei_id: this.id, ei_type: 'remove'}
 					}, [this.locale.minus]]
 				]]
 			], null

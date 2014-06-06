@@ -256,14 +256,14 @@ jml('div', [
 					['label', {'for': 'executablePath'}, [_("Path of executable")]]
 				]],
 				['td', [
-					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {sel: '#executablePath'}}],
+					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {ei_sel: '#executablePath'}}],
 					['input', {
 						type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path',
 						list: 'datalist', autocomplete: 'off', value: '', required:'required'
 					}],
-					['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {sel: '#executablePath', 'default-extension': 'exe'}, value: _("Browse")}],
+					['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {ei_sel: '#executablePath', 'ei_default-extension': 'exe'}, value: _("Browse")}],
 					['datalist', {id: 'datalist'}],
-					['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {sel: '#executablePath'}}]
+					['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {ei_sel: '#executablePath'}}]
 				]]
 			]]
 		]],
@@ -313,22 +313,22 @@ $('body').addEventListener('click', function (e) {
 		if (!val) {
 			return;
 		}
-		sel = dataset.sel || (target.parentNode && target.parentNode.dataset.sel);
+		sel = dataset.ei_sel || (target.parentNode && target.parentNode.dataset.ei_sel);
 		if (sel) {
 			$(sel).value = val;
 		}
 	}
 	else if (cl.contains('ei-files-picker') || cl.contains('ei-exe-picker')) {
-		sel = dataset.sel;
+		sel = dataset.ei_sel;
 		emit('filePick', {
 			dirPath: $(sel).value,
 			selector: sel,
-			defaultExtension: dataset.defaultExtension || undefined,
-			selectFolder: ($(dataset.directory) && $(dataset.directory).checked) ? true : undefined
+			defaultExtension: dataset.ei_defaultExtension || undefined,
+			selectFolder: ($(dataset.ei_directory) && $(dataset.ei_directory).checked) ? true : undefined
 		});
 	}
 	else if (cl.contains('ei-files-revealButton') || cl.contains('ei-exe-revealButton')) {
-		sel = dataset.sel;
+		sel = dataset.ei_sel;
 		selVal = sel && $(sel).value;
 		if (selVal) {
 			emit('reveal', selVal);
