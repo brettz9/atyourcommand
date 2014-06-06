@@ -101,6 +101,7 @@ function populateFormWithStorage (name) {
 	currentName = name;
 	$('#delete').style.display = 'block';
 	
+	$('#command-name').value = name;
 	$('#executablePath').value = oldStorage[currentName].executablePath;
 	setInputValues(args, 'args');
 	setInputValues(files, 'files');
