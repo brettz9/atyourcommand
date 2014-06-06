@@ -13,31 +13,33 @@ var
 	locale = options.locale,
 	oldStorage = options.oldStorage,
 	ei_locale = options.ei_locale,
-	args = new ExpandableInputs({
-		locale: ei_locale,
-		table: 'executableTable',
-		namespace: 'args',
-		label: ei_locale.args_num,
-		inputSize: 60,
-		rows: 1 // Might perhaps make this optional to save space, but this triggers creation of a textarea so args could be more readable (since to auto-escape newlines as needed)
-	}),
-	urls = new ExpandableInputs({
-		locale: ei_locale,
-		table: 'URLArguments',
-		namespace: 'urls',
-		label: ei_locale.url_num,
-		inputSize: 40,
-		inputType: 'url'
-	}),
-	files = new ExpandableInputs({
-		locale: ei_locale,
-		table: 'fileArguments',
-		namespace: 'files',
-		label: ei_locale.file_num,
-		inputSize: 25,
-		inputType: 'file',
-		selects: true
-	});
+	inputs = {
+		args: new ExpandableInputs({
+			locale: ei_locale,
+			table: 'executableTable',
+			namespace: 'args',
+			label: ei_locale.args_num,
+			inputSize: 60,
+			rows: 1 // Might perhaps make this optional to save space, but this triggers creation of a textarea so args could be more readable (since to auto-escape newlines as needed)
+		}),
+		urls: new ExpandableInputs({
+			locale: ei_locale,
+			table: 'URLArguments',
+			namespace: 'urls',
+			label: ei_locale.url_num,
+			inputSize: 40,
+			inputType: 'url'
+		}),
+		files: new ExpandableInputs({
+			locale: ei_locale,
+			table: 'fileArguments',
+			namespace: 'files',
+			label: ei_locale.file_num,
+			inputSize: 25,
+			inputType: 'file',
+			selects: true
+		})
+	};
 
 // POLYFILLS
 Array.from = function (arg) {
@@ -61,21 +63,6 @@ function _ (key) {
 	return locale[key] || '(Non-internationalized string--FIXME!)' + key;
 }
 
-function setValues (type, expInput, key) {
-	var selector = '.' + expInput.getPrefixedNamespace() + type;
-	
-	Array.from($$(selector)).forEach(function (arg, i) {
-		if (arg.type === 'checkbox') {
-			arg.checked = currentName && key ? oldStorage[currentName][key][i] : false;
-		}
-		else {
-			arg.value = currentName && key ? oldStorage[currentName][key][i] : '';
-		}
-	});
-}
-function setInputValues (expInput, blank) {
-	return setValues('input', expInput, blank);
-}
 
 function resetChanges () {
 	changed = false;
@@ -91,10 +78,11 @@ function populateEmptyForm () {
 	$('#command-name').defaultValue = '';
 	$('#selectNames').selectedIndex = 0;
 	$('#executablePath').value = '';
-	setInputValues(args);
-	setInputValues(files);
-	setInputValues(urls);
-	setValues('directory', files);
+
+	['args', 'urls', 'files'].forEach(function (inputType) {
+		inputs[inputType].setInputValues();
+	});
+	inputs.files.setValues('directory');
 	resetChanges();
 }
 
@@ -106,10 +94,11 @@ function populateFormWithStorage (name) {
 	$('#command-name').value = name;
 	$('#command-name').defaultValue = name;
 	$('#executablePath').value = oldStorage[currentName].executablePath;
-	setInputValues(args, 'args');
-	setInputValues(files, 'files');
-	setInputValues(urls, 'urls');
-	setValues('directory', files, 'dirs');
+
+	['args', 'urls', 'files'].forEach(function (inputType) {
+		inputs[inputType].setInputValues(oldStorage[currentName][inputType]);
+	});
+	inputs.files.setValues('directory', 'dirs');
 	resetChanges();
 }
 
@@ -294,18 +283,6 @@ $('body').addEventListener('click', function (e) {
 		target = e.target,
 		dataset = target.dataset || {},
 		cl = target.classList;
-	function getValues (type, expInput) {
-		var selector = '.' + expInput.getPrefixedNamespace() + type;
-		return Array.from($$(selector)).map(function (arg) {
-			if (arg.type === 'checkbox') {
-				return arg.checked;
-			}
-			return arg.value;
-		});
-	}
-	function getInputValues (expInput) {
-		return getValues('input', expInput);
-	}
 
 	if (cl.contains('ei-files-presets') || (target.parentNode && target.parentNode.classList.contains('ei-files-presets')) ||
 		cl.contains('ei-exe-presets') || (target.parentNode && target.parentNode.classList.contains('ei-exe-presets'))) {
@@ -368,10 +345,10 @@ $('body').addEventListener('click', function (e) {
 			name: name,
 			storage: {
 				executablePath: $('#executablePath').value,
-				args: getInputValues(args),
-				files: getInputValues(files),
-				urls: getInputValues(urls),
-				dirs: getValues('directory', files)
+				args: inputs.args.getInputValues(),
+				files: inputs.files.getInputValues(),
+				urls: inputs.urls.getInputValues(),
+				dirs: inputs.files.getValues('directory')
 			}
 		};
 		if (cl.contains('execute')) {
@@ -490,8 +467,8 @@ on('removeStorage', function (newStorage) {
 });
 
 // Todo: For prefs when prev. values stored, call multiple times and populate and reduce when not used
-args.add();
-urls.add();
-files.add();
+['args', 'urls', 'files'].forEach(function (inputType) {
+	inputs[inputType].add();
+});
 
 }());

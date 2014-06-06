@@ -119,6 +119,38 @@ ExpandableInputs.prototype.addTableEvent = function () {
 	});
 };
 
+ExpandableInputs.prototype.getValues = function (type) {
+	var selector = '.' + this.getPrefixedNamespace() + type;
+	return Array.from($$(selector)).map(function (arg) {
+		if (arg.type === 'checkbox') {
+			return arg.checked;
+		}
+		return arg.value;
+	});
+};
+ExpandableInputs.prototype.getInputValues = function () {
+	return this.getValues('input');
+};
+
+ExpandableInputs.prototype.setValues = function (type, storage) {
+	var selector = '.' + this.getPrefixedNamespace() + type;
+
+	Array.from($$(selector)).forEach(function (arg, i) {
+		var data = storage && storage[i];
+		if (arg.type === 'checkbox') {
+			arg.checked = data || false;
+		}
+		else {
+			arg.value = data || '';
+		}
+	});
+};
+
+ExpandableInputs.prototype.setInputValues = function (key) {
+	return this.setValues('input', key);
+};
+
+
 ExpandableInputs.prototype.add = function () {
 	var that = this,
 		prefixedNS = this.getPrefixedNamespace();
@@ -175,7 +207,6 @@ ExpandableInputs.prototype.add = function () {
 						return atts;
 					}())],
 					(this.fileType ?
-						// Todo: resolve any issues with fragments and Jamilih and use here to reduce need for jml() call here
 						{'#': [
 							['datalist', {id: prefixedNS + 'fileDatalist-' + this.id}],
 							['input', {
