@@ -19,7 +19,6 @@ One can directly install the bundled XPI file or install with npm:
 # Immediate to-dos
 
 1. Complete saving work
-1. Display of commands in dialog: label list: add, edit, delete, move up/down (adapt for AYW also?)?
 1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
 
 1. Finish behavior providing substitution of current page contents,
@@ -133,6 +132,7 @@ separate add-on.
 
 1. If a link type of command is chosen but no link is selected, find first
 link in page. Same with images, videos, script files, stylesheets, etc.
+1. Display of commands in dialog: move up/down instead of alphabetical?
 1. Create icons, etc.
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?
