@@ -87,7 +87,7 @@ function populateEmptyForm () {
 	$('#delete').style.display = 'none';
 	
 	$('#command-name').value = '';
-	// Could also put select's at selectedIndex = 0
+	$('#selectNames').selectedIndex = 0;
 	$('#executablePath').value = '';
 	setInputValues(args);
 	setInputValues(files);
@@ -372,6 +372,7 @@ $('body').addEventListener('click', function (e) {
 				!createNewCommand) {
 				var renameInsteadOfNew = confirm(_("have_unsaved_name_change"));
 				if (!renameInsteadOfNew) { // User wishes to create a new record (or cancel)
+					$('#selectNames').selectedIndex = 0;
 					nameChanged = false;
 					return; // Return so that user has some way of correcting or avoiding (without renaming)
 				}
@@ -489,9 +490,18 @@ function handleOptions (data) {
 on('executables', handleOptions);
 on('temps', handleOptions);
 
-on('newStorage', function (newStorage) {
-	oldStorage = newStorage;
+function setName(name) {
+	var names = $('#selectNames');
+	var idx = Array.from(names.options).findIndex(function (option) {
+		return option.value === name;
+	});
+	names.selectedIndex = idx === -1 ? 0 : idx;
+}
+
+on('newStorage', function (data) {
+	oldStorage = data.storage;
 	rebuildCommandList();
+	setName(data.name);
 });
 on('removeStorage', function (newStorage) {
 	oldStorage = newStorage;
