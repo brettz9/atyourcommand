@@ -334,25 +334,6 @@ $('body').addEventListener('click', function (e) {
 			emit('reveal', selVal);
 		}
 	}
-	// Abstract this
-	else if (cl.contains(files.getPrefixedNamespace() + 'add')) {
-		files.add();
-	}
-	else if (cl.contains(files.getPrefixedNamespace() + 'remove')) {
-		files.remove(dataset.id);
-	}
-	else if (cl.contains(urls.getPrefixedNamespace() + 'add')) {
-		urls.add();
-	}
-	else if (cl.contains(urls.getPrefixedNamespace() + 'remove')) {
-		urls.remove(dataset.id);
-	}
-	else if (cl.contains(args.getPrefixedNamespace() + 'add')) {
-		args.add();
-	}
-	else if (cl.contains(args.getPrefixedNamespace() + 'remove')) {
-		args.remove(dataset.id);
-	}
 	else if (e.target.id === 'cancel') {
 		emit('buttonClick', {close: true});
 	}

@@ -182,13 +182,19 @@ ExpandableInputs.prototype.add = function () {
 				]],
 				['td', [
 					['button', {
-						'class': prefixedNS + 'add'
+						'class': prefixedNS + 'add',
+						$on: {click: function () {
+							that.add();
+						}}
 					}, [this.locale.plus]]
 				]],
 				['td', [
 					['button', {
 						'class': prefixedNS + 'remove',
-						dataset: {id: this.id}
+						dataset: {id: this.id},
+						$on: {click: function (e) {
+							that.remove(e.target.dataset.id);
+						}}
 					}, [this.locale.minus]]
 				]]
 			], null
