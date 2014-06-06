@@ -355,7 +355,6 @@ $('body').addEventListener('click', function (e) {
 		emit('buttonClick', {close: true});
 	}
 	else if (cl.contains('passData')) {
-		// Todo: Depending on whether command name changed and was supposed to, prevent this
 		var name = $('#command-name').value;
 		if (cl.contains('delete')) {
 			emit('buttonClick', {name: name, remove: true});
@@ -378,7 +377,6 @@ $('body').addEventListener('click', function (e) {
 				delete oldStorage[$('#command-name').defaultValue];
 			}
 			else if (!changed && !cl.contains('execute')) {
-				// Todo: also inform user if "changed" is false and thus no changes made?
 				alert(_("no_changes_to_save"));
 				return;
 			}
