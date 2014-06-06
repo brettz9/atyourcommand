@@ -377,7 +377,7 @@ $('body').addEventListener('click', function (e) {
 				// Proceed with rename
 				delete oldStorage[$('#command-name').defaultValue];
 			}
-			else if (!changed && !cl.contains('execute') {
+			else if (!changed && !cl.contains('execute')) {
 				// Todo: also inform user if "changed" is false and thus no changes made?
 				alert(_("no_changes_to_save"));
 				return;
