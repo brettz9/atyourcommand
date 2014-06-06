@@ -99,7 +99,7 @@ function populateEmptyForm () {
 function populateFormWithStorage (name) {
 	createNewCommand = false;
 	currentName = name;
-	$('#delete').style.display = 'block';
+	$('#delete').style.display = 'inline';
 	
 	$('#command-name').value = name;
 	$('#executablePath').value = oldStorage[currentName].executablePath;
