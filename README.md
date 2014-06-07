@@ -18,7 +18,9 @@ One can directly install the bundled XPI file or install with npm:
 
 # Immediate to-dos
 
-1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
+1. Display of commands in context menu or with list of commands
+in edit mode (with the list of commands pre-opened) or in
+new command mode (with the list pre-closed)
 
 1. Finish behavior providing substitution of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
