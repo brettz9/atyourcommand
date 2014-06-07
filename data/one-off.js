@@ -397,7 +397,7 @@ $('body').addEventListener('click', function (e) {
 					return; // Return so that user has some way of correcting or avoiding (without renaming)
 				}
 				// Proceed with rename
-				delete oldStorage[$('#command-name').defaultValue];
+				emit('buttonClick', {name: $('#command-name').defaultValue, remove: true, keepForm: true});
 			}
 			else if (!changed && !cl.contains('execute')) {
 				alert(_("no_changes_to_save"));
@@ -462,16 +462,18 @@ on('filePickResult', fileOrDirResult);
 on('executables', handleOptions);
 on('temps', handleOptions);
 on('newStorage', function (data) {
-	oldStorage = data.storage;
+	oldStorage = data.commands;
 	rebuildCommandList();
 	setName(data.name);
 	resetChanges();
 	$('#command-name').defaultValue = data.name; // Ensure overwriting will be noticed
 });
-on('removeStorage', function (newStorage) {
-	oldStorage = newStorage;
+on('removeStorage', function (data) {
+	oldStorage = data.commands;
 	rebuildCommandList();
-	populateEmptyForm();
+	if (!data.keepForm) {
+		populateEmptyForm();
+	}
 });
 
 // INITIAL BEHAVIORS
