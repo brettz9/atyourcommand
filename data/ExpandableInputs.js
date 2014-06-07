@@ -119,7 +119,15 @@ ExpandableInputs.prototype.addTableEvent = function () {
 		}
 		switch (dataset.ei_type) {
 			case 'remove':
-				that.remove(dataset.ei_id);
+				var noneToRemove = that.remove(dataset.ei_id);
+
+				// Allow DOM listening for removal
+				if (!noneToRemove) {
+					var e = document.createEvent('HTMLEvents');
+					e.initEvent('change', true, true);
+					$('#' + that.table).dispatchEvent(e);
+				}
+
 				break;
 			case 'add':
 				that.add();

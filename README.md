@@ -18,8 +18,6 @@ One can directly install the bundled XPI file or install with npm:
 
 # Immediate to-dos
 
-1. Trigger change event when one of array fields is shortened
-
 1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
 
 1. Finish behavior providing substitution of current page contents,
