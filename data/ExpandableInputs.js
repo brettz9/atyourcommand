@@ -1,5 +1,5 @@
 /*globals jml */
-
+/*jslint vars:true*/
 /**
 * @class ExpandableInputs
 * @requires jamilih
@@ -83,7 +83,7 @@ function ExpandableInputs (cfg) {
 	this.resetCount();
 }
 
-ExpandableInputs.prototype.resetCount = function (num) {
+ExpandableInputs.prototype.resetCount = function () {
 	this.id = 1;
 	this.num = 1;
 };
