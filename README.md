@@ -18,7 +18,6 @@ One can directly install the bundled XPI file or install with npm:
 
 # Immediate to-dos
 
-1. Need to dynamically destroy and rebuild args/files/URLs depending on selection
 1. Complete testing saving work
 1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
 

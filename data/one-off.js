@@ -125,7 +125,7 @@ function populateFormWithStorage (name) {
 	['args', 'urls', 'files'].forEach(function (inputType) {
 		inputs[inputType].setTextValues(oldStorage[currentName][inputType]);
 	});
-	inputs.files.setValues('directory', inputs.dirs);
+	inputs.files.setValues('directory', oldStorage[currentName].dirs);
 	addOptions('temps'); // Todo: make a way for the select to be populated through the ExpandableInputs API
 	resetChanges();
 }
