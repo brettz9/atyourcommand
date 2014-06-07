@@ -80,7 +80,7 @@ function populateEmptyForm () {
 	$('#executablePath').value = '';
 
 	['args', 'urls', 'files'].forEach(function (inputType) {
-		inputs[inputType].setInputValues();
+		inputs[inputType].setTextValues();
 	});
 	inputs.files.setValues('directory');
 	resetChanges();
@@ -96,9 +96,9 @@ function populateFormWithStorage (name) {
 	$('#executablePath').value = oldStorage[currentName].executablePath;
 
 	['args', 'urls', 'files'].forEach(function (inputType) {
-		inputs[inputType].setInputValues(oldStorage[currentName][inputType]);
+		inputs[inputType].setTextValues(oldStorage[currentName][inputType]);
 	});
-	inputs.files.setValues('directory', 'dirs');
+	inputs.files.setValues('directory', inputs.dirs);
 	resetChanges();
 }
 
@@ -345,9 +345,9 @@ $('body').addEventListener('click', function (e) {
 			name: name,
 			storage: {
 				executablePath: $('#executablePath').value,
-				args: inputs.args.getInputValues(),
-				files: inputs.files.getInputValues(),
-				urls: inputs.urls.getInputValues(),
+				args: inputs.args.getTextValues(),
+				files: inputs.files.getTextValues(),
+				urls: inputs.urls.getTextValues(),
 				dirs: inputs.files.getValues('directory')
 			}
 		};

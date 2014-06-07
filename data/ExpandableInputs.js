@@ -6,6 +6,11 @@
 */
 var ExpandableInputs = (function (undef) {'use strict';
 
+// DEBUGGING
+function l (str) {
+	console.log(str);
+}
+
 // STATIC VARS
 var ns = 0; // Used to prevent conflicts if the user does not supply their own namespace
 
@@ -75,9 +80,13 @@ function ExpandableInputs (cfg) {
 
 	// State variables
 	this.fileType = cfg.inputType === 'file';
+	this.resetCount();
+}
+
+ExpandableInputs.prototype.resetCount = function (num) {
 	this.id = 1;
 	this.num = 1;
-}
+};
 
 ExpandableInputs.prototype.getLabel = function (num) {
 	return this.label.replace(this.pattern, num);
@@ -89,17 +98,17 @@ ExpandableInputs.prototype.getPrefixedNamespace = function () {
 
 ExpandableInputs.prototype.remove = function (id) {
 	var prefixedNS = this.getPrefixedNamespace(),
-		that = this,
 		rowIDSel = '#' + prefixedNS + 'row-' + id;
 	if ($$('.' + prefixedNS + 'row').length === 1) { // Don't delete if only one remaining
-		return;
+		return true;
 	}
 	$(rowIDSel).parentNode.removeChild($(rowIDSel));
 	// Renumber to ensure inputs remain incrementing by one
 	this.num = 1;
 	Array.from($$('.' + prefixedNS + 'number')).forEach(function (numHolder) {
-		numHolder.replaceChild(document.createTextNode(that.getLabel(that.num++)), numHolder.firstChild);
-	});
+		numHolder.replaceChild(document.createTextNode(this.getLabel(this.num++)), numHolder.firstChild);
+	}, this);
+	return false;
 };
 ExpandableInputs.prototype.addTableEvent = function () {
 	var that = this;
@@ -128,15 +137,31 @@ ExpandableInputs.prototype.getValues = function (type) {
 		return arg.value;
 	});
 };
-ExpandableInputs.prototype.getInputValues = function () {
+ExpandableInputs.prototype.getTextValues = function () {
 	return this.getValues('input');
 };
 
 ExpandableInputs.prototype.setValues = function (type, storage) {
-	var selector = '.' + this.getPrefixedNamespace() + type;
+	// We could simplify this by allowing add() to take an initial value
+	var prefixedNS = this.getPrefixedNamespace();
+	var selector = '.' + prefixedNS + type;
+	storage = storage || [];
+	if (Array.from($$(selector)).length !== storage.length) { // Don't remove if already the right number
+		Array.from($$('.' + prefixedNS + 'row')).forEach(function (row) {
+			row.parentNode.removeChild(row);
+		});
+		this.resetCount();
+		if (!storage.length) {
+			this.add();
+			return;
+		}
+		storage.forEach(function () {
+			this.add();
+		}, this);
+	}
 
 	Array.from($$(selector)).forEach(function (arg, i) {
-		var data = storage && storage[i];
+		var data = storage[i];
 		if (arg.type === 'checkbox') {
 			arg.checked = data || false;
 		}
@@ -146,8 +171,8 @@ ExpandableInputs.prototype.setValues = function (type, storage) {
 	});
 };
 
-ExpandableInputs.prototype.setInputValues = function (key) {
-	return this.setValues('input', key);
+ExpandableInputs.prototype.setTextValues = function (storage) {
+	return this.setValues('input', storage);
 };
 
 
