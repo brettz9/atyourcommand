@@ -174,9 +174,6 @@ jml('div', [
 		return atts;
 	}(options)), [
 		['select', {id: 'selectNames', size: 39, $on: {click: function (e) {
-			if (e.target.nodeName.toLowerCase() !== 'option') {
-				return;
-			}
 			if (changed) {
 				var abandonUnsaved = confirm(_("have_unsaved_changes"));
 				if (!abandonUnsaved) {
@@ -380,7 +377,10 @@ $('body').addEventListener('click', function (e) {
 	else if (cl.contains('passData')) {
 		var name = $('#command-name').value;
 		if (cl.contains('delete')) {
-			emit('buttonClick', {name: name, remove: true});
+			var ok = confirm(_("sure_wish_delete"));
+			if (ok) {
+				emit('buttonClick', {name: name, remove: true});
+			}
 			return;
 		}
 		if (cl.contains('save')) {
@@ -388,13 +388,20 @@ $('body').addEventListener('click', function (e) {
 				alert(_("supply_name"));
 				return;
 			}
-			if (nameChanged &&
-				!createNewCommand) {
-				var renameInsteadOfNew = confirm(_("have_unsaved_name_change"));
-				if (!renameInsteadOfNew) { // User wishes to create a new record (or cancel)
-					$('#selectNames').selectedIndex = 0;
-					nameChanged = false;
-					return; // Return so that user has some way of correcting or avoiding (without renaming)
+			if (nameChanged) {
+				if (oldStorage[name]) {
+					var overwrite = confirm(_("name_already_exists_overwrite"));
+					if (!overwrite) {
+						return;
+					}
+				}
+				else if (!createNewCommand) {
+					var renameInsteadOfNew = confirm(_("have_unsaved_name_change"));
+					if (!renameInsteadOfNew) { // User wishes to create a new record (or cancel)
+						$('#selectNames').selectedIndex = 0;
+						nameChanged = false;
+						return; // Return so that user has some way of correcting or avoiding (without renaming)
+					}
 				}
 				// Proceed with rename
 				emit('buttonClick', {name: $('#command-name').defaultValue, remove: true, keepForm: true});
