@@ -81,6 +81,9 @@ function addOptions (type) {
 			option.value = pathInfo[1];
 			select.appendChild(option);
 		});
+		if (type === 'temps') {
+			setSelectOfValue(select, $('#' + select.id.replace('-select-', '-input-')).value);
+		}
 	});
 }
 
@@ -89,10 +92,10 @@ function handleOptions (data) {
 	addOptions(data.type);
 }
 
-function setSelectOfValue(sel, name) {
-	var names = $(sel);
+function setSelectOfValue(sel, val) {
+	var names = typeof sel === 'string' ? $(sel) : sel;
 	var idx = Array.from(names.options).findIndex(function (option) {
-		return option.value === name;
+		return option.value === val;
 	});
 	names.selectedIndex = idx === -1 ? 0 : idx;
 }
@@ -185,7 +188,7 @@ function newStorage (data) {
 	oldStorage = data.commands;
 	rebuildCommandList();
 	setSelectOfValue('#selectNames', data.name);
-	populateFormWithStorage(data.name);
+	populateFormWithStorage(data.name); // Important to update other flags even if just changed, so convenient to just re-run
 }
 function removeStorage (data) {
 	oldStorage = data.commands;

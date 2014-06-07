@@ -19,7 +19,6 @@ One can directly install the bundled XPI file or install with npm:
 # Immediate to-dos
 
 1. Trigger change event when one of array fields is shortened
-1. Ensure temps pull-down matches textbox where relevant
 
 1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
 
@@ -136,6 +135,8 @@ separate add-on.
 link in page. Same with images, videos, script files, stylesheets, etc.
 1. Display of commands in dialog: move up/down instead of alphabetical?
 1. Create icons, etc.
+1. If item is required, could prevent "submit" (currently not
+using <form>, so no submit).
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?
 1. As per AppLauncher feature request, allow shortcuts on the toolbar; also
