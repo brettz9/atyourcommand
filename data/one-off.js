@@ -3,7 +3,7 @@
 (function () {'use strict';
 
 var
-	currentName, optionData = {},
+	currentName = '', optionData = {},
 	createNewCommand = true,
 	changed = false,
 	nameChanged = false,
@@ -180,6 +180,7 @@ jml('div', [
 			if (changed) {
 				var abandonUnsaved = confirm(_("have_unsaved_changes"));
 				if (!abandonUnsaved) {
+					setName(currentName);
 					return;
 				}
 			}
