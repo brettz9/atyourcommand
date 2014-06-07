@@ -18,10 +18,9 @@ One can directly install the bundled XPI file or install with npm:
 
 # Immediate to-dos
 
-1. Fix saving issues
-	1. After creating new command and saving
-		1. and then renaming, it should complain
-		1. ensure delete button appears
+1. Trigger change event when one of array fields is shortened
+1. Ensure temps pull-down matches textbox where relevant
+
 1. Display of commands in context menu; open with a specific command, a new one or dialog (immediately execute or just open to?)
 
 1. Finish behavior providing substitution of current page contents,

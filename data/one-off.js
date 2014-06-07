@@ -89,20 +89,31 @@ function handleOptions (data) {
 	addOptions(data.type);
 }
 
+function setSelectOfValue(sel, name) {
+	var names = $(sel);
+	var idx = Array.from(names.options).findIndex(function (option) {
+		return option.value === name;
+	});
+	names.selectedIndex = idx === -1 ? 0 : idx;
+}
 
 function resetChanges () {
 	changed = false;
 	nameChanged = false;
 }
+
 function populateEmptyForm () {
+	$('#selectNames').selectedIndex = 0; // Unlike populateFormWithStorage, we will always need to set the name
 	$('#executablePath').focus();
+
 	createNewCommand = true;
 	currentName = '';
 	$('#delete').style.display = 'none';
 	
 	$('#command-name').value = '';
 	$('#command-name').defaultValue = '';
-	$('#selectNames').selectedIndex = 0;
+
+	$('#executables').selectedIndex = 0;
 	$('#executablePath').value = '';
 
 	['args', 'urls', 'files'].forEach(function (inputType) {
@@ -120,7 +131,10 @@ function populateFormWithStorage (name) {
 	
 	$('#command-name').value = name;
 	$('#command-name').defaultValue = name;
-	$('#executablePath').value = oldStorage[currentName].executablePath;
+
+	var executablePath = oldStorage[currentName].executablePath;
+	setSelectOfValue('#executables', executablePath);
+	$('#executablePath').value = executablePath;
 
 	['args', 'urls', 'files'].forEach(function (inputType) {
 		inputs[inputType].setTextValues(oldStorage[currentName][inputType]);
@@ -138,13 +152,7 @@ function fileOrDirResult (data) {
 	}
 }
 
-function setName(name) {
-	var names = $('#selectNames');
-	var idx = Array.from(names.options).findIndex(function (option) {
-		return option.value === name;
-	});
-	names.selectedIndex = idx === -1 ? 0 : idx;
-}
+
 
 function rebuildCommandList () {
 	while ($('#selectNames').firstChild) {
@@ -162,6 +170,32 @@ function rebuildCommandList () {
 	)}, $('#selectNames'));
 }
 
+function finished () {
+	$('#processExecuted').style.display = 'block';
+	if (!$('#keepOpen').checked) {
+		emit('buttonClick', {id: 'cancel'});
+	}
+	else {
+		setTimeout(function () {
+			$('#processExecuted').style.display = 'none';
+		}, 2000);
+	}
+}
+function newStorage (data) {
+	oldStorage = data.commands;
+	rebuildCommandList();
+	setSelectOfValue('#selectNames', data.name);
+	populateFormWithStorage(data.name);
+}
+function removeStorage (data) {
+	oldStorage = data.commands;
+	rebuildCommandList();
+	if (!data.keepForm) {
+		populateEmptyForm();
+	}
+}
+
+
 // ADD INITIAL CONTENT
 
 document.title = _("title");
@@ -177,7 +211,7 @@ jml('div', [
 			if (changed) {
 				var abandonUnsaved = confirm(_("have_unsaved_changes"));
 				if (!abandonUnsaved) {
-					setName(currentName);
+					setSelectOfValue('#selectNames', currentName);
 					return;
 				}
 			}
@@ -403,7 +437,7 @@ $('body').addEventListener('click', function (e) {
 						return; // Return so that user has some way of correcting or avoiding (without renaming)
 					}
 				}
-				// Proceed with rename
+				// Proceed with rename, so first delete old value (todo: could ensure first added)
 				emit('buttonClick', {name: $('#command-name').defaultValue, remove: true, keepForm: true});
 			}
 			else if (!changed && !cl.contains('execute')) {
@@ -454,34 +488,12 @@ on('autocompleteValuesResponse', function (data) {
 });
 
 
-on('finished', function () {
-	$('#processExecuted').style.display = 'block';
-	if (!$('#keepOpen').checked) {
-		emit('buttonClick', {id: 'cancel'});
-	}
-	else {
-		setTimeout(function () {
-			$('#processExecuted').style.display = 'none';
-		}, 2000);
-	}
-});
+on('finished', finished);
 on('filePickResult', fileOrDirResult);
 on('executables', handleOptions);
 on('temps', handleOptions);
-on('newStorage', function (data) {
-	oldStorage = data.commands;
-	rebuildCommandList();
-	setName(data.name);
-	resetChanges();
-	$('#command-name').defaultValue = data.name; // Ensure overwriting will be noticed
-});
-on('removeStorage', function (data) {
-	oldStorage = data.commands;
-	rebuildCommandList();
-	if (!data.keepForm) {
-		populateEmptyForm();
-	}
-});
+on('newStorage', newStorage);
+on('removeStorage', removeStorage);
 
 // INITIAL BEHAVIORS
 
