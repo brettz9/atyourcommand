@@ -3,7 +3,7 @@
 (function () {'use strict';
 
 var
-	currentName,
+	currentName, optionData = {},
 	createNewCommand = true,
 	changed = false,
 	nameChanged = false,
@@ -64,6 +64,32 @@ function _ (key) {
 }
 
 
+
+function addOptions (type) {
+	var paths = optionData[type].paths,
+		sel = type === 'executables' ? '#' + type : '.ei-files-presets',
+		selects = $$(sel);
+
+	Array.from(selects).forEach(function (select) {
+		while (select.firstChild) {
+			select.removeChild(select.firstChild);
+		}
+
+		paths.forEach(function (pathInfo) {
+			var option = document.createElement('option');
+			option.text = pathInfo[0];
+			option.value = pathInfo[1];
+			select.appendChild(option);
+		});
+	});
+}
+
+function handleOptions (data) {
+	optionData[data.type] = data;
+	addOptions(data.type);
+}
+
+
 function resetChanges () {
 	changed = false;
 	nameChanged = false;
@@ -83,6 +109,7 @@ function populateEmptyForm () {
 		inputs[inputType].setTextValues();
 	});
 	inputs.files.setValues('directory');
+	addOptions('temps'); // Todo: make a way for the select to be populated through the ExpandableInputs API
 	resetChanges();
 }
 
@@ -99,10 +126,43 @@ function populateFormWithStorage (name) {
 		inputs[inputType].setTextValues(oldStorage[currentName][inputType]);
 	});
 	inputs.files.setValues('directory', inputs.dirs);
+	addOptions('temps'); // Todo: make a way for the select to be populated through the ExpandableInputs API
 	resetChanges();
 }
 
-// ADD EVENTS
+function fileOrDirResult (data) {
+	var path = data.path,
+		selector = data.selector;
+	if (path) {
+		$(selector).value = path;
+	}
+}
+
+function setName(name) {
+	var names = $('#selectNames');
+	var idx = Array.from(names.options).findIndex(function (option) {
+		return option.value === name;
+	});
+	names.selectedIndex = idx === -1 ? 0 : idx;
+}
+
+function rebuildCommandList () {
+	while ($('#selectNames').firstChild) {
+		$('#selectNames').removeChild($('#selectNames').firstChild);
+	}
+
+	jml({'#': Object.keys(oldStorage).sort().reduce(
+		function (opts, commandName) {
+			opts.push(['option', [commandName]]);
+			return opts;
+		},
+		[
+			['option', {value: '', selected: 'selected'}, [_("create_new_command")]]
+		]
+	)}, $('#selectNames'));
+}
+
+// ADD INITIAL CONTENT
 
 document.title = _("title");
 jml('div', [
@@ -278,6 +338,8 @@ jml('div', [
 	]]
 ], $('body'));
 
+// ADD EVENTS
+
 $('body').addEventListener('click', function (e) {
 	var val, sel, selVal,
 		target = e.target,
@@ -368,24 +430,6 @@ $('body').addEventListener('input', function (e) {
 	}
 });
 
-function rebuildCommandList () {
-	while ($('#selectNames').firstChild) {
-		$('#selectNames').removeChild($('#selectNames').firstChild);
-	}
-
-	jml({'#': Object.keys(oldStorage).sort().reduce(
-		function (opts, commandName) {
-			opts.push(['option', [commandName]]);
-			return opts;
-		},
-		[
-			['option', {value: '', selected: 'selected'}, [_("create_new_command")]]
-		]
-	)}, $('#selectNames'));
-}
-
-rebuildCommandList();
-
 // COPIED FROM filebrowser-enhanced directoryMod.js (RETURN ALL MODIFICATIONS THERE)
 on('autocompleteValuesResponse', function (data) {
 	var datalist = document.getElementById(data.listID);
@@ -413,46 +457,9 @@ on('finished', function () {
 		}, 2000);
 	}
 });
-
-function fileOrDirResult (data) {
-	var path = data.path,
-		selector = data.selector;
-	if (path) {
-		$(selector).value = path;
-	}
-}
 on('filePickResult', fileOrDirResult);
-
-// SETUP
-
-// Insert this as a class, so it works for others inserted into doc
-$('#dynamicStyleRules').sheet.insertRule(
-	'.ei-files-revealButton, .ei-exe-revealButton {background-image: url("' + options.folderImage + '");}', 0
-);
-
-function handleOptions (data) {
-	var paths = data.paths,
-		type = data.type,
-		sel = type === 'executables' ? '#' + type : '.ei-files-presets';
-
-	paths.forEach(function (pathInfo) {
-		var option = document.createElement('option');
-		option.text = pathInfo[0];
-		option.value = pathInfo[1];
-		$(sel).appendChild(option);
-	});
-}
 on('executables', handleOptions);
 on('temps', handleOptions);
-
-function setName(name) {
-	var names = $('#selectNames');
-	var idx = Array.from(names.options).findIndex(function (option) {
-		return option.value === name;
-	});
-	names.selectedIndex = idx === -1 ? 0 : idx;
-}
-
 on('newStorage', function (data) {
 	oldStorage = data.storage;
 	rebuildCommandList();
@@ -465,6 +472,15 @@ on('removeStorage', function (newStorage) {
 	rebuildCommandList();
 	populateEmptyForm();
 });
+
+// INITIAL BEHAVIORS
+
+// Insert this as a class, so it works for others inserted into doc
+$('#dynamicStyleRules').sheet.insertRule(
+	'.ei-files-revealButton, .ei-exe-revealButton {background-image: url("' + options.folderImage + '");}', 0
+);
+
+rebuildCommandList();
 
 // Todo: For prefs when prev. values stored, call multiple times and populate and reduce when not used
 ['args', 'urls', 'files'].forEach(function (inputType) {
