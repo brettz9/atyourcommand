@@ -27,7 +27,7 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 
 1. Submit to AMO
 
-1. Support defaults (including empty ones)
+1. Support defaults (including empty ones) and document
 1. Also support text selection, URL, image, and custom context(s)
 	1. Option to have context menu items, based on the substitutions used (or
 	user choice), cause them to only appear under certain, correct conditions
@@ -190,6 +190,9 @@ conjunction with
 could allow for convenient reuse of the content when attaching the batch
 script to a "Open with..." handler. Use approach like
 http://stackoverflow.com/a/5215844/271577
+1. Have a mechanism to return from a WebAppFind-opened web app
+back to the page which was the source of its content (e.g., in case one
+accidentally didn't grab enough text or whatever)
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
