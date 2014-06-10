@@ -324,11 +324,12 @@ jml('div', [
 				}(options))]
 			]],
 			['button', {$on: {click: function () {
-				var dialog = document.createElement('dialog'); // Relies on our Custom Elements hack
-				dialog.setAttribute('open', '');
-				dialog.appendChild(document.createTextNode('test'));
-				document.body.appendChild(dialog);
-				
+				var dialog = jml('dialog', {open: ''}, [
+					['button', {style: 'margin-top: 40px'}, [_("Save")]]
+				], document.body);
+				// Alter styling somewhat from W3C-recommended defaults (see http://www.w3.org/html/wg/drafts/html/master/rendering.html#flow-content-0 )
+				dialog.style.height = '500px';
+				dialog.style.backgroundColor = 'lightgray';
 			}}}, [_("Restrict contexts")]]
 		]],
 		['table', [
