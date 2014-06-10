@@ -1,5 +1,7 @@
-/*globals ExpandableInputs, self, jml */
+/*globals ExpandableInputs, self, jml, $ */
 /*jslint vars:true, todo:true, browser:true, devel:true */
+var $J = $;
+$.noConflict();
 (function () {'use strict';
 
 var
@@ -323,28 +325,19 @@ jml('div', [
 					return atts;
 				}(options))]
 			]],
-			['button', {$on: {click: function () {
-				var dialog = jml('dialog', {open: ''}, [
-					
-					
-					
-					['button', {style: 'margin-top: 40px', $on: {click: function () {
-						var formValues = {}; // Todo: base on form data
-						dialog.close(JSON.stringify(formValues));
-					}}}, [_("Save")]]
-				], document.body);
-				// Alter styling somewhat from W3C-recommended defaults (see http://www.w3.org/html/wg/drafts/html/master/rendering.html#flow-content-0 )
-				dialog.style.height = '500px';
-				dialog.style.backgroundColor = 'lightgray';
-
-				// Rough polyfilling until this is supported (then also remove styling for dialog in one-off.css): http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element
-				dialog.returnValue = '';
-				dialog.close = function (returnValue) {
-					this.removeAttribute('open');
-					dialog.returnValue = String(returnValue);
-					// this.parentNode.removeChild(this);
-				};
-			}}}, [_("Restrict contexts")]]
+			' ',
+			['label', [
+				_("Restrict contexts") + ' ',
+				['select', {multiple: 'multiple', id: 'restrict-contexts', $on: {click: function (e) {
+					// Not sure why we're losing focus or the click event is going through here but not in my multiple-select demo
+					// ms.focus();
+					e.stopPropagation();
+				}}}, [
+					['option', ['canvas']],
+					['option', ['text']],
+					['option', ['image']]
+				]]
+			]]
 		]],
 		['table', [
 			/*
@@ -396,6 +389,8 @@ jml('div', [
 ], $('body'));
 
 // ADD EVENTS
+
+var ms = $J('#restrict-contexts').multipleSelect({filter: true, filterAcceptOnEnter: true, width: '150'});
 
 $('body').addEventListener('click', function (e) {
 	var val, sel, selVal,
