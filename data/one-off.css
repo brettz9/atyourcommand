@@ -58,3 +58,9 @@
 	background-repeat: no-repeat;
 	background-size: 20px 20px;
 }
+
+/* Indent children of "optgroups" for multiple
+select widget except for the first item, "select all" */
+.ms-drop > ul > li:not(.group):not(:first-child) {
+    margin-left: 10px;
+}

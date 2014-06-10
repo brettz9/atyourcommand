@@ -325,7 +325,7 @@ jml('div', [
 					return atts;
 				}(options))]
 			]],
-			' ',
+			['br'],
 			['label', [
 				_("Restrict contexts") + ' ',
 				['select', {multiple: 'multiple', id: 'restrict-contexts', $on: {click: function (e) {
@@ -333,10 +333,38 @@ jml('div', [
 					// ms.focus();
 					e.stopPropagation();
 				}}}, [
-					['option', ['canvas']],
+				
+				/*
+				// 'a', (or tags like images inside of links or anchors)
+				// 'abbr', 'acronym', 'address', 'b', 'bdi', 'bdo', 'big', 'blink', 'cite', 'code', 'data', 'del', 'dfn', 'em', 'figcaption', 'figure', 'font', 'i', 'ins', 'kbd', 'label', 'legend', 'mark', 'nobr', 'output', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup', 'tt', 'u', 'var', 
+				// 'time', 
+				// 'br', 'hr', 'spacer', 'wbr',
+				// 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hgroup', 'nav', 
+				// 'article', 'aside', 'blockquote', 'body', 'center', 'dialog', 'details', 'div', 'fieldset', 'footer', 'listing', 'main', 'marquee', 'p', 'plaintext', 'pre', 'section', 'summary', 'xmp'
+				// 'ol', 'dl', 'dt', 'dd', 'dir', 'li', 'ul', 
+				// 'caption', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'col', 'colgroup', 
+				// 'video', 'audio', 'bgsound', 'source',
+				// 'form', 'isindex', 'input', 'keygen', 'button', 'meter', 'optgroup', 'option', 'progress', 'select', 'textarea', 'menu', 'menuitem',
+				// 'frame', 'frameset', 'iframe', 
+				// 'noframes', 'noscript',
+				// 'DOCTYPE', comments, procesing instructions, CDATA, 'html', 'head', 'meta' (also within body), 'title', 'base', 
+				// 'style', 'link', 'script', 'datalist', 'track', 'basefont', 
+				// 'content', 'decorator', 'element', 'shadow', 'template', 
+				// 'img', 'map', 'area', 'canvas', 
+				// 'object', 'applet', 'embed', 'param', 
+				*/
+				
 					['option', ['text']],
-					['option', ['image']]
+					['optgroup', {label: _("Images")}, [
+						['option', ['canvas']],
+						['option', ['img']]
+					]]
 				]]
+			]],
+			' ' + _("or") + ' ',
+			['label', [
+				_("Specify your own context") + ' ',
+				['input', {id: 'own-context', placeholder: 'a[href],img[src]'}]
 			]]
 		]],
 		['table', [
@@ -381,7 +409,7 @@ jml('div', [
 			['br'],
 			['button', {'class': 'passData save'}, [_("Save")]],
 			['button', {id: 'delete', 'class': 'passData delete', hidden: true}, [_("Delete")]],
-			['br'],
+			// ['br'],
 			['button', {'class': 'passData execute'}, [_("Execute")]],
 			['button', {id: 'cancel'}, [_("Cancel")]]
 		]]
