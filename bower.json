@@ -1,6 +1,6 @@
 {
 	"name": "atyourcommand",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"homepage": "https://github.com/brettz9/atyourcommand",
 	"authors": [
 		"Brett Zamir <brettz9@yahoo.com>"
@@ -8,7 +8,6 @@
 	"description": "Open web content into the command line",
 	"license": "MIT",
 	"dependencies": {
-		"jquery": "2.x.x",
 		"multiple-select-brett": "brett-demo",
 		"bootstrap": "3.x.x"
 	}

@@ -12,7 +12,9 @@ content as HTML or text, etc.
 
 # Installation
 
-One can directly install the bundled XPI file or install with npm:
+Install the bundled XPI file.
+
+To develop with source, install with npm:
 
 `npm install atyourcommand`
 
