@@ -318,7 +318,7 @@ jml('div', [
 			['label', {title: _("if_present_command_saved")}, [
 				_("Command name") + ' ',
 				['input', (function (options) {
-					var atts = {id: 'command-name', size: '55'};
+					var atts = {id: 'command-name', size: '35'};
 					if (options.itemType === 'commands') {
 						atts.autofocus = 'autofocus';
 					}
