@@ -1,0 +1,30 @@
+{
+  "name": "polyfill-dialog",
+  "homepage": "https://github.com/brettz9/dialog",
+  "authors": [
+    "Brett Zamir <brettz9@yahoo.com>"
+  ],
+  "description": "Polyfill the dialog element using CustomElements",
+  "main": "src/main.js",
+  "keywords": [
+    "dialog",
+    "polyfill"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "_release": "4f5a43f966",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4f5a43f9661ec011ae3fa9040fade3714334478f"
+  },
+  "_source": "git://github.com/brettz9/dialog.git",
+  "_target": "*",
+  "_originalSource": "polyfill-dialog",
+  "_direct": true
+}

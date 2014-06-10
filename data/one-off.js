@@ -322,7 +322,12 @@ jml('div', [
 					}
 					return atts;
 				}(options))]
-			]]
+			]],
+			['button', {$on: {click: function () {
+				var dialog = document.createElement('dialog'); // Relies on our Custom Elements hack
+				dialog.appendChild(document.createTextNode('test'));
+				document.body.appendChild(dialog);
+			}}}, [_("Restrict contexts")]]
 		]],
 		['table', [
 			/*
