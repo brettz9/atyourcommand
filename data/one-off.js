@@ -325,8 +325,16 @@ jml('div', [
 			]],
 			['button', {$on: {click: function () {
 				var dialog = jml('dialog', {open: ''}, [
-					['button', {style: 'margin-top: 40px'}, [_("Save")]]
+					['button', {style: 'margin-top: 40px', $on: {click: function () {
+						dialog.close();
+					}}}, [_("Save")]]
 				], document.body);
+				// Until http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element is supported
+				dialog.close = function (returnValue) {
+					this.removeAttribute('open');
+					dialog.returnValue = returnValue;
+					// this.parentNode.removeChild(this);
+				};
 				// Alter styling somewhat from W3C-recommended defaults (see http://www.w3.org/html/wg/drafts/html/master/rendering.html#flow-content-0 )
 				dialog.style.height = '500px';
 				dialog.style.backgroundColor = 'lightgray';
