@@ -325,6 +325,7 @@ jml('div', [
 			]],
 			['button', {$on: {click: function () {
 				var dialog = document.createElement('dialog'); // Relies on our Custom Elements hack
+				dialog.setAttribute('open', '');
 				dialog.appendChild(document.createTextNode('test'));
 				document.body.appendChild(dialog);
 				

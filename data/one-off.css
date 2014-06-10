@@ -57,3 +57,25 @@
 	background-repeat: no-repeat;
 	background-size: 20px 20px;
 }
+
+/*
+Until supported natively...
+From http://www.w3.org/html/wg/drafts/html/master/rendering.html#flow-content-0
+*/
+dialog:not([open]) { display: none; }
+dialog {
+  position: absolute;
+  left: 0; right: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  border: solid;
+  padding: 1em;
+  background: white;
+  color: black;
+}
+dialog::backdrop {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(0,0,0,0.1);
+}
