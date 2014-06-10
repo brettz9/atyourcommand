@@ -337,7 +337,7 @@ jml('div', [
 				dialog.style.height = '500px';
 				dialog.style.backgroundColor = 'lightgray';
 
-				// Rough polyfilling until this is supported: http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element
+				// Rough polyfilling until this is supported (then also remove styling for dialog in one-off.css): http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element
 				dialog.returnValue = '';
 				dialog.close = function (returnValue) {
 					this.removeAttribute('open');
