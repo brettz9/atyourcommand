@@ -132,6 +132,8 @@ separate add-on.
 1. Allow storage of own "path" environment for greater portability across OS.
 1. Might add items like JSON-stringified array of current <script src>'s,
 <link href>'s or <html manifest> string.
+1. Support saving of own custom selector definitions (and eval-able
+retrieval behaviors?)
 
 # Possible to-dos
 
