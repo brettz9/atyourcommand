@@ -11,6 +11,6 @@
 		"url": "https://github.com/brettz9/atyourcommand.git"
 	},
 	"scripts": {
-		"prepublish": "npm install jamilih@0.x -g --prefix ./data && npm install xregexp@2.x -g --prefix ./lib && bower install bootstrap#3.x.x && bower install multiple-select-brett#brett-demo"
+		"prepublish": "npm install jamilih@0.x -g --prefix ./data && npm install xregexp@2.x -g --prefix ./lib && bower install bootstrap#3.x.x && bower install multiple-select#master"
 	}
 }

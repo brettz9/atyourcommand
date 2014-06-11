@@ -8,7 +8,7 @@
 	"description": "Open web content into the command line",
 	"license": "MIT",
 	"dependencies": {
-		"multiple-select-brett": "brett-demo",
+		"multiple-select": "master",
 		"bootstrap": "3.x.x"
 	}
 }
