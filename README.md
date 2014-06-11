@@ -134,6 +134,9 @@ separate add-on.
 <link href>'s or <html manifest> string.
 1. Support saving of own custom selector definitions (and eval-able
 retrieval behaviors?)
+1. Option to view groups of selectors by output type (e.g., HTML string,
+URL, etc.), instead of just by concept (e.g., "image URL" and "SVG
+as string" being in same image group).
 
 # Possible to-dos
 
