@@ -45,6 +45,8 @@ HTML (e.g., toDataURL on canvas)
 	toDataURL canvas snapshot as an argument.
 	1. Any way to create convention to get data out of a plug-in by
 	right-click (and demo)?
+	1. Ensure textarea and input content is retrievable (including selection
+	ranges within)!!
 
 # Higher priority to-dos (longer)
 
