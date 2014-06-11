@@ -47,6 +47,11 @@ HTML (e.g., toDataURL on canvas)
 	right-click (and demo)?
 	1. Ensure textarea and input content is retrievable (including selection
 	ranges within)!!
+	1. Option to supply selector (or prompt for selector at run-time) to
+	grab contents as text or HTML (allowing for CSS-Selector-enhanced
+	HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` to get
+	back other than an HTML string?); note: this ability to specify selectors
+	for output is distinct from specifying contexts via selector
 
 # Higher priority to-dos (longer)
 
