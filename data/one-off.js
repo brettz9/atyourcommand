@@ -1,4 +1,4 @@
-/*globals ExpandableInputs, self, jml, $ */
+/*globals Tags, ExpandableInputs, self, jml, $ */
 /*jslint vars:true, todo:true, browser:true, devel:true */
 var $J = $;
 $.noConflict();
@@ -66,6 +66,13 @@ function _ (key) {
 }
 
 
+function setSelectOfValue(sel, val) {
+	var names = typeof sel === 'string' ? $(sel) : sel;
+	var idx = Array.from(names.options).findIndex(function (option) {
+		return option.value === val;
+	});
+	names.selectedIndex = idx === -1 ? 0 : idx;
+}
 
 function addOptions (type) {
 	var paths = optionData[type].paths,
@@ -92,14 +99,6 @@ function addOptions (type) {
 function handleOptions (data) {
 	optionData[data.type] = data;
 	addOptions(data.type);
-}
-
-function setSelectOfValue(sel, val) {
-	var names = typeof sel === 'string' ? $(sel) : sel;
-	var idx = Array.from(names.options).findIndex(function (option) {
-		return option.value === val;
-	});
-	names.selectedIndex = idx === -1 ? 0 : idx;
 }
 
 function resetChanges () {
@@ -332,34 +331,15 @@ jml('div', [
 					// Not sure why we're losing focus or the click event is going through here but not in my multiple-select demo
 					// ms.focus();
 					e.stopPropagation();
-				}}}, [
-				
-				/*
-				// 'a', (or tags like images inside of links or anchors)
-				// 'abbr', 'acronym', 'address', 'b', 'bdi', 'bdo', 'big', 'blink', 'cite', 'code', 'data', 'del', 'dfn', 'em', 'figcaption', 'figure', 'font', 'i', 'ins', 'kbd', 'label', 'legend', 'mark', 'nobr', 'output', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup', 'tt', 'u', 'var', 
-				// 'time', 
-				// 'br', 'hr', 'spacer', 'wbr',
-				// 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hgroup', 'nav', 
-				// 'article', 'aside', 'blockquote', 'body', 'center', 'dialog', 'details', 'div', 'fieldset', 'footer', 'listing', 'main', 'marquee', 'p', 'plaintext', 'pre', 'section', 'summary', 'xmp'
-				// 'ol', 'dl', 'dt', 'dd', 'dir', 'li', 'ul', 
-				// 'caption', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'col', 'colgroup', 
-				// 'video', 'audio', 'bgsound', 'source',
-				// 'form', 'isindex', 'input', 'keygen', 'button', 'meter', 'optgroup', 'option', 'progress', 'select', 'textarea', 'menu', 'menuitem',
-				// 'frame', 'frameset', 'iframe', 
-				// 'noframes', 'noscript',
-				// 'DOCTYPE', comments, procesing instructions, CDATA, 'html', 'head', 'meta' (also within body), 'title', 'base', 
-				// 'style', 'link', 'script', 'datalist', 'track', 'basefont', 
-				// 'content', 'decorator', 'element', 'shadow', 'template', 
-				// 'img', 'map', 'area', 'canvas', 
-				// 'object', 'applet', 'embed', 'param', 
-				*/
-				
-					['option', ['text']],
-					['optgroup', {label: _("Images")}, [
-						['option', ['canvas']],
-						['option', ['img']]
-					]]
-				]]
+				}}}, Tags.reduce(
+					function (options, groupInfo) {
+						options.push(['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
+							return typeof tagInfo === 'string' ? ['option', [tagInfo]] : ''; // todo: fix second part
+						})]);
+						return options;
+					},
+					[]
+				)]
 			]],
 			' ' + _("or") + ' ',
 			['label', [
