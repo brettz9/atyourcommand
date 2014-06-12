@@ -333,7 +333,13 @@ jml('div', [
 					e.stopPropagation();
 				}}}, Tags.map(function (groupInfo) {
 					return ['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
-						return typeof tagInfo === 'string' ? ['option', [tagInfo]] : tagInfo[1].hidden === true ? '' : tagInfo[0];
+						var atts = {};
+						if (tagInfo && typeof tagInfo === 'object' && tagInfo[1].hidden === true) {
+							atts['class'] = 'hiddenContext';
+						}
+						return ['option', atts, [
+							typeof tagInfo === 'string' ? tagInfo : tagInfo[0]
+						]];
 					})];
 				})]
 			]],

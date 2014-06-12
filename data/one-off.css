@@ -64,3 +64,6 @@ select widget except for the first item, "select all" */
 .ms-drop > ul > li:not(.group):not(:first-child) {
     margin-left: 10px;
 }
+.hiddenContext {
+	font-style: italic;
+}
