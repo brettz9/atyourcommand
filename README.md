@@ -55,8 +55,17 @@ HTML (e.g., toDataURL on canvas)
 	for output is distinct from specifying contexts via selector
 1. Ensure user can just invoke a command without sending anything
 1. Allow textarea dialog prompt for content to supply to web app or command
-1. Option to open selection output in empty window (as text, HTML, or textarea
-contents), hidden window, or dialog within right-clicked window.
+1. Option to open selection output in empty tab or window (as text, HTML,
+or textarea contents), hidden window, or dialog within right-clicked window.
+1. Allow command type which directly makes a PUT/POST/GET with contents
+and optionally headers/values (or make an SQLite command in Firefox or
+write output to file and optionally open that file in the browser or outside
+optionally with WebAppFind/filetypes.json), into window which is hidden
+or not, and optionally switching to that window.
+1. Ensure format of data is as abstract as possible in every way so as to
+avoid OS-specific syntax.
+1. Option to make command, executable batch, and associate with file/create
+shortcut (Executable Builder).
 
 # Higher priority to-dos (longer)
 
