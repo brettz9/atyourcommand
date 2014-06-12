@@ -334,7 +334,7 @@ jml('div', [
 				}}}, Tags.reduce(
 					function (options, groupInfo) {
 						options.push(['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
-							return typeof tagInfo === 'string' ? ['option', [tagInfo]] : ''; // todo: fix second part
+							return typeof tagInfo === 'string' ? ['option', [tagInfo]] : tagInfo[1].hidden === true ? '' : tagInfo[0];
 						})]);
 						return options;
 					},
