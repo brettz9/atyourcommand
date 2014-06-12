@@ -331,14 +331,12 @@ jml('div', [
 					// Not sure why we're losing focus or the click event is going through here but not in my multiple-select demo
 					// ms.focus();
 					e.stopPropagation();
-				}}}, Tags.reduce(
-					function (options, groupInfo) {
-						options.push(['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
+				}}}, Tags.map(
+					function (groupInfo) {
+						return ['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
 							return typeof tagInfo === 'string' ? ['option', [tagInfo]] : tagInfo[1].hidden === true ? '' : tagInfo[0];
-						})]);
-						return options;
-					},
-					[]
+						})];
+					}
 				)]
 			]],
 			' ' + _("or") + ' ',
