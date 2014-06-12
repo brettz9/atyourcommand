@@ -47,11 +47,16 @@ HTML (e.g., toDataURL on canvas)
 	right-click (and demo)?
 	1. Ensure textarea and input content is retrievable (including selection
 	ranges within)!!
-	1. Option to supply selector (or prompt for selector at run-time) to
-	grab contents as text or HTML (allowing for CSS-Selector-enhanced
-	HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` to get
+	1. Option to supply selector (or prompt for selector or jQuery eval at
+	run-time) to grab contents as text or HTML (allowing for
+	CSS-Selector-enhanced HTTPQuery syntax like `div.myClass:text()`
+	or `a[href]:attr()` to get
 	back other than an HTML string?); note: this ability to specify selectors
 	for output is distinct from specifying contexts via selector
+1. Ensure user can just invoke a command without sending anything
+1. Allow textarea dialog prompt for content to supply to web app or command
+1. Option to open selection output in empty window (as text, HTML, or textarea
+contents), hidden window, or dialog within right-clicked window.
 
 # Higher priority to-dos (longer)
 
@@ -135,8 +140,8 @@ provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
 to-do about splitting off its context menu/add-on bar file:// capabilities into
 separate add-on.
 1. Allow storage of own "path" environment for greater portability across OS.
-1. Might add items like JSON-stringified array of current <script src>'s,
-<link href>'s or <html manifest> string.
+1. Might add items like fragment, <div>, or JSON-stringified array of current
+<script src>'s, <link href>'s or <html manifest> string.
 1. Support saving of own custom selector definitions for contexts (and eval-able
 retrieval behaviors?) as well as custom selector definitions for node
 retrieval
