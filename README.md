@@ -240,7 +240,7 @@ toolbar, menu, add-on bar, key command, etc.
 1. Utilize (JavaScript-based) Blockly for pipelining of any kind of
 command (though avoid baking in UI as UI should be flexible, e.g.,
 to allow use in menu, toolbar, add-on bar, etc.); also macro-like
-development
+development; tie into ExecutableBuilder for this as well.
 1. When allowing users to create command line commands
 for context menus/menus/toolbars/add-on bar/etc., allow and demo
 (with Blockly?) JS prompts (useful for dynamic batch), e.g., to
