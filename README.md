@@ -53,6 +53,10 @@ HTML (e.g., toDataURL on canvas)
 	or `a[href]:attr()` to get
 	back other than an HTML string?); note: this ability to specify selectors
 	for output is distinct from specifying contexts via selector
+	1. Support text or CSS path offset of highlighted text so if supplying all
+	page text, an app can reconstruct the position of the highlighted
+	text/elements in context (e.g., to allow supplying a correction of edited
+	text to Github through its API)
 1. Ensure user can just invoke a command without sending anything
 1. Allow textarea dialog prompt for content to supply to web app or command
 1. Option to open selection output in empty tab or window (as text, HTML,
