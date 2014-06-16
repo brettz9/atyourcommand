@@ -65,6 +65,14 @@ function _ (key) {
 	return locale[key] || '(Non-internationalized string--FIXME!)' + key;
 }
 
+function setMultipleSelectOfValue (sel, vals) {
+	var names = typeof sel === 'string' ? $(sel) : sel;
+	Array.from(names.options).forEach(function (option) {
+		if (vals.indexOf(option.value) > -1) {
+			option.selected = true;
+		}
+	});
+}
 
 function setSelectOfValue(sel, val) {
 	var names = typeof sel === 'string' ? $(sel) : sel;
@@ -119,6 +127,8 @@ function populateEmptyForm () {
 
 	$('#executables').selectedIndex = 0;
 	$('#executablePath').value = '';
+	$('#restrict-contexts').selectedIndex = 0;
+	$('#own-context').value = '';
 
 	['args', 'urls', 'files'].forEach(function (inputType) {
 		inputs[inputType].setTextValues();
@@ -136,9 +146,15 @@ function populateFormWithStorage (name) {
 	$('#command-name').value = name;
 	$('#command-name').defaultValue = name;
 
+	// Todo: Could make class for each type of storage (select,
+	//   input, etc.) and just invoke its destroy() or create() methods
+	//   here, rather than adding specific details in every place needed.
 	var executablePath = oldStorage[currentName].executablePath;
 	setSelectOfValue('#executables', executablePath);
 	$('#executablePath').value = executablePath;
+
+	setMultipleSelectOfValue('#restrict-contexts', oldStorage[currentName].restrictContexts);
+	$('#own-context').value = oldStorage[currentName].ownContext;
 
 	['args', 'urls', 'files'].forEach(function (inputType) {
 		inputs[inputType].setTextValues(oldStorage[currentName][inputType]);
@@ -315,7 +331,7 @@ jml('div', [
 		]],
 		['form', {$on: {click: [function (e) {
 			var cl = e.target.classList;
-			if (!this.checkValidity() && // Individual items also have "validationMessage" property
+			if (!this.checkValidity() && // Also "setCustomValidity" and individual items also have "validationMessage" property
 				(cl.contains('execute') ||  cl.contains('save'))
 			) {
 				e.stopPropagation(); // Don't allow it to get to submit
@@ -491,7 +507,11 @@ $('body').addEventListener('click', function (e) {
 				args: inputs.args.getTextValues(),
 				files: inputs.files.getTextValues(),
 				urls: inputs.urls.getTextValues(),
-				dirs: inputs.files.getValues('directory')
+				dirs: inputs.files.getValues('directory'),
+				restrictContexts: Array.from($('#restrict-contexts').selectedOptions).map(function (option) {
+					return option.value;
+				}),
+				ownContext: $('#own-context').value
 			}
 		};
 		if (cl.contains('execute')) {
