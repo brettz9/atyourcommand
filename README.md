@@ -24,7 +24,7 @@ To develop with source, install with npm:
 	**only in certain selector-based contexts** (but making
 	necessary JSON-friendly conversions for them)
     1. video, audio, object/embed/applet (may be hidden from UI),
-	URL, <a>, canvas to data URL (including of image or video
+	URL, `<a>`, canvas to data URL (including of image or video
 	elements as in QR Secret Decoder Ring), textarea and input content
 	(including selection ranges within), etc.
     1. Option to supply prompt for selector or JS/jQuery eval at run-time
@@ -118,7 +118,7 @@ away" to other apps) which allows right-click
 of text or a URL, etc., and then displays commands stored by AtYourCommand
 (in files which themselves might be openable in a WebAppFind filetypes.json
 manner), determining relevance of commands by reverse detecting their
-"<text>" or whatever substitutions, demoing how a desktop app can in
+`<text>` or whatever substitutions, demoing how a desktop app can in
 turn allow contextual snippets to be shuffled off to other applications
 including web-based ones (via WebAppFind). See also todo for WebAppFind
 re: possible command line syntax within filetypes.json.
@@ -144,8 +144,8 @@ provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
 to-do about splitting off its context menu/add-on bar file:// capabilities into
 separate add-on.
 1. Allow storage of own "path" environment for greater portability across OS.
-1. Might add items like fragment, <div>, or JSON-stringified array of current
-<script src>'s, <link href>'s or <html manifest> string.
+1. Might add items like fragment, `<div>`, or JSON-stringified array of current
+`<script src>`'s, `<link href>`'s or `<html manifest>` string.
 1. Support saving of own custom selector definitions for contexts (and eval-able
 retrieval behaviors?) as well as custom selector definitions for node
 retrieval
@@ -160,7 +160,7 @@ link in page. Same with images, videos, script files, stylesheets, etc.
 1. Display of commands in dialog: move up/down instead of alphabetical?
 1. Create icons, etc.
 1. If item is required, could prevent "submit" (currently not
-using <form>, so no submit).
+using `<form>`, so no submit).
 1. Might allow selection of submenus, separators, etc.
 1. Any other command line necessities (besides quoted string escaping)?
 1. As per AppLauncher feature request, allow shortcuts on the toolbar; also
@@ -203,7 +203,7 @@ atyourcommand) but remember upon future loads of the content
 	arguments can optionally be remembered; share options across all of these
 	addons?
 1. To make atyourcommand more meaningful, ensure works with a
-Gopher-over-HTTP protocol (e.g., one limited to <li> elements and other tags
+Gopher-over-HTTP protocol (e.g., one limited to `<li>` elements and other tags
 auto-escaped):
 	1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
 	1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
