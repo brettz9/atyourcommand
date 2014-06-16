@@ -10,18 +10,6 @@ A number of automatic substitutions are available (and documented within
 the dialog) such as obtaining the current URL, title,
 content as HTML or text, etc.
 
-# Todos to organize
-1. Dynamic executable
-1. Make reference to potential use with filebrowser or filebrowser-enhanced
-links on the currently loaded file (optionally with args)
-1. To handle file:// URLs and c:\ paths that are right-clicked (or currently
-loaded) to: expose folder (or copy folder/file path), bare execution on
-desktop or with web app (without specific executable, args, etc.; also
-provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
-to-do about splitting off its context menu/add-on bar file:// capabilities into
-separate add-on.
-
-
 # Installation
 
 Install the bundled XPI file.
@@ -35,6 +23,8 @@ To develop with source, install with npm:
 1. **Display of commands** in context menu or with list of commands
 in edit mode (with the list of commands pre-opened) or in
 new command mode (with the list pre-closed)
+1. If item is a **required item**, could prevent "submit" (currently not
+using `<form>`, so no submit).
 
 1. Complete work on giving user choice on whether to provide context
 	menu items **only in certain selector-based contexts** (but making
@@ -65,6 +55,15 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	text to Github through its API).
 	1. Ensure format of data is as abstract as possible in every way so as to
 	avoid OS-specific syntax.
+	1. Investigate **other applauncher.js aspects** for possible types of substitutions?
+	1. Allow even the executable to be dynamic by prompt (e.g., if right-clicking
+	executable file in filebrowser-enhanced and want to send args to it: whether
+	fixed or themselves also obtained by prompt)
+		1. Ensure can grab the current URL as a path and use that within
+		substitutions (not only the executable but other arguments)
+		1. Ability to convert selected path into file:// URL before passing on
+		within arguments
+
 1. Option to **make command or executable batch**
 
 1. Submit to AMO
@@ -141,40 +140,6 @@ specifying contexts via selector
 1. Support **eval-able custom selector definition retrieval**
 for context determination (as with custom selector definitions for node
 retrieval).
-
-# Higher priority to-dos (shorter)
-
-1. If item is a **required item**, could prevent "submit" (currently not
-using `<form>`, so no submit).
-1. Investigate **other applauncher.js aspects** for possible types of substitutions?
-1. Add support for HTML fragments, `<div>`'s, or JSON-stringified
-arrays for hidden items like the `<script src>`'s, `<link href>`'s or
-`<html manifest>` on the page.
-1. Include **pre-sets for opening into WebAppFind (and Firefox)** and
-example like Notepad++
-
-# Possible to-dos
-
-1. As per AppLauncher feature request, default to a **specific, configurable
-executable path** (or save multiple options for drop-down)
-1. Allow storage of **own "path" environment** for greater portability across OS.
-1. Option to **view groups of selectors by output type** (e.g., HTML string,
-URL, etc.), instead of just by concept (e.g., "image URL" and "SVG
-as string" being in same image group).
-1. If a link type of command is chosen but no link is selected, **find first
-item in page**. Same with images, videos, script files, stylesheets, etc.
-1. Display of commands in dialog: **move up/down commands** instead
-of alphabetical?
-1. **Create icons**, etc. for add-on and let user create for individual
-commands through SVG Edit?
-1. Might allow selection of **submenus, separators, etc.**
-1. Any **other command line necessities** (besides quoted string escaping)?
-1. As per AppLauncher feature request, **allow shortcuts on the toolbar**;
-also modify to work with **main menu, app-bar, or key command** as well
-1. Ability to **confirm selected text content is the right type**: a path,
-URL or file URL, etc.?
-1. Allow atyourcommand to **send content to web apps directly through
-WebAppFind** code when present (as opposed to through command line)?
 1. **Remote site supply of commands**
 	1. Way for websites to register commands or groups of commands upon
 	user introspection and permission
@@ -183,6 +148,8 @@ WebAppFind** code when present (as opposed to through command line)?
 		clicks link, will get asked), optionally with args, and optionally with
 		desktop file or remote URLs, etc. as content; will thereby also be
 		able to support (and demo) WebAppFind invocation from remote
+	1. Ensure format as portable as possible (e.g., just reference
+	Firefox executable instead of specific path to FF executable)
 1. De-coupling remote content from its executable (as in regular
 atyourcommand) but remember upon future loads of the content
 	1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
@@ -209,6 +176,47 @@ atyourcommand) but remember upon future loads of the content
 	browser document into WebAppFind) sensitive to site prefs so right-click
 	arguments can optionally be remembered; share options across all of these
 	addons?
+
+# Higher priority to-dos (shorter)
+
+1. Have a mechanism to **return from a WebAppFind-opened web app**
+back to the page which was the source of its content (e.g., in case one
+accidentally didn't grab enough text or whatever)
+1. Add support for HTML fragments, `<div>`'s, or JSON-stringified
+arrays for hidden items like the `<script src>`'s, `<link href>`'s or
+`<html manifest>` on the page.
+1. Include **pre-sets for opening into WebAppFind (and Firefox)** and
+example like Notepad++
+1. In handling file:// URLs and c:\ paths that are right-clicked (or currently
+loaded), consider whether to handle **revealing a desktop folder** (or
+**copying folder/file path**), **bare execution on desktop or with web app**
+(without specific executable, args, etc. or with hard-coded/prompt/etc.),
+e.g., for executables/batch files, etc. in this add-on or filebrowser enhanced
+(and see the latter's to-do about splitting off its context menu/add-on bar
+file:// capabilities into separate add-on).
+
+# Possible to-dos
+
+1. As per AppLauncher feature request, default to a **specific, configurable
+executable path** (or save multiple options for drop-down)
+1. Allow storage of **own "path" environment** for greater portability across OS.
+1. Option to **view groups of selectors by output type** (e.g., HTML string,
+URL, etc.), instead of just by concept (e.g., "image URL" and "SVG
+as string" being in same image group).
+1. If a link type of command is chosen but no link is selected, **find first
+item in page**. Same with images, videos, script files, stylesheets, etc.
+1. Display of commands in dialog: **move up/down commands** instead
+of alphabetical?
+1. **Create icons**, etc. for **add-on** and **user creation** of individual
+commands through local SVG Edit?
+1. Might allow selection of **submenus, separators, etc.**
+1. Any **other command line escaping** (besides quoted string escaping)?
+1. As per AppLauncher feature request, **allow shortcuts on the toolbar**;
+also modify to work with **main menu, app-bar, or key command** as well
+1. Ability to **confirm selected text content is the right type**: a path,
+URL or file URL, etc.?
+1. Allow atyourcommand to **send content to web apps directly through
+WebAppFind** code when present (as opposed to through command line)?
 1. To make atyourcommand more meaningful, **test with a
 Gopher-over-HTTP protocol** (e.g., one limited to `<li>` elements and other tags
 auto-escaped):
@@ -221,9 +229,6 @@ conjunction with
 could allow for convenient reuse of the content when attaching the batch
 script to a "Open with..." handler. Use approach like
 http://stackoverflow.com/a/5215844/271577
-1. Have a mechanism to **return from a WebAppFind-opened web app**
-back to the page which was the source of its content (e.g., in case one
-accidentally didn't grab enough text or whatever)
 1. Option to have **context menu items, based on the substitutions used** (in
 addition to user choice), cause them to only appear under certain, correct
 conditions (but ensure commands can utilize multiple components (e.g.,
