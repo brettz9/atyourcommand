@@ -16,7 +16,7 @@ Install the bundled XPI file.
 
 To develop with source, install with npm:
 
-`npm install atyourcommand`
+`npm install .`
 
 # Immediate to-dos
 
