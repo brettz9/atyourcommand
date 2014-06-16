@@ -23,6 +23,7 @@ To develop with source, install with npm:
 1. **Display of commands** in context menu or with list of commands
 in edit mode (with the list of commands pre-opened) or in
 new command mode (with the list pre-closed)
+
 1. Complete work on giving user choice on whether to provide context
 	menu items **only in certain selector-based contexts** (but making
 	necessary JSON-friendly conversions for them)
@@ -32,14 +33,10 @@ new command mode (with the list pre-closed)
 	(including selection ranges within), etc.
 1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
 HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` to get back
-other than an HTML string?) along with URL; note: this ability to specify
-selectors for output is potentially distinct from specifying contexts via
-selector
+other than an HTML string?) along with page text, URL, etc.; note: this
+ability to specify selectors for output is potentially distinct from
+specifying contexts via selector
     1. Option to supply prompt for selector or JS/jQuery eval at run-time
-1. Support **text or CSS path offset of highlighted text** so if supplying
-all page text, an app can reconstruct the position of the highlighted
-text/elements in context (e.g., to allow supplying a correction of edited
-text to Github through its API).
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
@@ -55,6 +52,10 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	write output to file and optionally open that file in the browser or
 	outside optionally with WebAppFind/filetypes.json), into window which is
 	hidden or not, and optionally switching to that window.
+	1. Support **text or CSS path offset of highlighted text** so if supplying
+	all page text, an app can reconstruct the position of the highlighted
+	text/elements in context (e.g., to allow supplying a correction of edited
+	text to Github through its API).
 	1. Ensure format of data is as abstract as possible in every way so as to
 	avoid OS-specific syntax.
 1. Option to **make command or executable batch**
