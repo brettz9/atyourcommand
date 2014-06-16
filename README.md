@@ -20,8 +20,11 @@ To develop with source, install with npm:
 
 # Immediate to-dos
 
-1. Give user choice on whether to provide context menu items
-	**only in certain selector-based contexts** (but making
+1. **Display of commands** in context menu or with list of commands
+in edit mode (with the list of commands pre-opened) or in
+new command mode (with the list pre-closed)
+1. Complete work on giving user choice on whether to provide context
+	menu items **only in certain selector-based contexts** (but making
 	necessary JSON-friendly conversions for them)
     1. video, audio, object/embed/applet (may be hidden from UI),
 	URL, `<a>`, canvas to data URL (including of image or video
@@ -38,9 +41,6 @@ all page text, an app can reconstruct the position of the highlighted
 text/elements in context (e.g., to allow supplying a correction of edited
 text to Github through its API).
 
-1. **Display of commands** in context menu or with list of commands
-in edit mode (with the list of commands pre-opened) or in
-new command mode (with the list pre-closed)
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	1. Support defaults (including empty ones) and document
