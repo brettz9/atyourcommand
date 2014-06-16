@@ -231,7 +231,16 @@ function removeStorage (data) {
 function setOS (os) {
 	setSelectOfValue('#export-os-type', os);
 }
-
+function getSuffixForOS () {
+	var type = $('#export-os-type').value,
+		osMap = {
+			winnt: '.bat'
+		};
+	if (osMap.hasOwnProperty(type)) {
+		return osMap[type];
+	}
+	return '';
+}
 // ADD INITIAL CONTENT
 
 document.title = _("title");
@@ -491,7 +500,11 @@ $('body').addEventListener('click', function (e) {
 		emit('buttonClick', {close: true});
 	}
 	else if (cl.contains('batch_export')) {
-		alert('todo: export!');
+		var commandText = 'todo: serialize the form into a batch file here';
+		var uri = 'data:,' + encodeURIComponent(commandText);
+		var a = jml('a', {style: 'display: none;', download: ($('#command-name').value || 'command') + getSuffixForOS(), href: uri}, ['hidden'], $('body'));
+		a.click();
+		e.preventDefault(); // Avoid blanking out
 	}
 	else if (cl.contains('passData')) {
 		var name = $('#command-name').value;
