@@ -15,7 +15,7 @@ var Tags =[
 	['time', ['time']],
 	['images', [['img', {prop: 'src'}], ['map', {hidden: true}], ['area', {hidden: true}], ['canvas', {hidden: true, dataURL: true}]]],
 	['other media', [['video', {prop: 'src'}], ['audio', {prop: 'src'}], ['bgsound', {hidden:true, prop: 'src'}], ['source', {hidden: true, prop: 'src'}]]],
-	['plugins', [['object', {prop: 'data'}], ['applet', {prop: 'code'}], ['embed', {prop: 'src'}], ['param', {hidden:true, prop: 'value'}]]],
+	['plugins', [['object:not([hidden])', {prop: 'data'}], ['applet:not([hidden])', {prop: 'code'}], ['embed:not([hidden])', {prop: 'src'}], ['param', {hidden:true, prop: 'value'}]]],
 	['empty but visible', ['br', 'hr', 'spacer', 'wbr']],
 	['hidden', [['DOCTYPE', {hidden:true, type: 'special'}], ['comments', {hidden:true, type: 'special'}], ['processing instructions', {hidden:true, type: 'special'}], ['CDATA', {type: 'special'}], 'html', ['head', {hidden: true}], ['meta', {hidden: true}], ['title', {hidden:true, textContents: true}], ['base', {hidden: true}], ['style', {hidden:true, textContents: true}], ['link', {prop: 'href', hidden: true}], ['datalist', {hidden: true}], ['track', {hidden: true}], ['basefont', {hidden: true}]]],
 	['templates', [['content', {hidden: true}], ['decorator', {hidden: true}], ['element', {hidden: true}], ['shadow', {hidden: true}], ['template', {hidden: true}]]],
