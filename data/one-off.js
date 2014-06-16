@@ -313,87 +313,96 @@ jml('div', [
 				]
 			]]
 		]],
-		['div', {id: 'command-name-section'}, [
-			['label', {title: _("if_present_command_saved")}, [
-				_("Command name") + ' ',
-				['input', (function (options) {
-					var atts = {id: 'command-name', size: '35'};
-					if (options.itemType === 'commands') {
-						atts.autofocus = 'autofocus';
-					}
-					return atts;
-				}(options))]
-			]],
-			['br'],
-			['label', [
-				_("Restrict contexts") + ' ',
-				['select', {multiple: 'multiple', title: _("Italicized_obtained_from_source"), id: 'restrict-contexts', $on: {click: function (e) {
-					// Not sure why we're losing focus or the click event is going through here but not in my multiple-select demo
-					// ms.focus();
-					e.stopPropagation();
-				}}}, Tags.map(function (groupInfo) {
-					return ['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
-						var atts = {};
-						if (tagInfo && typeof tagInfo === 'object' && tagInfo[1].hidden === true) {
-							atts['class'] = 'hiddenContext';
+		['form', {$on: {click: [function (e) {
+			var cl = e.target.classList;
+			if (!this.checkValidity() && // Individual items also have "validationMessage" property
+				(cl.contains('execute') ||  cl.contains('save'))
+			) {
+				e.stopPropagation(); // Don't allow it to get to submit
+			}
+		}, !!'capturing']}}, [
+			['div', {id: 'command-name-section'}, [
+				['label', {title: _("if_present_command_saved")}, [
+					_("Command name") + ' ',
+					['input', (function (options) {
+						var atts = {id: 'command-name', size: '35'};
+						if (options.itemType === 'commands') {
+							atts.autofocus = 'autofocus';
 						}
-						return ['option', atts, [
-							typeof tagInfo === 'string' ? tagInfo : tagInfo[0]
-						]];
-					})];
-				})]
+						return atts;
+					}(options))]
+				]],
+				['br'],
+				['label', [
+					_("Restrict contexts") + ' ',
+					['select', {multiple: 'multiple', title: _("Italicized_obtained_from_source"), id: 'restrict-contexts', $on: {click: function (e) {
+						// Not sure why we're losing focus or the click event is going through here but not in my multiple-select demo
+						// ms.focus();
+						e.stopPropagation();
+					}}}, Tags.map(function (groupInfo) {
+						return ['optgroup', {label: _(groupInfo[0])}, groupInfo[1].map(function (tagInfo) {
+							var atts = {};
+							if (tagInfo && typeof tagInfo === 'object' && tagInfo[1].hidden === true) {
+								atts['class'] = 'hiddenContext';
+							}
+							return ['option', atts, [
+								typeof tagInfo === 'string' ? tagInfo : tagInfo[0]
+							]];
+						})];
+					})]
+				]],
+				' ' + _("or") + ' ',
+				['label', [
+					_("Specify your own context") + ' ',
+					['input', {id: 'own-context', placeholder: 'a[href],img[src]'}]
+				]]
 			]],
-			' ' + _("or") + ' ',
-			['label', [
-				_("Specify your own context") + ' ',
-				['input', {id: 'own-context', placeholder: 'a[href],img[src]'}]
-			]]
-		]],
-		['table', [
-			/*
-			['tr', [
-				['td', [
-					['label', [_("Label:")]]
-				]],
-				['td', [
-					['input', {id: 'label'}]
+			['table', [
+				/*
+				['tr', [
+					['td', [
+						['label', [_("Label:")]]
+					]],
+					['td', [
+						['input', {id: 'label'}]
+					]]
 				]]
-			]]
-			*/
-			['tr', [
-				['td', [
-					['label', {'for': 'executablePath'}, [_("Path of executable")]]
-				]],
-				['td', [
-					['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {ei_sel: '#executablePath'}}],
-					['input', {
-						type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path',
-						list: 'datalist', autocomplete: 'off', value: '', required:'required'
-					}],
-					['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {ei_sel: '#executablePath', 'ei_default-extension': 'exe'}, value: _("Browse")}],
-					['datalist', {id: 'datalist'}],
-					['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {ei_sel: '#executablePath'}}]
+				*/
+				['tr', [
+					['td', [
+						['label', {'for': 'executablePath'}, [_("Path of executable")]]
+					]],
+					['td', [
+						['select', {id: 'executables', 'class': 'ei-exe-presets', dataset: {ei_sel: '#executablePath'}}],
+						['input', {
+							type: 'text', size: '55', id: 'executablePath', 'class': 'ei-exe-path',
+							list: 'datalist', autocomplete: 'off', value: '', required:'required'
+						}],
+						['input', {type: 'button', id: 'executablePick', 'class': 'ei-exe-picker', dataset: {ei_sel: '#executablePath', 'ei_default-extension': 'exe'}, value: _("Browse")}],
+						['datalist', {id: 'datalist'}],
+						['input', {type: 'button', 'class': 'ei-exe-revealButton', dataset: {ei_sel: '#executablePath'}}]
+					]]
 				]]
+			]],
+			['div', {id: 'executableTableContainer'}, [
+				['table', {id: 'executableTable'}]
+			]],
+			['div', {id: 'fileAndURLArgumentContainer'}, [
+				['b', [_("Hard-coded files and URLs")]],
+				['br'],
+				['table', {id: 'fileArguments'}],
+				['table', {id: 'URLArguments'}]
+			]],
+			['br'],
+			['div', {'class': 'focus'}, [
+				['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
+				['br'],
+				['button', {'class': 'passData save'}, [_("Save")]],
+				['button', {id: 'delete', 'class': 'passData delete', hidden: true}, [_("Delete")]],
+				// ['br'],
+				['button', {'class': 'passData execute'}, [_("Execute")]],
+				['button', {id: 'cancel'}, [_("Cancel")]]
 			]]
-		]],
-		['div', {id: 'executableTableContainer'}, [
-			['table', {id: 'executableTable'}]
-		]],
-		['div', {id: 'fileAndURLArgumentContainer'}, [
-			['b', [_("Hard-coded files and URLs")]],
-			['br'],
-			['table', {id: 'fileArguments'}],
-			['table', {id: 'URLArguments'}]
-		]],
-		['br'],
-		['div', {'class': 'focus'}, [
-			['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
-			['br'],
-			['button', {'class': 'passData save'}, [_("Save")]],
-			['button', {id: 'delete', 'class': 'passData delete', hidden: true}, [_("Delete")]],
-			// ['br'],
-			['button', {'class': 'passData execute'}, [_("Execute")]],
-			['button', {id: 'cancel'}, [_("Cancel")]]
 		]]
 	]]
 ], $('body'));

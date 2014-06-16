@@ -23,8 +23,6 @@ To develop with source, install with npm:
 1. **Display of commands** in context menu or with list of commands
 in edit mode (with the list of commands pre-opened) or in
 new command mode (with the list pre-closed)
-1. If item is a **required item**, could prevent "submit" (currently not
-using `<form>`, so no submit).
 
 1. Complete work on giving user choice on whether to provide context
 	menu items **only in certain selector-based contexts** (but making
