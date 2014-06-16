@@ -27,12 +27,12 @@ To develop with source, install with npm:
 	URL, `<a>`, canvas to data URL (including of image or video
 	elements as in QR Secret Decoder Ring), textarea and input content
 	(including selection ranges within), etc.
-    1. Option to supply prompt for selector or JS/jQuery eval at run-time
 1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
 HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` to get back
 other than an HTML string?) along with URL; note: this ability to specify
 selectors for output is potentially distinct from specifying contexts via
 selector
+    1. Option to supply prompt for selector or JS/jQuery eval at run-time
 1. Support **text or CSS path offset of highlighted text** so if supplying
 all page text, an app can reconstruct the position of the highlighted
 text/elements in context (e.g., to allow supplying a correction of edited
