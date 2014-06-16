@@ -66,7 +66,13 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 
 1. Hide currently unimplemented features such as context current
 value detection and add instead as to-do.
-1. Document README for implemented use cases as needed
+1. Document README as well as instructions within the dialog for
+implemented use cases as needed
+	1. Document how restricted contexts are not only used for restricting
+	context, but also will be associated with a particular retrieval method
+	(e.g., `img` will be available only on images and will supply `img[src]`
+	to the app unless another generic type of variable substitution such
+	as obtaining the node as HTML or the node's textContent is provided).
 1. Submit to AMO
 
 # Higher priority to-dos (longer)
