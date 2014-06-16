@@ -20,16 +20,6 @@ To develop with source, install with npm:
 
 # Immediate to-dos
 
-1. Display of commands in context menu or with list of commands
-in edit mode (with the list of commands pre-opened) or in
-new command mode (with the list pre-closed)
-
-1. Finish behavior providing substitution of current page contents,
-URL, etc. (see todos in main.js under "buttonClick" "execute" event)
-
-1. Submit to AMO
-
-1. Support defaults (including empty ones) and document
 1. Also support text selection, URL, image, and custom context(s)
 	1. Option to have context menu items, based on the substitutions used (or
 	user choice), cause them to only appear under certain, correct conditions
@@ -39,40 +29,51 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	selector-based contexts (but making necessary JSON-friendly
 	conversions, e.g., canvas to data URL, for them); video, audio,
 	object/embed/applet URL, <a>, etc.
-1. Optional pre-processing of highlighted contents esp. if cannot convert to
-HTML (e.g., toDataURL on canvas)
-	1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
-	toDataURL canvas snapshot as an argument.
-	1. Any way to create convention to get data out of a plug-in by
-	right-click (and demo)?
-	1. Ensure textarea and input content is retrievable (including selection
-	ranges within)!!
-	1. Option to supply selector (or prompt for selector or jQuery eval at
-	run-time) to grab contents as text or HTML (allowing for
-	CSS-Selector-enhanced HTTPQuery syntax like `div.myClass:text()`
-	or `a[href]:attr()` to get
-	back other than an HTML string?); note: this ability to specify selectors
-	for output is distinct from specifying contexts via selector
-	1. Support text or CSS path offset of highlighted text so if supplying all
-	page text, an app can reconstruct the position of the highlighted
-	text/elements in context (e.g., to allow supplying a correction of edited
-	text to Github through its API)
-1. Ensure user can just invoke a command without sending anything
-1. Allow textarea dialog prompt for content to supply to web app or command
-1. Option to open selection output in empty tab or window (as text, HTML,
-or textarea contents), hidden window, or dialog within right-clicked window.
-1. Allow command type which directly makes a PUT/POST/GET with contents
-and optionally headers/values (or make an SQLite command in Firefox or
-write output to file and optionally open that file in the browser or outside
-optionally with WebAppFind/filetypes.json), into window which is hidden
-or not, and optionally switching to that window.
-1. Ensure format of data is as abstract as possible in every way so as to
-avoid OS-specific syntax.
-1. Option to make command, executable batch, and associate with file/create
-shortcut (Executable Builder).
+	1. Optional pre-processing of highlighted contents esp. if cannot convert
+	to HTML (e.g., toDataURL on canvas)
+		1. Ensure, as with QR Secret Decoder Ring, that we can get a privileged
+		toDataURL canvas snapshot as an argument.
+		1. Any way to create convention to get data out of a plug-in by
+		right-click (and demo)?
+		1. Ensure textarea and input content is retrievable (including selection
+		ranges within)!!
+		1. Option to supply selector (or prompt for selector or jQuery eval at
+		run-time) to grab contents as text or HTML (allowing for
+		CSS-Selector-enhanced HTTPQuery syntax like `div.myClass:text()`
+		or `a[href]:attr()` to get
+		back other than an HTML string?); note: this ability to specify selectors
+		for output is distinct from specifying contexts via selector
+		1. Support text or CSS path offset of highlighted text so if supplying all
+		page text, an app can reconstruct the position of the highlighted
+		text/elements in context (e.g., to allow supplying a correction of edited
+		text to Github through its API)
+
+1. Display of commands in context menu or with list of commands
+in edit mode (with the list of commands pre-opened) or in
+new command mode (with the list pre-closed)
+1. Finish behavior providing string substitution of current page contents,
+URL, etc. (see todos in main.js under "buttonClick" "execute" event)
+	1. Support defaults (including empty ones) and document
+	1. Ensure user can just invoke a command without sending anything
+	1. Allow textarea dialog prompt for content to supply to web app or
+	command
+	1. Option to open selection output in empty tab or window (as text, HTML,
+	or textarea contents), hidden window, or dialog within right-clicked
+	window.
+	1. Allow command type which directly makes a PUT/POST/GET with contents
+	and optionally headers/values (or make an SQLite command in Firefox or
+	write output to file and optionally open that file in the browser or
+	outside optionally with WebAppFind/filetypes.json), into window which is
+	hidden or not, and optionally switching to that window.
+	1. Ensure format of data is as abstract as possible in every way so as to
+	avoid OS-specific syntax.
+1. Option to make command or executable batch
+
+1. Submit to AMO
 
 # Higher priority to-dos (longer)
 
+1. Option to associate with file/create shortcut (Executable Builder).
 1. Opinion piece on great importance of data ownership and decoupling of local
 or remote data from applications (also discuss need for return to (user-approved)
 `globalStorage` for application independence and potential use in websites adopting
