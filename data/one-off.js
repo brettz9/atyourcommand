@@ -48,7 +48,7 @@ Array.from = function (arg) {
 	return [].slice.call(arg);
 };
 
-// UTILITIES
+// GENERIC UTILITIES
 function l (msg) {
 	console.log(msg);
 }
@@ -65,6 +65,20 @@ function _ (key) {
 	return locale[key] || '(Non-internationalized string--FIXME!)' + key;
 }
 
+// TEMPLATE UTILITIES
+/**
+* @param {array} optTexts Array of option text
+* @param {array} [values] Array of values corresponding to text
+* @param {string} [ns] Namespace to add to locale string
+*/
+function buildOptions (optTexts, values, ns) {
+	return optTexts.map(function (optText, i) {
+		var optValue = values[i] || optText;
+		return ['option', {value: optValue}, [_((ns ? (ns + '_') : '') + optText)]];
+	});
+}
+
+// BEHAVIORAL UTILITIES
 function setMultipleSelectOfValue (sel, vals) {
 	var names = typeof sel === 'string' ? $(sel) : sel;
 	Array.from(names.options).forEach(function (option) {
@@ -214,7 +228,9 @@ function removeStorage (data) {
 		populateEmptyForm();
 	}
 }
-
+function setOS (os) {
+	setSelectOfValue('#export-os-type', os);
+}
 
 // ADD INITIAL CONTENT
 
@@ -332,7 +348,7 @@ jml('div', [
 		['form', {$on: {click: [function (e) {
 			var cl = e.target.classList;
 			if (!this.checkValidity() && // Also "setCustomValidity" and individual items also have "validationMessage" property
-				(cl.contains('execute') ||  cl.contains('save'))
+				(cl.contains('execute') || cl.contains('save') || cl.contains('batch_export'))
 			) {
 				e.stopPropagation(); // Don't allow it to get to submit
 			}
@@ -410,7 +426,7 @@ jml('div', [
 				['table', {id: 'URLArguments'}]
 			]],
 			['br'],
-			['div', {'class': 'focus'}, [
+			['div', {'class': 'execution'}, [
 				['label', [_("keep_dialog_open"), ['input', {type: 'checkbox', id: 'keepOpen'}]]],
 				['br'],
 				['button', {'class': 'passData save'}, [_("Save")]],
@@ -418,6 +434,16 @@ jml('div', [
 				// ['br'],
 				['button', {'class': 'passData execute'}, [_("Execute")]],
 				['button', {id: 'cancel'}, [_("Cancel")]]
+			]],
+			['div', {'class': 'export'}, [
+				['label', [
+					_("os_format_for_batch_export"),
+					['select', {id: 'export-os-type'}, buildOptions(['Linux', 'Mac', 'Windows'], ['linux', 'darwin', 'winnt'])]
+					// Also could add values (and i18n and localize text) for these auto-lower-cased values from https://developer.mozilla.org/en-US/docs/OS_TARGET:
+					//   'android', 'SunOS', 'FreeBSD', 'OpenBSD', 'NetBSD', 'OS2', 'BeOS', 'IRIX64', 'AIX', 'HP-UX', 'DragonFly', 'skyos', 'riscos', 'NTO', 'OSF1'
+				]],
+				['br'],
+				['button', {'class': 'batch_export'}, [_("Export to batch")]]
 			]]
 		]]
 	]]
@@ -427,6 +453,7 @@ jml('div', [
 
 var ms = $J('#restrict-contexts').multipleSelect({filter: true, hideOptgroupCheckboxes: true, filterAcceptOnEnter: true, width: '150'});
 
+// Todo: put these checks as methods on a class for each type of control (can still call from body listener)
 $('body').addEventListener('click', function (e) {
 	var val, sel, selVal,
 		target = e.target,
@@ -462,6 +489,9 @@ $('body').addEventListener('click', function (e) {
 	}
 	else if (e.target.id === 'cancel') {
 		emit('buttonClick', {close: true});
+	}
+	else if (cl.contains('batch_export')) {
+		alert('todo: export!');
 	}
 	else if (cl.contains('passData')) {
 		var name = $('#command-name').value;
@@ -546,11 +576,11 @@ on('autocompleteValuesResponse', function (data) {
 	});
 });
 
-
 on('finished', finished);
 on('filePickResult', fileOrDirResult);
 on('executables', handleOptions);
 on('temps', handleOptions);
+on('defaultOS', setOS);
 on('newStorage', newStorage);
 on('removeStorage', removeStorage);
 

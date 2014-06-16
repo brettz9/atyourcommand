@@ -48,7 +48,14 @@
 	/*height: 100px; Height to use if main explanatory text is before scrolling block*/
 	height: 205px;
 }
-.focus {text-align:center;}
+.execution {
+	text-align:center;
+}
+.execution, .export {
+	float: left;
+	width: 50%;
+}
+
 #processExecuted {color: red;}
 .ei-files-revealButton, .ei-exe-revealButton {
 	border: none;
