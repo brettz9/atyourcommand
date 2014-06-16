@@ -10,6 +10,18 @@ A number of automatic substitutions are available (and documented within
 the dialog) such as obtaining the current URL, title,
 content as HTML or text, etc.
 
+# Todos to organize
+1. Dynamic executable
+1. Make reference to potential use with filebrowser or filebrowser-enhanced
+links on the currently loaded file (optionally with args)
+1. To handle file:// URLs and c:\ paths that are right-clicked (or currently
+loaded) to: expose folder (or copy folder/file path), bare execution on
+desktop or with web app (without specific executable, args, etc.; also
+provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
+to-do about splitting off its context menu/add-on bar file:// capabilities into
+separate add-on.
+
+
 # Installation
 
 Install the bundled XPI file.
@@ -31,12 +43,7 @@ new command mode (with the list pre-closed)
 	URL, `<a>`, canvas to data URL (including of image or video
 	elements as in QR Secret Decoder Ring), textarea and input content
 	(including selection ranges within), etc.
-1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
-HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` to get back
-other than an HTML string?) along with page text, URL, etc.; note: this
-ability to specify selectors for output is potentially distinct from
-specifying contexts via selector
-    1. Option to supply prompt for selector or JS/jQuery eval at run-time
+	1. If hidden are chosen, context will be page context
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
@@ -65,7 +72,7 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 # Higher priority to-dos (longer)
 
 1. Option to associate with file/create shortcut (Executable Builder).
-1. Opinion piece on great importance of data ownership and decoupling of local
+1. **Opinion piece** on great importance of data ownership and decoupling of local
 or remote data from applications (also discuss need for return to (user-approved)
 `globalStorage` for application independence and potential use in websites adopting
 application-neutral add-on frameworks, and
@@ -94,82 +101,81 @@ expression?) within a document to do a PATCH back to the server for
 replacing just that portion with whatever value is indicated by the user or
 by the web app which was delegated responsibility for the PUT/PATCH (an
 HTML/XML document is itself a kind of database).
-1. Add interfaces to the likes of Firefox's SQLite database (including
-for access to its localStorage contents) or to FileWriter/FileSystem
-and cached files (e.g., when right-clicking on a document, getting its
+1. Add interfaces to the likes of Firefox's **SQLite** database (including
+for access to its localStorage contents) or to **FileWriter/FileSystem**
+and **cached files** (e.g., when right-clicking on a document, getting its
 HTML cache or resource file cache files, or its localStorage, etc. so
-no data is inaccessible) and HTTPQuery/PATCH requests for a
-potentially friendly and uniform approach (which could subsume the
-local SQLite API as well)
-1. AtYourCommand to include HTTPQuery (partial) retrieval of remote content
+no data is inaccessible) and **HTTPQuery/PATCH** requests against
+local as well as remote data for a potentially friendly and uniform approach
+(which could subsume the local SQLite API as well)
+1. AtYourCommand to include **HTTPQuery** (partial) retrieval of remote content
 (though delegate partial saving back to webappfind?)
-1. Conditional operator to check whether PUT, HTTPQuery, etc. is supported,
-and if so, change text sent to command line accordingly (convenience)
+1. Conditional operator for **PUT, HTTPQuery support detection**;
+if supported, change text sent to command line accordingly (convenience)
 1. Idea for command line apps to align themselves with a uniform,
 atyourcommand-friendly syntax to simplify supplying of data (and to allow for
 UI-building of such arguments for apps which are compliant). Indicate on
-wiki projects supporting. (Or better yet, parse existing help files or
-command line help flag commands, if structured enough.) Also
-allow joining of commands. This could actually work with WebAppFind,
+wiki projects supporting. (Or better yet, **parse existing help files or
+command line help flag commands**, if structured enough.) Also
+allow **joining of commands**. This could actually work with WebAppFind,
 e.g., to make flags prefixed with webappfind- along with its own modes
 (e.g., view, edit, binaryedit) or custom modes--see next todo.
-1. Make desktop app (e.g., Notepad++ plugin? though ideally also a
-database app to demo with data that is typically otherwise "locked
-away" to other apps) which allows right-click
-of text or a URL, etc., and then displays commands stored by AtYourCommand
-(in files which themselves might be openable in a WebAppFind filetypes.json
+1. Make **desktop app demo** (e.g., Notepad++ plugin? though ideally also a
+database app to demonstrate how data that is typically otherwise "locked
+away" to other apps) can be shuffled off by right-click
+of text or a URL, etc.; also may itself display and make available for use
+the commands stored by AtYourCommand (in files which themselves
+might be openable in a WebAppFind filetypes.json
 manner), determining relevance of commands by reverse detecting their
 `<text>` or whatever substitutions, demoing how a desktop app can in
 turn allow contextual snippets to be shuffled off to other applications
 including web-based ones (via WebAppFind). See also todo for WebAppFind
 re: possible command line syntax within filetypes.json.
+1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
+HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` (and enhanced
+further to support `:selected()`, `:checked()`, or such) to get back
+other than an HTML string?) along with page text, URL, etc.; note: this
+ability to specify selectors for output is potentially distinct from
+specifying contexts via selector
+    1. Option to supply prompt for selector or JS/jQuery eval at run-time
+1. Support **eval-able custom selector definition retrieval**
+for context determination (as with custom selector definitions for node
+retrieval).
 
 # Higher priority to-dos (shorter)
 
-1. Add demo of data page being opened into WebAppFind and sent to web app
-which feeds data to a plug-in and receives data back for a PUT save back to
-the remote file (important for showing capability of native apps integrated
-with browser gaining same workflow access to the opening and, optionally,
-editing, of a document, including online editing).
-1. As per AppLauncher feature request, default to a specific, configurable
-executable path (or save multiple options for drop-down)
-1. Include pre-sets for opening into WebAppFind (and Firefox) and
+1. If item is a **required item**, could prevent "submit" (currently not
+using `<form>`, so no submit).
+1. Investigate **other applauncher.js aspects** for possible types of substitutions?
+1. Add support for HTML fragments, `<div>`'s, or JSON-stringified
+arrays for hidden items like the `<script src>`'s, `<link href>`'s or
+`<html manifest>` on the page.
+1. Include **pre-sets for opening into WebAppFind (and Firefox)** and
 example like Notepad++
-1. Investigate other applauncher.js aspects for possible types of substitutions?
-1. Make reference to potential use with filebrowser or filebrowser-enhanced
-links on the currently loaded file (optionally with args)
-1. To handle file:// URLs and c:\ paths that are right-clicked (or currently
-loaded) to: expose folder (or copy folder/file path), bare execution on
-desktop or with web app (without specific executable, args, etc.; also
-provide a prompt), e.g., for executables/batch files, see filebrowser enhanced
-to-do about splitting off its context menu/add-on bar file:// capabilities into
-separate add-on.
-1. Allow storage of own "path" environment for greater portability across OS.
-1. Might add items like fragment, `<div>`, or JSON-stringified array of current
-`<script src>`'s, `<link href>`'s or `<html manifest>` string.
-1. Support saving of own custom selector definitions for contexts (and eval-able
-retrieval behaviors?) as well as custom selector definitions for node
-retrieval
-1. Option to view groups of selectors by output type (e.g., HTML string,
-URL, etc.), instead of just by concept (e.g., "image URL" and "SVG
-as string" being in same image group).
 
 # Possible to-dos
 
-1. If a link type of command is chosen but no link is selected, find first
-link in page. Same with images, videos, script files, stylesheets, etc.
-1. Display of commands in dialog: move up/down instead of alphabetical?
-1. Create icons, etc.
-1. If item is required, could prevent "submit" (currently not
-using `<form>`, so no submit).
-1. Might allow selection of submenus, separators, etc.
-1. Any other command line necessities (besides quoted string escaping)?
-1. As per AppLauncher feature request, allow shortcuts on the toolbar; also
-modify to work with main menu, app-bar, or key command as well
-1. Ability to confirm selected text content is a path, URL or file URL, etc.?
-1. Allow atyourcommand to send content to web apps directly through WebAppFind
-code when present (as opposed to through command line)?
-1. Remote site supply of commands
+1. As per AppLauncher feature request, default to a **specific, configurable
+executable path** (or save multiple options for drop-down)
+1. Allow storage of **own "path" environment** for greater portability across OS.
+1. Option to **view groups of selectors by output type** (e.g., HTML string,
+URL, etc.), instead of just by concept (e.g., "image URL" and "SVG
+as string" being in same image group).
+1. If a link type of command is chosen but no link is selected, **find first
+item in page**. Same with images, videos, script files, stylesheets, etc.
+1. Display of commands in dialog: **move up/down commands** instead
+of alphabetical?
+1. **Create icons**, etc. for add-on and let user create for individual
+commands through SVG Edit?
+1. Might allow selection of **submenus, separators, etc.**
+1. Any **other command line necessities** (besides quoted string escaping)?
+1. As per AppLauncher feature request, **allow shortcuts on the toolbar**;
+also modify to work with **main menu, app-bar, or key command** as well
+1. Ability to **confirm selected text content is the right type**: a path,
+URL or file URL, etc.?
+1. Allow atyourcommand to **send content to web apps directly through
+WebAppFind** code when present (as opposed to through command line)?
+1. **Remote site supply of commands**
 	1. Way for websites to register commands or groups of commands upon
 	user introspection and permission
 	1. Served with special content type and protocol meant for external launching?
@@ -177,7 +183,7 @@ code when present (as opposed to through command line)?
 		clicks link, will get asked), optionally with args, and optionally with
 		desktop file or remote URLs, etc. as content; will thereby also be
 		able to support (and demo) WebAppFind invocation from remote
-1. De-coupling of remote content from its executable (as in regular
+1. De-coupling remote content from its executable (as in regular
 atyourcommand) but remember upon future loads of the content
 	1. Modify [Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
 	add-on to allow launching of a file URL including with own args (and
@@ -185,7 +191,7 @@ atyourcommand) but remember upon future loads of the content
 	content)
 		1. Overlay
 		[Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
-		but make it support site prefs (but not by domain as with Mozilla content prefs!)
+		but make it support **site prefs** (but not by domain as with Mozilla content prefs!)
 		(in addition to mapping MIME to commands)
 		so choice will be remembered (checkbox to remember choice including
 		any arguments, passing URL and/or file contents); also allow
@@ -203,30 +209,38 @@ atyourcommand) but remember upon future loads of the content
 	browser document into WebAppFind) sensitive to site prefs so right-click
 	arguments can optionally be remembered; share options across all of these
 	addons?
-1. To make atyourcommand more meaningful, ensure works with a
-Gopher-over-HTTP protocol (e.g., one limited to `<li>` elements and other tags
+1. To make atyourcommand more meaningful, **test with a
+Gopher-over-HTTP protocol** (e.g., one limited to `<li>` elements and other tags
 auto-escaped):
 	1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
 	1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
-	1. Use WebDAV request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
-1. Exporting as batch files, and converting batch files upon import (also in
+	1. Use **WebDAV** request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
+1. **Exporting as batch files**, and **converting batch files upon import** (also in
 conjunction with
 [Executable Builder](https://github.com/brettz9/executable-builder/)) which
 could allow for convenient reuse of the content when attaching the batch
 script to a "Open with..." handler. Use approach like
 http://stackoverflow.com/a/5215844/271577
-1. Have a mechanism to return from a WebAppFind-opened web app
+1. Have a mechanism to **return from a WebAppFind-opened web app**
 back to the page which was the source of its content (e.g., in case one
 accidentally didn't grab enough text or whatever)
-1. Option to have context menu items, based on the substitutions used (in
+1. Option to have **context menu items, based on the substitutions used** (in
 addition to user choice), cause them to only appear under certain, correct
 conditions (but ensure commands can utilize multiple components (e.g.,
 highlighted link and page HTML).
-1. Might provide an extension to Firebug and/or element inspector to shuffle
-off its data from there.
-1. Could create a convention to get data out of a plug-in by right-click (and demo - see [MDN](https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Scripting_plugins#How_to_call_plugin_native_methods));
-also for a full-page plugin (see https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Plug-in_Basics )? Note that plugins are [deprecated](https://developer.mozilla.org/en-US/Add-ons/Plugins), however.
-1. Rename or add to URLs (including as textarea) to allow any kind of variable?
+1. Might provide an **extension to Firebug** and/or element inspector to
+shuffle off its data from there.
+1. Add **plug-in demo** of data page being opened into WebAppFind and sent to
+web app which feeds data to a plug-in and receives data back for a PUT save
+back to the remote file (important for showing capability of native apps
+integrated with browser gaining same workflow access to the opening and,
+optionally, editing, of a document, including online editing).
+	1. Could create a convention to get data out of a plug-in by right-click
+	(and demo - see
+	[MDN - Scripting plugins](https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Scripting_plugins#How_to_call_plugin_native_methods));
+	also for a full-page plugin (see [MDN Plug-in Basics](https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Plug-in_Basics))?
+	Note that plugins are [deprecated](https://developer.mozilla.org/en-US/Add-ons/Plugins), however.
+1. Rename or add to URLs (including as textarea) to allow any kind of **variable**?
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
