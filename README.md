@@ -61,7 +61,6 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 		substitutions (not only the executable but other arguments)
 		1. Ability to convert selected path into file:// URL before passing on
 		within arguments
-
 1. Option to **make command or executable batch** (with idea in README
 to reuse with OpenWith..., e.g., using WebAppFind).
 
