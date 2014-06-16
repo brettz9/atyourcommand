@@ -221,6 +221,8 @@ accidentally didn't grab enough text or whatever)
 addition to user choice), cause them to only appear under certain, correct
 conditions (but ensure commands can utilize multiple components (e.g.,
 highlighted link and page HTML).
+1. Might provide an extension to Firebug and/or element inspector to shuffle
+off its data from there.
 1. Could create a convention to get data out of a plug-in by right-click (and demo - see [MDN](https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Scripting_plugins#How_to_call_plugin_native_methods));
 also for a full-page plugin (see https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Plug-in_Basics )? Note that plugins are [deprecated](https://developer.mozilla.org/en-US/Add-ons/Plugins), however.
 
