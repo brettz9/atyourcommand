@@ -335,7 +335,7 @@ jml('div', [
 				['br'],
 				['label', [
 					_("Restrict contexts") + ' ',
-					['select', {multiple: 'multiple', title: _("Italicized_obtained_from_source"), id: 'restrict-contexts', $on: {click: function (e) {
+					['select', {multiple: 'multiple', title: _("Italicized_obtained_from_source_page_context"), id: 'restrict-contexts', $on: {click: function (e) {
 						// Not sure why we're losing focus or the click event is going through here but not in my multiple-select demo
 						// ms.focus();
 						e.stopPropagation();
