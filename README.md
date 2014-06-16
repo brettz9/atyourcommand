@@ -78,12 +78,14 @@ implemented use cases as needed
 
 # Higher priority to-dos (longer)
 
-1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
-HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` (and enhanced
-further to support `:selected()`, `:checked()`, or such) to get back
-other than an HTML string?) along with page text, URL, etc.; note: this
-ability to specify selectors for output is potentially distinct from
-specifying contexts via selector
+1. **Grab contents as text or HTML in custom manner** (allowing for
+CSS-Selector-enhanced HTTPQuery syntax like `div.myClass:text()` or
+`a[href]:attr()` (and enhanced further to support `:selected()`, `:checked()`,
+or such) to get back other than an HTML string?) along with page text,
+URL, etc.; note: this ability to specify selectors for output in a custom
+manner would allow for distinguishing between where to restrict context and
+from where to obtain the content (but current ability for presets should
+be kept for convenience).
     1. Option to supply prompt for selector or JS/jQuery eval at run-time
 1. Support **eval-able custom selector definition retrieval**
 for context determination (as with custom selector definitions for node
