@@ -64,6 +64,9 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 
 1. Option to **make command or executable batch**
 
+1. Hide currently unimplemented features such as context current
+value detection and add instead as to-do.
+1. Document README for implemented use cases as needed
 1. Submit to AMO
 
 # Higher priority to-dos (longer)
