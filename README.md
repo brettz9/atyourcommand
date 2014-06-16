@@ -63,6 +63,12 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 		within arguments
 1. Option to **make command or executable batch** (with idea in README
 to reuse with OpenWith..., e.g., using WebAppFind).
+	1. **Exporting as batch files**
+	(also in conjunction with
+	[Executable Builder](https://github.com/brettz9/executable-builder/)) which
+	could allow for convenient reuse of the content when attaching the batch
+	script to a "Open with..." handler. Use approach like
+	http://stackoverflow.com/a/5215844/271577
 
 1. Hide currently unimplemented features such as context current
 value detection and add instead as to-do.
@@ -233,12 +239,7 @@ auto-escaped):
 	1. Do Gopher system for these files just extra required header; search "Gopher (protocol) over HTTP" (FTP, WebDAV?)
 	1. Problem with informational message--needs to map to real files; use instead hidden files of given extension with optional sticky coordinates
 	1. Use **WebDAV** request (via same-site Ajax or Firefox add-on privileged cross-domain (already with WebDAV add-on?)) for directory (propfind overloaded, was it?) so request for individual file reading or writing (as with directory listing) can be made over HTTP (including reverse webappfind)
-1. **Exporting as batch files**, and **converting batch files upon import** (also in
-conjunction with
-[Executable Builder](https://github.com/brettz9/executable-builder/)) which
-could allow for convenient reuse of the content when attaching the batch
-script to a "Open with..." handler. Use approach like
-http://stackoverflow.com/a/5215844/271577
+1. **Converting batch files upon import** (to the extent possible)
 1. Option to have **context menu items, based on the substitutions used** (in
 addition to user choice), cause them to only appear under certain, correct
 conditions (but ensure commands can utilize multiple components (e.g.,
