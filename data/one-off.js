@@ -441,7 +441,7 @@ jml('div', [
 				['button', {'class': 'passData save'}, [_("Save")]],
 				['button', {id: 'delete', 'class': 'passData delete', hidden: true}, [_("Delete")]],
 				// ['br'],
-				['button', {'class': 'passData execute'}, [_("Execute")]],
+				['button', {'class': 'passData execute'}, [_("Execute_on_current_page")]],
 				['button', {id: 'cancel'}, [_("Cancel")]]
 			]],
 			['div', {'class': 'export'}, [
