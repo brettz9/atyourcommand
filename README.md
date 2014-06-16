@@ -70,9 +70,10 @@ value detection and add instead as to-do.
 implemented use cases as needed
 	1. Document how restricted contexts are not only used for restricting
 	context, but also will be associated with a particular retrieval method
-	(e.g., `img` will be available only on images and will supply `img[src]`
-	to the app unless another generic type of variable substitution such
-	as obtaining the node as HTML or the node's textContent is provided).
+	(e.g., `img` will be available only on images and will supply `img.src`
+	to the app (the property instead of attribute) unless another generic
+	type of variable substitution such as obtaining the node as HTML
+	or the node's textContent is provided).
 1. Submit to AMO
 
 # Higher priority to-dos (longer)
