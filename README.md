@@ -78,7 +78,16 @@ implemented use cases as needed
 
 # Higher priority to-dos (longer)
 
-1. Option to associate with file/create shortcut (Executable Builder).
+1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
+HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` (and enhanced
+further to support `:selected()`, `:checked()`, or such) to get back
+other than an HTML string?) along with page text, URL, etc.; note: this
+ability to specify selectors for output is potentially distinct from
+specifying contexts via selector
+    1. Option to supply prompt for selector or JS/jQuery eval at run-time
+1. Support **eval-able custom selector definition retrieval**
+for context determination (as with custom selector definitions for node
+retrieval).
 1. **Opinion piece** on great importance of data ownership and decoupling of local
 or remote data from applications (also discuss need for return to (user-approved)
 `globalStorage` for application independence and potential use in websites adopting
@@ -127,6 +136,7 @@ command line help flag commands**, if structured enough.) Also
 allow **joining of commands**. This could actually work with WebAppFind,
 e.g., to make flags prefixed with webappfind- along with its own modes
 (e.g., view, edit, binaryedit) or custom modes--see next todo.
+1. Option to **associate with file/create shortcut** (Executable Builder).
 1. Make **desktop app demo** (e.g., Notepad++ plugin? though ideally also a
 database app to demonstrate how data that is typically otherwise "locked
 away" to other apps) can be shuffled off by right-click
@@ -138,16 +148,6 @@ manner), determining relevance of commands by reverse detecting their
 turn allow contextual snippets to be shuffled off to other applications
 including web-based ones (via WebAppFind). See also todo for WebAppFind
 re: possible command line syntax within filetypes.json.
-1. **Grab contents as text or HTML** (allowing for CSS-Selector-enhanced
-HTTPQuery syntax like `div.myClass:text()` or `a[href]:attr()` (and enhanced
-further to support `:selected()`, `:checked()`, or such) to get back
-other than an HTML string?) along with page text, URL, etc.; note: this
-ability to specify selectors for output is potentially distinct from
-specifying contexts via selector
-    1. Option to supply prompt for selector or JS/jQuery eval at run-time
-1. Support **eval-able custom selector definition retrieval**
-for context determination (as with custom selector definitions for node
-retrieval).
 1. **Remote site supply of commands**
 	1. Way for websites to register commands or groups of commands upon
 	user introspection and permission
