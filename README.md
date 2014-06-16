@@ -52,7 +52,7 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	write output to file and optionally open that file in the browser or
 	outside optionally with WebAppFind/filetypes.json), into window which is
 	hidden or not, and optionally switching to that window.
-	1. Support **text or CSS path offset of highlighted text** so if supplying
+	1. Support text or CSS path offset of highlighted text so if supplying
 	all page text, an app can reconstruct the position of the highlighted
 	text/elements in context (e.g., to allow supplying a correction of edited
 	text to Github through its API).
@@ -226,6 +226,7 @@ highlighted link and page HTML).
 off its data from there.
 1. Could create a convention to get data out of a plug-in by right-click (and demo - see [MDN](https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Scripting_plugins#How_to_call_plugin_native_methods));
 also for a full-page plugin (see https://developer.mozilla.org/en-US/Add-ons/Plugins/Gecko_Plugin_API_Reference/Plug-in_Basics )? Note that plugins are [deprecated](https://developer.mozilla.org/en-US/Add-ons/Plugins), however.
+1. Rename or add to URLs (including as textarea) to allow any kind of variable?
 
 # To-dos related to context-aware power-use or web-desktop interaction but beyond current scope of atyourcommand
 
