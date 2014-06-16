@@ -69,7 +69,7 @@ to reuse with OpenWith..., e.g., using WebAppFind).
 	could allow for convenient reuse of the content when attaching the batch
 	script to a "Open with..." handler. Use approach like
 	http://stackoverflow.com/a/5215844/271577
-
+	1. Detect OS for default format, but allow change to other OS format
 1. Hide currently unimplemented features such as context current
 value detection and add instead as to-do.
 1. Document README as well as instructions within the dialog for
