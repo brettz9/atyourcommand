@@ -62,7 +62,8 @@ URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 		1. Ability to convert selected path into file:// URL before passing on
 		within arguments
 
-1. Option to **make command or executable batch**
+1. Option to **make command or executable batch** (with idea in README
+to reuse with OpenWith..., e.g., using WebAppFind).
 
 1. Hide currently unimplemented features such as context current
 value detection and add instead as to-do.
