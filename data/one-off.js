@@ -400,7 +400,7 @@ jml('div', [
 
 // ADD EVENTS
 
-var ms = $J('#restrict-contexts').multipleSelect({filter: true, filterAcceptOnEnter: true, width: '150'});
+var ms = $J('#restrict-contexts').multipleSelect({filter: true, hideOptgroupCheckboxes: true, filterAcceptOnEnter: true, width: '150'});
 
 $('body').addEventListener('click', function (e) {
 	var val, sel, selVal,
