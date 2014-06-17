@@ -32,6 +32,7 @@ new command mode (with the list pre-closed)
 	elements as in QR Secret Decoder Ring), textarea and input content
 	(including selection ranges within), etc.
 	1. If hidden are chosen, context will be page context
+	1. Add contentType as property?
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)

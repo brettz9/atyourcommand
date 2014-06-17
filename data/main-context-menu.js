@@ -3,6 +3,7 @@
 self.on('click', function (node, data) {'use strict';
 	var msg = {
 		type: data,
+		contentType: document.contentType,
 		pageURL: document.URL,
 		pageTitle: document.title,
 		pageHTML: document.documentElement.outerHTML,
