@@ -313,7 +313,8 @@ jml('div', [
 				],
 				['b', [_("Sequences")]],
 				['dl', [
-						'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
+						'eval', 'contentType', 'pageURL',
+						'pageTitle', 'pageHTML', 'bodyText',
 						'selectedHTML', 'selectedText', 'linkPageURL',
 						'linkPageURLAsNativePath', 'linkPageTitle',
 						'linkBodyText', 'linkPageHTML', 'imageURL',
@@ -341,7 +342,8 @@ jml('div', [
 				*/
 				['b', [_("Sequences")]],
 				['dl', [
-						'eval', 'pageURL', 'pageTitle', 'pageHTML', 'bodyText',
+						'eval', 'contentType', 'pageURL', 'pageTitle',
+						'pageHTML', 'bodyText',
 						'selectedHTML', 'selectedText', 'linkPageURL',
 						'linkPageURLAsNativePath', 'linkPageTitle',
 						'linkBodyText', 'linkPageHTML', 'imageURL',
