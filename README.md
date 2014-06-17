@@ -90,7 +90,9 @@ or such) to get back other than an HTML string?) along with page text,
 URL, etc.; note: this ability to specify selectors for output in a custom
 manner would allow for distinguishing between where to restrict context and
 from where to obtain the content (but current ability for presets should
-be kept for convenience).
+be kept for convenience)--could thus have, e.g., page context with specific
+node selection, or a selection or selector context different from the chosen
+node(s), etc.
     1. Option to supply prompt for selector or JS/jQuery eval at run-time
 1. Support **eval-able custom selector definition retrieval**
 for context determination (as with custom selector definitions for node
@@ -209,6 +211,7 @@ loaded), consider whether to handle **revealing a desktop folder** (or
 e.g., for executables/batch files, etc. in this add-on or filebrowser enhanced
 (and see the latter's to-do about splitting off its context menu/add-on bar
 file:// capabilities into separate add-on).
+1. Allow specification of `URLContext()`'s (any need to utilize PredicateContext's?).
 
 # Possible to-dos
 
