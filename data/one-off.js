@@ -545,7 +545,8 @@ $('body').addEventListener('click', function (e) {
 		}
 		var data = {
 			name: name,
-			storage: {
+			save: true,
+			detail: {
 				executablePath: $('#executablePath').value,
 				args: inputs.args.getTextValues(),
 				files: inputs.files.getTextValues(),
