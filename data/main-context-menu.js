@@ -20,15 +20,10 @@ self.on('click', function (node, data) {'use strict';
 		selectedText: node.textContent
 	};
 	var nodeName = node.nodeName.toLowerCase();
-	
-	
-	if (nodeName === 'a' && node.hasAttribute('href')) {
-		msg.linkPageURL = node.href; // Includes base URI
-		// We retrieve "linkPageTitle", "linkBodyText", and "linkPageHTML" only as needed
+	if (data.customProperty) {
+		msg.customProperty = node[data.customProperty];
 	}
-	else if (nodeName === 'img' && node.hasAttribute('src')) {
-		msg.imageURL = node.src; // Includes base URI
-	}
+	// Retrieve "linkPageTitle", "linkBodyText", and "linkPageHTML" only as needed
 	
 	self.postMessage(msg); // We need privs on the dialogs we open
 });

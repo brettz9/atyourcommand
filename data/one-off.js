@@ -315,9 +315,9 @@ jml('div', [
 				['dl', [
 						'eval', 'contentType', 'pageURL',
 						'pageTitle', 'pageHTML', 'bodyText',
-						'selectedHTML', 'selectedText', 'linkPageURL',
+						'selectedHTML', 'selectedText',
 						'linkPageURLAsNativePath', 'linkPageTitle',
-						'linkBodyText', 'linkPageHTML', 'imageURL',
+						'linkBodyText', 'linkPageHTML',
 						'imageDataURL', 'imageDataBinary'
 					].reduce(function (children, seq) {
 						children.push(['dt', [seq]]);
@@ -344,9 +344,9 @@ jml('div', [
 				['dl', [
 						'eval', 'contentType', 'pageURL', 'pageTitle',
 						'pageHTML', 'bodyText',
-						'selectedHTML', 'selectedText', 'linkPageURL',
+						'selectedHTML', 'selectedText',
 						'linkPageURLAsNativePath', 'linkPageTitle',
-						'linkBodyText', 'linkPageHTML', 'imageURL',
+						'linkBodyText', 'linkPageHTML',
 						'imageDataURL', 'imageDataBinary'
 					].reduce(function (children, seq) {
 						children.push(['dt', [seq]]);
