@@ -24,14 +24,20 @@ To develop with source, install with npm:
 in edit mode (with the list of commands pre-opened) or in
 new command mode (with the list pre-closed)
 
-1. Complete work on giving user choice on whether to provide context
-	menu items **only in certain selector-based contexts** (but making
-	necessary JSON-friendly conversions for them)
-    1. video, audio, object/embed/applet (may be hidden from UI),
-	URL, `<a>`, canvas to data URL (including of image or video
-	elements as in QR Secret Decoder Ring), textarea and input content
-	(including selection ranges within), etc.
-	1. If hidden are chosen, context will be page context
+1. **Add separate multiple selects:**
+	1. Pull-down to choose main selector
+		1. Non-hidden nodes (to be tied to self)
+			1. Complete work on giving user choice on whether to provide
+			context menu items **only in certain selector-based contexts**
+			(but making necessary JSON-friendly conversions for them)
+				1. video, audio, object/embed/applet (may be hidden from UI),
+				URL, `<a>`, canvas to data URL (including of image or video
+				elements as in QR Secret Decoder Ring), textarea and input
+				content (including selection ranges within), etc.
+		1. If hidden are chosen, context will be page context
+	1. Additional queries to be supplied to designated context
+		1. (Hidden and/or non-hidden; allowable with any context as not
+		selection-dependent)
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
