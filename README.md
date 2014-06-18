@@ -41,6 +41,11 @@ new command mode (with the list pre-closed)
 		1. (Hidden and/or non-hidden; allowable with any context as not
 		selection-dependent)
 		1. Allow text box for these retrieval selectors
+	1. node as HTML, text, or JSON (context node, first node or all nodes)
+	included by detecting magic words within user's command details
+	(executable, args, or variables). Alert user upon editing if they are
+	attempting to use or save a command which is relying on variables
+	not supplied.
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
