@@ -18,6 +18,7 @@ self.on('click', function (node, data) {'use strict';
 		bodyText: document.body.textContent,
 		selectedHTML: node.outerHTML,
 		selectedText: node.textContent
+		selector: data.selector
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (data.customProperty) {
