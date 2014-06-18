@@ -10,15 +10,15 @@ self.on('context', function (node) {'use strict';
 //  the SelectorContext node; otherwise, it will be the actual node clicked
 self.on('click', function (node, data) {'use strict';
 	var msg = {
-		type: data,
+		selector: data.selector,
 		contentType: document.contentType,
 		pageURL: document.URL,
-		pageTitle: document.title,
-		pageHTML: document.documentElement.outerHTML,
-		bodyText: document.body.textContent,
 		selectedHTML: node.outerHTML,
-		selectedText: node.textContent
-		selector: data.selector
+		selectedText: node.textContent,
+		// Could require user to specify these (as associatable with specific tags)
+		pageTitle: document.title, // hidden
+		pageHTML: document.documentElement.outerHTML, // Treat like hidden to avoid need to select anything
+		bodyText: document.body.textContent // Treat like hidden to avoid need to select anything
 	};
 	var nodeName = node.nodeName.toLowerCase();
 	if (data.customProperty) {
