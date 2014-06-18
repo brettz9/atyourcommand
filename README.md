@@ -34,7 +34,7 @@ new command mode (with the list pre-closed)
 				URL, `<a>`, canvas to data URL (including of image or video
 				elements as in QR Secret Decoder Ring), textarea and input
 				content (including selection ranges within), etc.
-		1. If hidden are chosen, context will be page context
+		1. If hidden are chosen (or none), context will be page context
 	1. Additional queries to be supplied to designated context
 		1. (Hidden and/or non-hidden; allowable with any context as not
 		selection-dependent)
