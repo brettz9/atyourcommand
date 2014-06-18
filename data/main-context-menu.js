@@ -9,7 +9,9 @@ self.on('context', function (node) {'use strict';
 // For "click" events where "SelectorContext" was used, "node" will be
 //  the SelectorContext node; otherwise, it will be the actual node clicked
 self.on('click', function (node, data) {'use strict';
+	var data = typeof data === 'string' ? {data: data} : data;
 	var msg = {
+		data: data.data,
 		selector: data.selector,
 		contentType: document.contentType,
 		pageURL: document.URL,
