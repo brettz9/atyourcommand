@@ -47,8 +47,8 @@ new command mode (with the list pre-closed)
 	attempting to use or save a command which is relying on variables
 	not supplied.
 	1. Review todos throughout code (esp. exposure of page's
-	cookies/localStorage/indexedDB/FileSystem!--ideally also optional
-	privileged write/listen access as well)
+	cookies/localStorage/indexedDB/FileSystem/sessionStorage/applicationCache,
+	ideally also optional privileged write/listen access as well!)
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)

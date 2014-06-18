@@ -22,11 +22,18 @@ self.on('click', function (node, data) {'use strict';
 		lastModified: document.lastModified,
 		referrer: document.referrer,
 		// Todo: allow user to designate individual:
-		//   cookies/FileSystem/indexedDB/localStorage!!!!!; comma-separated
-		//   list (or using privileges, get all of cookies/localStorage for
-		//   the page); means to supply privileged write (or listen)-access
+		//   cookies/FileSystem/indexedDB/localStorage/
+		//   sessionStorage/applicationCache!!!!!;
+		//   comma-separated list (or using privileges, get all of
+		//   cookies/localStorage for the page); means to supply
+		//   privileged write (or listen)-access
 		//   back to these local storage items?
 		// Todo: Document anchors (name/text), designMode, plugins useful?
+		// Todo: Window name, fullScreen, parent/top/opener location/title, performance.now, etc.
+		// Todo: Investigate navigator: http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#the-navigator-object or
+		//             any other items e.g., on window object, which
+		//             may not be needed by websites (since can detect
+		//             themselves) but desktop apps may need
 
 		// Todo: add to these magic items, depending also on whether there is a context or not
 		selectedHTML: node.outerHTML,
