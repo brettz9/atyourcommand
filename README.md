@@ -26,7 +26,8 @@ new command mode (with the list pre-closed)
 
 1. **Add separate multiple selects:**
 	1. Pull-down to choose main selector
-		1. Non-hidden nodes (to be tied to self)
+		1. Non-hidden nodes (to be tied to self); also allows text box
+		entry for selector
 			1. Complete work on giving user choice on whether to provide
 			context menu items **only in certain selector-based contexts**
 			(but making necessary JSON-friendly conversions for them)
@@ -34,10 +35,12 @@ new command mode (with the list pre-closed)
 				URL, `<a>`, canvas to data URL (including of image or video
 				elements as in QR Secret Decoder Ring), textarea and input
 				content (including selection ranges within), etc.
-		1. If hidden are chosen (or none), context will be page context
+		1. If hidden are chosen (or none), context will be page context (no
+		text box for selector)
 	1. Additional queries to be supplied to designated context
 		1. (Hidden and/or non-hidden; allowable with any context as not
 		selection-dependent)
+		1. Allow text box for these retrieval selectors
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
