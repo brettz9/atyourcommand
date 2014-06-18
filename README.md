@@ -49,6 +49,7 @@ new command mode (with the list pre-closed)
 	1. Review todos throughout code (esp. exposure of page's
 	cookies/localStorage/indexedDB/FileSystem/sessionStorage/applicationCache,
 	ideally also optional privileged write/listen access as well!)
+		1. Might even expose for any site or all sites
 
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
