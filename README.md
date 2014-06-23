@@ -50,7 +50,14 @@ new command mode (with the list pre-closed)
 	cookies/localStorage/indexedDB/FileSystem/sessionStorage/applicationCache,
 	ideally also optional privileged write/listen access as well!)
 		1. Might even expose for any site or all sites
-
+	1. Make context to be WebAppFind (e.g., filetypes.json detection or
+	based on file extension within file:// link)?
+		1. Allow right-clicking on a link to populate form with default
+		WebAppFind type/context file:// execute to be done with specific
+		Windows
+		"[verbs](http://msdn.microsoft.com/en-us/library/bb165967.aspx)"
+		(i.e., Open, Edit, Print, Play, Preview or custom) in place of a
+		specific executable!
 1. Finish behavior providing **string substitution** of current page contents,
 URL, etc. (see todos in main.js under "buttonClick" "execute" event)
 	1. Support defaults (including empty ones) and document
