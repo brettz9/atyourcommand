@@ -109,6 +109,9 @@ implemented use cases as needed
 
 # Higher priority to-dos (longer)
 
+1. Work to utilize content type or file extension and supply to web app
+	1. Implement content type through own listener or by registering Firefox+add-on
+	with the OS somehow as an app?
 1. **Grab contents as text or HTML in custom manner** (allowing for
 CSS-Selector-enhanced HTTPQuery syntax like `div.myClass:text()` or
 `a[href]:attr()` (and enhanced further to support `:selected()`, `:checked()`,
