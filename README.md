@@ -214,6 +214,8 @@ atyourcommand) but remember upon future loads of the content
 		web apps automatically with web data (and with PUT requests back to
 		server, could get full round-trip decoupling of data and app)
 		1. Allow all file:// URLs to optionally be opened externally as per https://support.mozilla.org/en-US/questions/758172
+        or to auto-apply WebAppFind to such file:// URLs (always or selectively)
+        so this content could be sent to a web app as well as desktop app
 		1. Cover usage of http://kb.mozillazine.org/View_source.editor.external and http://kb.mozillazine.org/View_source.editor.path
 	1. As with my possible todo for
 	[Open In Browser](https://addons.mozilla.org/En-us/firefox/addon/open-in-browser/)
