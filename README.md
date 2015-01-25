@@ -105,6 +105,9 @@ implemented use cases as needed
 	to the app (the property instead of attribute) unless another generic
 	type of variable substitution such as obtaining the node as HTML
 	or the node's textContent is provided).
+1. Allow context menu, with dynamic submenu that checks content type
+of highlighted link and provides content handlers (and same with
+protocol handlers)
 1. Submit to AMO
 
 # Higher priority to-dos (longer)
