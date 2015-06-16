@@ -1,0 +1,10 @@
+.jpmignore
+.npmignore
+.bowerrc
+bower.json
+.git
+.gitignore
+test
+doc
+*.xpi
+*.lnk
