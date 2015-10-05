@@ -1,4 +1,5 @@
 start-atyourcommand.bat.lnk
+start-atyourcommand.bat
 data/node_modules/
 data/bower_components/
 lib/node_modules/
