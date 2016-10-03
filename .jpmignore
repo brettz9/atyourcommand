@@ -9,3 +9,4 @@ doc
 *.xpi
 *.lnk
 *.bat
+node_modules

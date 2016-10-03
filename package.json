@@ -5,9 +5,18 @@
     "main": "lib/main",
     "description": "Open web content into the command line",
     "author": "Brett Zamir",
+    "contributors": [],
     "license": "MIT",
     "version": "0.2.1",
     "permissions": {"private-browsing": true},
+    "keywords": ["cli"],
+    "bugs": "https://github.com/brettz9/atyourcommand/issues",
+    "homepage": "https://github.com/brettz9/atyourcommand",
+    "dependencies": {},
+    "devDependencies": {
+        "remark-lint": "^5.1.0"
+    },
+    "engines": {},
     "repository": {
         "type": "git",
         "url": "https://github.com/brettz9/atyourcommand.git"

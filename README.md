@@ -161,10 +161,12 @@ HTML/XML document is itself a kind of database).
 1. Add interfaces to the likes of Firefox's **SQLite** database (including
 for access to its localStorage contents) or to **FileWriter/FileSystem**
 and **cached files** (e.g., when right-clicking on a document, getting its
-HTML cache or resource file cache files, or its localStorage, etc. so
+HTML cache or resource file cache files, or its localStorage, cookies, etc. so
 no data is inaccessible) and **HTTPQuery/PATCH** requests against
 local as well as remote data for a potentially friendly and uniform approach
-(which could subsume the local SQLite API as well)
+(which could subsume the local SQLite API as well). Also add context menu
+to Inspector to allow HTML snippets to be shuffled off (as with right-clicking
+content in the browser window itself).
 1. AtYourCommand to include **HTTPQuery** (partial) retrieval of remote content
 (though delegate partial saving back to webappfind?)
 1. Conditional operator for **PUT, HTTPQuery support detection**;
