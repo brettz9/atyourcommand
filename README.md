@@ -165,8 +165,8 @@ HTML cache or resource file cache files, or its localStorage, cookies, etc. so
 no data is inaccessible) and **HTTPQuery/PATCH** requests against
 local as well as remote data for a potentially friendly and uniform approach
 (which could subsume the local SQLite API as well). Also add context menu
-to Inspector to allow HTML snippets to be shuffled off (as with right-clicking
-content in the browser window itself).
+to Inspector and source-view to allow HTML snippets to be shuffled off (as
+with right-clicking content in the browser window itself).
 1. AtYourCommand to include **HTTPQuery** (partial) retrieval of remote content
 (though delegate partial saving back to webappfind?)
 1. Conditional operator for **PUT, HTTPQuery support detection**;
