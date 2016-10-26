@@ -166,7 +166,8 @@ no data is inaccessible) and **HTTPQuery/PATCH** requests against
 local as well as remote data for a potentially friendly and uniform approach
 (which could subsume the local SQLite API as well). Also add context menu
 to Inspector and source-view to allow HTML snippets to be shuffled off (as
-with right-clicking content in the browser window itself).
+with right-clicking content in the browser window itself). Also add for
+console, e.g., to shuffle off variables (and optionally write back).
 1. AtYourCommand to include **HTTPQuery** (partial) retrieval of remote content
 (though delegate partial saving back to webappfind?)
 1. Conditional operator for **PUT, HTTPQuery support detection**;
