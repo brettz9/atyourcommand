@@ -14,7 +14,7 @@
     "homepage": "https://github.com/brettz9/atyourcommand",
     "dependencies": {},
     "devDependencies": {
-        "remark-lint": "^5.1.0"
+        "remark-lint": "^6.0.1"
     },
     "engines": {},
     "repository": {
