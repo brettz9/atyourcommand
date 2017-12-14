@@ -1,5 +1,7 @@
 # atyourcommand
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/brettz9/atyourcommand.svg)](https://greenkeeper.io/)
+
 ***NOTE: This project is not yet functional.***
 
 Firefox add-on for opening arbitrary web content into the command line
