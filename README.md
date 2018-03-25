@@ -1,5 +1,8 @@
 # atyourcommand
 
+***NOTE: This project is currently being merged into
+[WebAppFind](https://github.com/brettz9/webappfind)***
+
 ***NOTE: This project is not yet functional.***
 
 Firefox add-on for opening arbitrary web content into the command line
